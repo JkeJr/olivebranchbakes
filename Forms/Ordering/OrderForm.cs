@@ -1,4 +1,5 @@
 ﻿using OliveBranchBakes.Forms.Payment;
+using OliveBranchBakes.Objects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,14 +12,7 @@ namespace OliveBranchBakes.Forms
 {
     public partial class OrderForm : Form
     {
-        public OrderForm()
-        {
-            InitializeComponent();
-        }
-
-
-
-        // Closes the application if the form is closed.
+        private ItemList items = new();
 
         // Source - https://stackoverflow.com/a/8750673
         // Posted by competent_tech
@@ -26,7 +20,27 @@ namespace OliveBranchBakes.Forms
         private void OrderForm_Load(object sender, EventArgs e)
         {
             this.FormClosed += new FormClosedEventHandler(Form1_FormClosed);
+            items.Fill();
+            FillItemListBox();
         }
+
+        public OrderForm()
+        {
+            InitializeComponent();
+        }
+
+        // Fills listviewItems with values from items
+        private void FillItemListBox()
+        {
+            OrderItem item;
+            listviewItems.Items.Clear();
+            for (int i = 0; i < items.Count; i++)
+            {
+                item = items[i];
+                listviewItems.Items.Add(item.GetDisplayText());
+            }
+        }
+
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             // something
