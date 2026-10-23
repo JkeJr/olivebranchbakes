@@ -48,6 +48,14 @@
             rtxtComments = new RichTextBox();
             label3 = new Label();
             listviewOrder = new ListView();
+            colName = new ColumnHeader();
+            colPrice = new ColumnHeader();
+            colAllergens = new ColumnHeader();
+            colCount = new ColumnHeader();
+            colOrderedName = new ColumnHeader();
+            colOrderedPrice = new ColumnHeader();
+            colOrderedCount = new ColumnHeader();
+            colOrderedAllergen = new ColumnHeader();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -241,12 +249,17 @@
             // listviewItems
             // 
             listviewItems.BackColor = Color.AntiqueWhite;
+            listviewItems.Columns.AddRange(new ColumnHeader[] { colName, colPrice, colAllergens, colCount });
+            listviewItems.FullRowSelect = true;
+            listviewItems.GridLines = true;
+            listviewItems.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             listviewItems.Location = new Point(3, 39);
             listviewItems.Name = "listviewItems";
             listviewItems.Size = new Size(419, 261);
             listviewItems.TabIndex = 1;
             listviewItems.TabStop = false;
             listviewItems.UseCompatibleStateImageBehavior = false;
+            listviewItems.View = View.Details;
             // 
             // rtxtComments
             // 
@@ -270,6 +283,10 @@
             // listviewOrder
             // 
             listviewOrder.BackColor = Color.AntiqueWhite;
+            listviewOrder.Columns.AddRange(new ColumnHeader[] { colOrderedName, colOrderedPrice, colOrderedCount, colOrderedAllergen });
+            listviewOrder.FullRowSelect = true;
+            listviewOrder.GridLines = true;
+            listviewOrder.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             listviewOrder.Items.AddRange(new ListViewItem[] { listViewItem1 });
             listviewOrder.Location = new Point(3, 29);
             listviewOrder.Name = "listviewOrder";
@@ -277,6 +294,44 @@
             listviewOrder.TabIndex = 4;
             listviewOrder.TabStop = false;
             listviewOrder.UseCompatibleStateImageBehavior = false;
+            listviewOrder.View = View.Details;
+            // 
+            // colName
+            // 
+            colName.Text = "Name";
+            colName.Width = 150;
+            // 
+            // colPrice
+            // 
+            colPrice.Text = "$__.__";
+            // 
+            // colAllergens
+            // 
+            colAllergens.Text = "Allergens";
+            colAllergens.Width = 170;
+            // 
+            // colCount
+            // 
+            colCount.Text = "#";
+            // 
+            // colOrderedName
+            // 
+            colOrderedName.Text = "Name";
+            colOrderedName.Width = 150;
+            // 
+            // colOrderedPrice
+            // 
+            colOrderedPrice.Text = "$__.__";
+            // 
+            // colOrderedCount
+            // 
+            colOrderedCount.Text = "#";
+            colOrderedCount.Width = 30;
+            // 
+            // colOrderedAllergen
+            // 
+            colOrderedAllergen.Text = "Allergen";
+            colOrderedAllergen.Width = 80;
             // 
             // OrderForm
             // 
@@ -284,8 +339,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Bisque;
             ClientSize = new Size(800, 450);
+            ControlBox = false;
             Controls.Add(splitContainer1);
             Name = "OrderForm";
+            SizeGripStyle = SizeGripStyle.Hide;
             Text = "OrderForm";
             Load += OrderForm_Load;
             splitContainer1.Panel1.ResumeLayout(false);
@@ -323,5 +380,13 @@
         private Button btnAdd;
         private ComboBox cmbboxFilter;
         private Label label6;
+        private ColumnHeader colName;
+        private ColumnHeader colPrice;
+        private ColumnHeader colAllergens;
+        private ColumnHeader colCount;
+        private ColumnHeader colOrderedName;
+        private ColumnHeader colOrderedPrice;
+        private ColumnHeader colOrderedCount;
+        private ColumnHeader colOrderedAllergen;
     }
 }
