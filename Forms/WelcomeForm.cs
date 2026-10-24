@@ -11,9 +11,12 @@ namespace OliveBranchBakes
 {
     public partial class WelcomeForm : Form
     {
+        public static WelcomeForm Current;
+        
         public WelcomeForm()
         {
             InitializeComponent();
+            Current = this;
         }
 
         private void btnGuest_Click(object sender, EventArgs e)
@@ -24,8 +27,10 @@ namespace OliveBranchBakes
 
         private void btnLoginGo_Click(object sender, EventArgs e)
         {
-            LoginForm loginForm = new();
-            loginForm.ShowDialog();
+            //LoginForm loginForm = new();
+            //loginForm.ShowDialog();
+            new AdminConsoleForm().Show();
+            this.Hide();
         }
     }
 }

@@ -1,2 +1,2 @@
-﻿Item1|2.50|allergens
+Item1|2.50|allergens
 Item2|5.99|no allergens

@@ -25,3 +25,4 @@ D:\Backup\Documents\School\Faulkner\CS3388 Object Oriented Programming\Projects\
 D:\Backup\Documents\School\Faulkner\CS3388 Object Oriented Programming\Projects\OliveBranchBakes\obj\Debug\net10.0-windows\OliveBranchBakes.Forms.OrderStatusForm.resources
 D:\Backup\Documents\School\Faulkner\CS3388 Object Oriented Programming\Projects\OliveBranchBakes\obj\Debug\net10.0-windows\OliveBranchBakes.WelcomeForm.resources
 D:\Backup\Documents\School\Faulkner\CS3388 Object Oriented Programming\Projects\OliveBranchBakes\obj\Debug\net10.0-windows\OliveBranchBakes.sourcelink.json
+D:\Backup\Documents\School\Faulkner\CS3388 Object Oriented Programming\Projects\OliveBranchBakes\obj\Debug\net10.0-windows\OliveBranchBakes.Forms.Admin.ItemCreateForm.resources

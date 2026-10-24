@@ -29,7 +29,10 @@
         private void InitializeComponent()
         {
             splitContainer1 = new SplitContainer();
-            listView1 = new ListView();
+            button3 = new Button();
+            button2 = new Button();
+            btnDelete = new Button();
+            listviewItems = new ListView();
             colName = new ColumnHeader();
             colPrice = new ColumnHeader();
             colAllergens = new ColumnHeader();
@@ -41,11 +44,8 @@
             colCustomer = new ColumnHeader();
             colPayment = new ColumnHeader();
             colCount = new ColumnHeader();
-            label2 = new Label();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
             btnDetails = new Button();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -62,8 +62,8 @@
             // 
             splitContainer1.Panel1.Controls.Add(button3);
             splitContainer1.Panel1.Controls.Add(button2);
-            splitContainer1.Panel1.Controls.Add(button1);
-            splitContainer1.Panel1.Controls.Add(listView1);
+            splitContainer1.Panel1.Controls.Add(btnDelete);
+            splitContainer1.Panel1.Controls.Add(listviewItems);
             splitContainer1.Panel1.Controls.Add(btnBack);
             splitContainer1.Panel1.Controls.Add(label3);
             splitContainer1.Panel1.Controls.Add(label1);
@@ -77,20 +77,48 @@
             splitContainer1.SplitterDistance = 416;
             splitContainer1.TabIndex = 0;
             // 
-            // listView1
+            // button3
             // 
-            listView1.BackColor = Color.MistyRose;
-            listView1.Columns.AddRange(new ColumnHeader[] { colName, colPrice, colAllergens });
-            listView1.FullRowSelect = true;
-            listView1.GridLines = true;
-            listView1.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            listView1.Location = new Point(3, 84);
-            listView1.MultiSelect = false;
-            listView1.Name = "listView1";
-            listView1.Size = new Size(410, 193);
-            listView1.TabIndex = 2;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
+            button3.Location = new Point(68, 283);
+            button3.Name = "button3";
+            button3.Size = new Size(59, 29);
+            button3.TabIndex = 3;
+            button3.Text = "Edit";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(3, 283);
+            button2.Name = "button2";
+            button2.Size = new Size(59, 29);
+            button2.TabIndex = 3;
+            button2.Text = "Add";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // btnDelete
+            // 
+            btnDelete.Location = new Point(319, 283);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(94, 29);
+            btnDelete.TabIndex = 3;
+            btnDelete.Text = "Delete";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
+            // 
+            // listviewItems
+            // 
+            listviewItems.BackColor = Color.MistyRose;
+            listviewItems.Columns.AddRange(new ColumnHeader[] { colName, colPrice, colAllergens });
+            listviewItems.FullRowSelect = true;
+            listviewItems.GridLines = true;
+            listviewItems.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            listviewItems.Location = new Point(3, 84);
+            listviewItems.MultiSelect = false;
+            listviewItems.Name = "listviewItems";
+            listviewItems.Size = new Size(410, 193);
+            listviewItems.TabIndex = 2;
+            listviewItems.UseCompatibleStateImageBehavior = false;
+            listviewItems.View = View.Details;
             // 
             // colName
             // 
@@ -114,6 +142,7 @@
             btnBack.TabIndex = 1;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
             // 
             // label3
             // 
@@ -167,42 +196,6 @@
             // 
             colCount.Text = "Item #";
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(3, 9);
-            label2.Name = "label2";
-            label2.Size = new Size(101, 20);
-            label2.TabIndex = 0;
-            label2.Text = "Active Orders:";
-            // 
-            // button1
-            // 
-            button1.Location = new Point(319, 283);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 3;
-            button1.Text = "Delete";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(3, 283);
-            button2.Name = "button2";
-            button2.Size = new Size(59, 29);
-            button2.TabIndex = 3;
-            button2.Text = "Add";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(68, 283);
-            button3.Name = "button3";
-            button3.Size = new Size(59, 29);
-            button3.TabIndex = 3;
-            button3.Text = "Edit";
-            button3.UseVisualStyleBackColor = true;
-            // 
             // btnDetails
             // 
             btnDetails.Location = new Point(258, 283);
@@ -211,6 +204,15 @@
             btnDetails.TabIndex = 3;
             btnDetails.Text = "View Details";
             btnDetails.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(3, 9);
+            label2.Name = "label2";
+            label2.Size = new Size(101, 20);
+            label2.TabIndex = 0;
+            label2.Text = "Active Orders:";
             // 
             // AdminConsoleForm
             // 
@@ -223,6 +225,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "AdminConsoleForm";
             Text = "AdminConsoleForm";
+            Load += AdminConsoleForm_Load;
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel1.PerformLayout();
             splitContainer1.Panel2.ResumeLayout(false);
@@ -236,7 +239,7 @@
 
         private SplitContainer splitContainer1;
         private Label label1;
-        private ListView listView1;
+        private ListView listviewItems;
         private Button btnBack;
         private Label label3;
         private ListView listView2;
@@ -250,7 +253,7 @@
         private ColumnHeader colOrderNum;
         private Button button3;
         private Button button2;
-        private Button button1;
+        private Button btnDelete;
         private Button btnDetails;
     }
 }
