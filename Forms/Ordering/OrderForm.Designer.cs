@@ -45,13 +45,13 @@
             chkboxAllergy = new CheckBox();
             label4 = new Label();
             listviewItems = new ListView();
-            rtxtComments = new RichTextBox();
-            label3 = new Label();
-            listviewOrder = new ListView();
             colName = new ColumnHeader();
             colPrice = new ColumnHeader();
             colAllergens = new ColumnHeader();
             colCount = new ColumnHeader();
+            rtxtComments = new RichTextBox();
+            label3 = new Label();
+            listviewOrder = new ListView();
             colOrderedName = new ColumnHeader();
             colOrderedPrice = new ColumnHeader();
             colOrderedCount = new ColumnHeader();
@@ -255,11 +255,29 @@
             listviewItems.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             listviewItems.Location = new Point(3, 39);
             listviewItems.Name = "listviewItems";
-            listviewItems.Size = new Size(419, 261);
+            listviewItems.Size = new Size(419, 263);
             listviewItems.TabIndex = 1;
             listviewItems.TabStop = false;
             listviewItems.UseCompatibleStateImageBehavior = false;
             listviewItems.View = View.Details;
+            // 
+            // colName
+            // 
+            colName.Text = "Name";
+            colName.Width = 150;
+            // 
+            // colPrice
+            // 
+            colPrice.Text = "$__.__";
+            // 
+            // colAllergens
+            // 
+            colAllergens.Text = "Allergens";
+            colAllergens.Width = 170;
+            // 
+            // colCount
+            // 
+            colCount.Text = "#";
             // 
             // rtxtComments
             // 
@@ -295,24 +313,6 @@
             listviewOrder.TabStop = false;
             listviewOrder.UseCompatibleStateImageBehavior = false;
             listviewOrder.View = View.Details;
-            // 
-            // colName
-            // 
-            colName.Text = "Name";
-            colName.Width = 150;
-            // 
-            // colPrice
-            // 
-            colPrice.Text = "$__.__";
-            // 
-            // colAllergens
-            // 
-            colAllergens.Text = "Allergens";
-            colAllergens.Width = 170;
-            // 
-            // colCount
-            // 
-            colCount.Text = "#";
             // 
             // colOrderedName
             // 

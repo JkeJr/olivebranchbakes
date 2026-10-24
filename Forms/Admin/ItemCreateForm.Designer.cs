@@ -1,6 +1,6 @@
-﻿namespace OliveBranchBakes.Forms
+﻿namespace OliveBranchBakes.Forms.Admin
 {
-    partial class AdminConsoleForm
+    partial class ItemCreateForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "AdminConsoleForm";
+            this.Text = "ItemCreateForm";
         }
 
         #endregion
