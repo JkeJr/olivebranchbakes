@@ -46,6 +46,7 @@
             colCount = new ColumnHeader();
             btnDetails = new Button();
             label2 = new Label();
+            lblDate = new Label();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -60,6 +61,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.Controls.Add(lblDate);
             splitContainer1.Panel1.Controls.Add(btnEdit);
             splitContainer1.Panel1.Controls.Add(btnAdd);
             splitContainer1.Panel1.Controls.Add(btnDelete);
@@ -122,7 +124,6 @@
             listviewItems.TabStop = false;
             listviewItems.UseCompatibleStateImageBehavior = false;
             listviewItems.View = View.Details;
-            //listviewItems.SelectedIndexChanged += listviewItems_SelectedIndexChanged;
             // 
             // colName
             // 
@@ -219,6 +220,17 @@
             label2.TabIndex = 0;
             label2.Text = "Active Orders:";
             // 
+            // lblDate
+            // 
+            lblDate.AutoSize = true;
+            lblDate.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblDate.ForeColor = SystemColors.GrayText;
+            lblDate.Location = new Point(328, 61);
+            lblDate.Name = "lblDate";
+            lblDate.Size = new Size(85, 20);
+            lblDate.TabIndex = 4;
+            lblDate.Text = "10/25/2026";
+            // 
             // AdminConsoleForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -261,5 +273,6 @@
         private Button btnDelete;
         private Button btnDetails;
         private Button btnEdit;
+        private Label lblDate;
     }
 }

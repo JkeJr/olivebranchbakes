@@ -32,16 +32,31 @@ namespace OliveBranchBakes
                 string[] columns = row.Split(Delimiter); //split the row into an array using Delimiter
 
                 // Check if each row has been split correctly. Update whenever I add new pieces of info
-                if (columns.Length == 3)
+                // Name|Price|Allergens|Seasonal?|Start|End
+                if (columns.Length == 6)
                 {
                     OrderItem item = null!;
                     /*      TODO: Add type specific checks in the first column of each row
                     if (columns[0] == nameof(Donut))
                     if (columns[0] == nameof(Cake))
                     */
-                    item = new OrderItem(columns[0], 
-                                            Convert.ToDecimal(columns[1]),
-                                                columns[2]);
+                    // if the item is seasonal
+                    if (columns[3] == "s")
+                    {
+                        item = new OrderItem(
+                                    columns[0],
+                                    Convert.ToDecimal(columns[1]),
+                                    columns[2],
+                                    columns[4],
+                                    columns[5]);
+                    }
+                    else
+                    {
+                        item = new OrderItem(
+                                    columns[0],
+                                    Convert.ToDecimal(columns[1]),
+                                    columns[2]);
+                    }
 
                     // add item to items list
                     if (item != null)
