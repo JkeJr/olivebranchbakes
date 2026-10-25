@@ -7,7 +7,7 @@ using System.Text;
 
 namespace OliveBranchBakes
 {
-    internal static class DataManagement
+    public static class DataManagement
     {
         private const string Path = @"..\..\..\Documents\ItemStorage.txt";
         private const string Delimiter = "|";
@@ -90,7 +90,8 @@ namespace OliveBranchBakes
         {
             textOut.Write(item.Name + Delimiter);
             textOut.Write(item.Price.ToString() + Delimiter);
-            textOut.WriteLine(item.Allergens);
+            textOut.Write(item.Allergens);
+            textOut.WriteLine(item.SeasonalInfo());
         }
     }
 }

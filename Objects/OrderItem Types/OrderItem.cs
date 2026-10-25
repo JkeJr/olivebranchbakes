@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Policy;
 using System.Text;
 
 namespace OliveBranchBakes.Objects
@@ -9,10 +10,9 @@ namespace OliveBranchBakes.Objects
         public string Name = "";
         public decimal Price;
         public string Allergens = "";
-        private bool seasonal { get; init; } = false;
+        public bool Seasonal { get; init; } = false;
 
-        private string? seasonStart;    // mm/dd/yyyy
-        private string? seasonEnd;      // mm/dd/yyyy
+        public DateRange? Season;
 
         public OrderItem()
         {
@@ -27,29 +27,32 @@ namespace OliveBranchBakes.Objects
             Price = price;
             Allergens = allergens;
         }
+        public OrderItem(string name, decimal price, string allergens, DateRange range)
+        {
+            Name = name;
+            Price = price;
+            Allergens = allergens;
+            Seasonal = true;
+
+            Season = range;
+        }
         public OrderItem(string name, decimal price, string allergens, string start, string end)
         {
             Name = name;
             Price = price;
             Allergens = allergens;
-            seasonal = true;
+            Seasonal = true;
 
-            seasonStart = $"{start}/{GetYear()}"; // mm/dd + yyyy
-
-            // if end == mm/dd+, set the end DateTime to be set for the next year
-            if (end[end.Length - 1] == '+')
-                seasonEnd = $"{end.Substring(end.Length - 1)}/{GetYear() + 1}"; // mm/dd + (yyyy + 1)
-            else
-                seasonEnd = $"{end}/{GetYear()}"; // mm/dd + yyyy
+            Season = new(start, end);
         }
 
         public bool InSeason()
         {
-            if (this.seasonal)
+            if (this.Seasonal)
             {
-                if (DateTime.Today < ConvertToDateTime(seasonStart))
+                if (DateTime.Today < Season[0])
                     return false;
-                else if (DateTime.Today > ConvertToDateTime(seasonEnd))
+                else if (DateTime.Today > Season[1])
                     return false;
                 else 
                     return true;
@@ -57,26 +60,8 @@ namespace OliveBranchBakes.Objects
             return true;
         }
 
-        private static DateTime ConvertToDateTime(string date)
-        {
-            int[] intValues = new int[3];
-            string[] strValues = date.Split("/");
-            foreach (string value in strValues)
-            {
-                intValues[strValues.IndexOf(value)] = Convert.ToInt16(value);
-            }
-
-            DateTime dateTime = new(intValues[0], intValues[1], intValues[2]);
-            return dateTime;
-        }
-        private static int GetYear()
-        {
-            // mm/dd/yyyy
-            string date = DateTime.Today.ToString();
-            string year = date.Substring(date.Length - 4, 4); // yyyy
-
-            return Convert.ToInt16(year);
-        }
+        // return formatted string for writing seasonal info to file
+        public string SeasonalInfo() => (this.Seasonal) ? $"s|{Season.Start}|{Season.End}" : "ns|null|null";
 
         public string GetDisplayText()
         {

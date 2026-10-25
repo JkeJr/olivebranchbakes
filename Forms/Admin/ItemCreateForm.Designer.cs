@@ -120,17 +120,19 @@
             chkSeasonal.TabIndex = 3;
             chkSeasonal.Text = "Seasonal?";
             chkSeasonal.UseVisualStyleBackColor = true;
+            chkSeasonal.CheckedChanged += chkSeasonal_CheckedChanged;
             // 
             // dtpStart
             // 
             dtpStart.CustomFormat = "MMMM d";
             dtpStart.Format = DateTimePickerFormat.Custom;
             dtpStart.Location = new Point(301, 56);
-            dtpStart.MaxDate = new DateTime(2026, 12, 31, 0, 0, 0, 0);
+            dtpStart.MaxDate = new DateTime(2026, 10, 26, 0, 0, 0, 0);
             dtpStart.MinDate = new DateTime(2026, 1, 1, 0, 0, 0, 0);
             dtpStart.Name = "dtpStart";
             dtpStart.Size = new Size(150, 27);
             dtpStart.TabIndex = 4;
+            dtpStart.ValueChanged += dtpStart_ValueChanged;
             // 
             // label4
             // 
@@ -148,11 +150,12 @@
             dtpEnd.Format = DateTimePickerFormat.Custom;
             dtpEnd.Location = new Point(301, 94);
             dtpEnd.MaxDate = new DateTime(2027, 12, 31, 0, 0, 0, 0);
-            dtpEnd.MinDate = new DateTime(2026, 1, 1, 0, 0, 0, 0);
+            dtpEnd.MinDate = new DateTime(2026, 10, 25, 0, 0, 0, 0);
             dtpEnd.Name = "dtpEnd";
             dtpEnd.Size = new Size(150, 27);
             dtpEnd.TabIndex = 5;
             dtpEnd.Value = new DateTime(2026, 10, 26, 0, 0, 0, 0);
+            dtpEnd.ValueChanged += dtpEnd_ValueChanged;
             // 
             // label5
             // 
@@ -188,6 +191,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "ItemCreateForm";
             Text = "ItemCreateForm";
+            Load += ItemCreateForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

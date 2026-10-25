@@ -1,8 +1,9 @@
-Sourdough loaf|7.50|gluten|ns|null|null
-Chocolate chip cookie|2.25|gluten,chocolate|ns|null|null
-Blueberry muffin|3.00|gluten,blueberry|ns|null|null
-Cinnamon roll|3.75|gluten,cinnamon,dairy|ns|null|null
-Apple pie (9 inch)|22.00|gluten,apple,cinnamon|ns|null|null
-Custom decorated cake|45.00|gluten,dairy,egg|ns|null|null
-Honey butter (jar)|5.00|honey|ns|null|null
-Cranberry Orange Scone|3.25|gluten,cranberry,orange|s|11/1|1/15+
+Sourdough loaf|7.50|glutenns|null|null
+Chocolate chip cookie|2.25|gluten,chocolatens|null|null
+Blueberry muffin|3.00|gluten,blueberryns|null|null
+Cinnamon roll|3.75|gluten,cinnamon,dairyns|null|null
+Apple pie (9 inch)|22.00|gluten,apple,cinnamonns|null|null
+Custom decorated cake|45.00|gluten,dairy,eggns|null|null
+Honey butter (jar)|5.00|honeyns|null|null
+Cranberry Orange Scone|3.25|gluten,cranberry,oranges|11/1|1/15+
+Key Lime Pie|12.00|gluten,limes|9/1|10/31

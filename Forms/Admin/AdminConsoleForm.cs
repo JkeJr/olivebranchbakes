@@ -118,9 +118,9 @@ namespace OliveBranchBakes.Forms
                 viewItem.SubItems.Add(item.Price.ToString());
                 viewItem.SubItems.Add(item.Allergens);
                 
-                // Shows which items are out of season
-                if (!item.InSeason())
-                    viewItem.BackColor = Color.OrangeRed;
+                // Shows which items are in season; Green if true, OrangeRed if false
+                if (item.Seasonal)
+                    viewItem.BackColor = (item.InSeason())? Color.Green : Color.OrangeRed;
 
                 listviewItems.Items.Add(viewItem);
             }

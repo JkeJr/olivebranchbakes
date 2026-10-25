@@ -15,6 +15,18 @@ namespace OliveBranchBakes.Forms.Admin
         {
             InitializeComponent();
         }
+        private void ItemCreateForm_Load(object sender, EventArgs e)
+        {
+            chkSeasonal.Checked = false;
+
+            dtpStart.Enabled = chkSeasonal.Checked;
+            dtpStart.MinDate = new DateTime(DateTime.Today.Year, 1, 1);
+            dtpStart.MaxDate = new DateTime(DateTime.Today.Year, 12, 31);
+
+            dtpEnd.Enabled = chkSeasonal.Checked;
+            dtpStart.MinDate = new DateTime(DateTime.Today.Year, 1, 1);
+            dtpStart.MaxDate = new DateTime(DateTime.Today.Year + 1, 12, 31);
+        }
 
         private OrderItem item = null!;
 
@@ -38,10 +50,16 @@ namespace OliveBranchBakes.Forms.Admin
         {
             if (IsValidData())
             {
-                item = new(
-                        txtName.Text,
-                        Convert.ToDecimal(txtPrice.Text),
-                        txtAllergens.Text);
+                if (chkSeasonal.Enabled)
+                    item = new(
+                            txtName.Text,
+                            Convert.ToDecimal(txtPrice.Text),
+                            txtAllergens.Text, new DateRange(dtpStart.Value, dtpEnd.Value));
+                else
+                    item = new(
+                            txtName.Text,
+                            Convert.ToDecimal(txtPrice.Text),
+                            txtAllergens.Text);
             }
             this.Close();
         }
@@ -68,6 +86,35 @@ namespace OliveBranchBakes.Forms.Admin
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void chkSeasonal_CheckedChanged(object sender, EventArgs e)
+        {
+            dtpStart.Enabled = chkSeasonal.Checked;
+            dtpEnd.Enabled = chkSeasonal.Checked;
+        }
+
+        private void dtpStart_ValueChanged(object sender, EventArgs e)
+        {
+            // Match dtpEnd lower bound by the dtpStart value
+            dtpEnd.MinDate = dtpStart.Value;
+
+            if (dtpStart.Value > dtpEnd.Value)
+                dtpEnd.Value = dtpStart.Value;
+        }
+
+        private void dtpEnd_ValueChanged(object sender, EventArgs e)
+        {
+            // Check if dtpEnd.Value is currently in the next year
+            if (dtpEnd.Value.Year > DateTime.Today.Year)
+                dtpStart.MaxDate = new DateTime(DateTime.Today.Year, 12, 31);
+            else
+                // Match dtpStart upper bound by the dtpEnd value
+                dtpStart.MaxDate = dtpEnd.Value;
+
+            if (dtpEnd.Value < dtpStart.Value)
+                dtpStart.Value = dtpEnd.Value;
+            
         }
     }
 }
