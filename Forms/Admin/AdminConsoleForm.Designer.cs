@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             splitContainer1 = new SplitContainer();
-            button3 = new Button();
-            button2 = new Button();
+            btnEdit = new Button();
+            btnAdd = new Button();
             btnDelete = new Button();
             listviewItems = new ListView();
             colName = new ColumnHeader();
@@ -60,8 +60,8 @@
             // 
             // splitContainer1.Panel1
             // 
-            splitContainer1.Panel1.Controls.Add(button3);
-            splitContainer1.Panel1.Controls.Add(button2);
+            splitContainer1.Panel1.Controls.Add(btnEdit);
+            splitContainer1.Panel1.Controls.Add(btnAdd);
             splitContainer1.Panel1.Controls.Add(btnDelete);
             splitContainer1.Panel1.Controls.Add(listviewItems);
             splitContainer1.Panel1.Controls.Add(btnBack);
@@ -77,23 +77,25 @@
             splitContainer1.SplitterDistance = 416;
             splitContainer1.TabIndex = 0;
             // 
-            // button3
+            // btnEdit
             // 
-            button3.Location = new Point(68, 283);
-            button3.Name = "button3";
-            button3.Size = new Size(59, 29);
-            button3.TabIndex = 3;
-            button3.Text = "Edit";
-            button3.UseVisualStyleBackColor = true;
+            btnEdit.Location = new Point(68, 283);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(94, 29);
+            btnEdit.TabIndex = 2;
+            btnEdit.Text = "Edit";
+            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Click += btnEdit_Click;
             // 
-            // button2
+            // btnAdd
             // 
-            button2.Location = new Point(3, 283);
-            button2.Name = "button2";
-            button2.Size = new Size(59, 29);
-            button2.TabIndex = 3;
-            button2.Text = "Add";
-            button2.UseVisualStyleBackColor = true;
+            btnAdd.Location = new Point(3, 283);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(59, 29);
+            btnAdd.TabIndex = 1;
+            btnAdd.Text = "Add";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // btnDelete
             // 
@@ -117,8 +119,10 @@
             listviewItems.Name = "listviewItems";
             listviewItems.Size = new Size(410, 193);
             listviewItems.TabIndex = 2;
+            listviewItems.TabStop = false;
             listviewItems.UseCompatibleStateImageBehavior = false;
             listviewItems.View = View.Details;
+            //listviewItems.SelectedIndexChanged += listviewItems_SelectedIndexChanged;
             // 
             // colName
             // 
@@ -139,7 +143,7 @@
             btnBack.Location = new Point(319, 9);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(94, 29);
-            btnBack.TabIndex = 1;
+            btnBack.TabIndex = 0;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
@@ -175,6 +179,7 @@
             listView2.Name = "listView2";
             listView2.Size = new Size(374, 245);
             listView2.TabIndex = 2;
+            listView2.TabStop = false;
             listView2.UseCompatibleStateImageBehavior = false;
             listView2.View = View.Details;
             // 
@@ -201,7 +206,7 @@
             btnDetails.Location = new Point(258, 283);
             btnDetails.Name = "btnDetails";
             btnDetails.Size = new Size(119, 29);
-            btnDetails.TabIndex = 3;
+            btnDetails.TabIndex = 4;
             btnDetails.Text = "View Details";
             btnDetails.UseVisualStyleBackColor = true;
             // 
@@ -252,8 +257,9 @@
         private ColumnHeader colPayment;
         private ColumnHeader colOrderNum;
         private Button button3;
-        private Button button2;
+        private Button btnAdd;
         private Button btnDelete;
         private Button btnDetails;
+        private Button btnEdit;
     }
 }

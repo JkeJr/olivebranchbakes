@@ -1,2 +1,4 @@
+Item2|2.99|many allergens
 Item1|2.50|allergens
-Item2|5.99|no allergens
+item2|5|iaospdfmsd
+item5|66|big fishes

@@ -1,4 +1,5 @@
-﻿using OliveBranchBakes.Objects;
+﻿using OliveBranchBakes.Forms.Admin;
+using OliveBranchBakes.Objects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,19 +26,68 @@ namespace OliveBranchBakes.Forms
             FillItemListBox();
         }
 
+        // Add an Item to the list of available OrderItems
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            ItemCreateForm itemCreateFrm = new();
+            OrderItem item = itemCreateFrm.GetNewItem();
+            if (item != null)
+            {
+                items += item;
+
+                // Will add more options for type of item. For now, generic message
+                string message = "";
+                if (item is OrderItem o)
+                    message = $"{o.GetType().ToString()} type {o.Name} has been added.";
+
+                MessageBox.Show(message, "Success!");
+            }
+        }
+
+        // Select and edit an item
+        private void btnEdit_Click(object sender, EventArgs e) => EditItem();
+        //private void listviewItems_SelectedIndexChanged(object sender, EventArgs e) => EditItem();
+
+        private void EditItem()
+        {
+            // checks if selected item exists and is valid
+            if (listviewItems.Items.Count == 0)
+                MessageBox.Show("Item list is empty.", "No Items");
+            else if (listviewItems.SelectedItems.Count == 0)
+                MessageBox.Show("Please select an item to edit.", "No item selected");
+            else
+            {
+                // gets the index of the selected item
+                int i = listviewItems.Items.IndexOf(listviewItems.SelectedItems[0]);
+
+                ItemCreateForm itemCreateFrm = new();
+                OrderItem item = itemCreateFrm.EditItem(items[i]);
+                if (item != null)
+                {
+                    items[i] = item;
+
+                    // Will add more options for type of item. For now, generic message
+                    string message = "";
+                    if (item is OrderItem o)
+                        message = $"{o.GetType().ToString()} type {o.Name} has been edited.";
+
+                    MessageBox.Show(message, "Success!");
+                }
+            }
+        }
+
         // Delete an Item from the list of available OrderItems
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //int i = listviewItems.SelectedIndices.IndexOf(0);
-            int i = listviewItems.Items.IndexOf(listviewItems.SelectedItems[0]);
-
-
             if (listviewItems.Items.Count == 0)
                 MessageBox.Show("Item list is already empty.", "No Items");
-            else if (i == -1)
+            else if (listviewItems.SelectedItems.Count == 0)
                 MessageBox.Show("Please select an item to delete.", "No item selected");
             else
             {
+                // gets the index of the selected item
+                int i = listviewItems.Items.IndexOf(listviewItems.SelectedItems[0]);
+
                 OrderItem item = items[i];
 
                 string message = $"Are you sure you want to delete {item.Name}?";

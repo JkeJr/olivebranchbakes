@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OliveBranchBakes.Objects
 {
-    internal class OrderItem
+    public class OrderItem
     {
         public string Name = "";
         public decimal Price;

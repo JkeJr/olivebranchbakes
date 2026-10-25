@@ -14,6 +14,19 @@ namespace OliveBranchBakes.Objects
 
         public ItemList() => items = new();
 
+        // Methods for Adding
+        public void Add(OrderItem item)
+        {
+            items.Add(item);
+            if (Changed != null)
+                Changed(this);
+        }
+        public static ItemList operator + (ItemList list, OrderItem item)
+        {
+            list.Add(item);
+            return list;
+        }
+
         // Methods for Removing
         public void Remove(OrderItem item)
         {
@@ -28,9 +41,29 @@ namespace OliveBranchBakes.Objects
         }
 
         public int Count => items.Count();
+
+        // Method for indexer
         public OrderItem this[int i]
         {
-            get { return items[i]; }
+            get
+            {
+                if (i < 0)
+                {
+                    throw new ArgumentOutOfRangeException(i.ToString());
+                }
+                else if (i > items.Count)
+                {
+                    throw new ArgumentOutOfRangeException(i.ToString());
+                }
+                else
+                    return items[i];
+            }
+            set
+            {
+                items[i] = value;
+                if (Changed != null)
+                    Changed(this);
+            }
         }
         
         public void Fill() => items = DataManagement.GetItems();
