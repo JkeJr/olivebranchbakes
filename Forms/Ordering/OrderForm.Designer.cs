@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewItem listViewItem1 = new ListViewItem("");
+            ListViewItem listViewItem2 = new ListViewItem("");
             label1 = new Label();
             label2 = new Label();
             btnContinue = new Button();
@@ -178,6 +178,7 @@
             btnAdd.TabIndex = 4;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // numAmount
             // 
@@ -185,6 +186,7 @@
             numAmount.Name = "numAmount";
             numAmount.Size = new Size(106, 27);
             numAmount.TabIndex = 3;
+            numAmount.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // label6
             // 
@@ -305,7 +307,7 @@
             listviewOrder.FullRowSelect = true;
             listviewOrder.GridLines = true;
             listviewOrder.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            listviewOrder.Items.AddRange(new ListViewItem[] { listViewItem1 });
+            listviewOrder.Items.AddRange(new ListViewItem[] { listViewItem2 });
             listviewOrder.Location = new Point(3, 29);
             listviewOrder.Name = "listviewOrder";
             listviewOrder.Size = new Size(338, 226);

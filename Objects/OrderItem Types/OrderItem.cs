@@ -10,6 +10,8 @@ namespace OliveBranchBakes.Objects
         public string Name = "";
         public decimal Price;
         public string Allergens = "";
+        public AllergenList AllergenList;
+
         public bool Seasonal { get; init; } = false;
 
         public DateRange? Season;
@@ -21,28 +23,28 @@ namespace OliveBranchBakes.Objects
             Allergens = "none";
         }
 
-        public OrderItem(string name, decimal price, string allergens)
+        public OrderItem(string name, decimal price, string[] allergens)
         {
             Name = name;
             Price = price;
-            Allergens = allergens;
+            AllergenList = new(allergens);
         }
-        public OrderItem(string name, decimal price, string allergens, DateRange range)
+        public OrderItem(string name, decimal price, string[] allergens, DateRange range)
         {
             Name = name;
             Price = price;
-            Allergens = allergens;
-            Seasonal = true;
+            AllergenList = new(allergens);
 
+            Seasonal = true;
             Season = range;
         }
-        public OrderItem(string name, decimal price, string allergens, string start, string end)
+        public OrderItem(string name, decimal price, string[] allergens, string start, string end)
         {
             Name = name;
             Price = price;
-            Allergens = allergens;
-            Seasonal = true;
+            AllergenList = new(allergens);
 
+            Seasonal = true;
             Season = new(start, end);
         }
 

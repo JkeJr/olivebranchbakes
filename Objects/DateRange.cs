@@ -51,6 +51,8 @@ namespace OliveBranchBakes.Objects
                 dateFormatted = $"{date}/{GetYear()}"; // mm/dd + yyyy
             return dateFormatted;
         }
+        // turn DateTime into mm/dd/yyyy
+        public static string FormatDate(DateTime dateTime) => $"{dateTime.Month}/{dateTime.Day}/{dateTime.Year}";
 
         // convert mm/dd into DateTime
         public static DateTime ConvertToDateTime(string date)

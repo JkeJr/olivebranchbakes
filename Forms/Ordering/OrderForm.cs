@@ -37,13 +37,27 @@ namespace OliveBranchBakes.Forms
             for (int i = 0; i < items.Count; i++)
             {
                 item = items[i];
-                listviewItems.Items.Add(item.GetDisplayText());
+
+                if (item.InSeason())
+                {
+                    ListViewItem viewItem = new(item.Name);
+                    viewItem.SubItems.Add(item.Price.ToString());
+                    viewItem.SubItems.Add(item.AllergenList.GetDisplayText(", "));
+
+                    listviewItems.Items.Add(viewItem);
+                }
             }
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             // something
+        }
+
+        // Add selected item to 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void btnContinue_Click(object sender, EventArgs e)

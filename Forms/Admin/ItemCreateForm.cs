@@ -40,7 +40,26 @@ namespace OliveBranchBakes.Forms.Admin
         {
             txtName.Text = orderItem.Name;
             txtPrice.Text = orderItem.Price.ToString();
-            txtAllergens.Text = orderItem.Allergens;
+            txtAllergens.Text = orderItem.AllergenList.GetDisplayText(", ");
+
+            // Fill in seasonal data if applicable
+            if (orderItem.Seasonal)
+            {
+                chkSeasonal.Checked = true;
+                DateTime start = (DateTime)orderItem.Season[0];
+                DateTime end = (DateTime)orderItem.Season[1];
+
+                dtpStart.Enabled = chkSeasonal.Checked;
+                dtpStart.MinDate = new DateTime(DateTime.Today.Year, 1, 1);
+                dtpStart.MaxDate = end;
+
+                dtpEnd.Enabled = chkSeasonal.Checked;
+                dtpStart.MinDate = start;
+                dtpStart.MaxDate = new DateTime(DateTime.Today.Year + 1, 12, 31);
+
+                dtpStart.Value = start;
+                dtpEnd.Value = end;
+            }
 
             this.ShowDialog();
             return item;
@@ -50,18 +69,31 @@ namespace OliveBranchBakes.Forms.Admin
         {
             if (IsValidData())
             {
-                if (chkSeasonal.Enabled)
+                if (chkSeasonal.Checked)
                     item = new(
                             txtName.Text,
                             Convert.ToDecimal(txtPrice.Text),
-                            txtAllergens.Text, new DateRange(dtpStart.Value, dtpEnd.Value));
+                            (txtAllergens.Text.IsWhiteSpace()) ? ["None"] : ConvertToStringList(txtAllergens.Text, ","), 
+                            new DateRange(dtpStart.Value, dtpEnd.Value));
                 else
                     item = new(
                             txtName.Text,
                             Convert.ToDecimal(txtPrice.Text),
-                            txtAllergens.Text);
+                            (txtAllergens.Text.IsWhiteSpace()) ? ["None"] : ConvertToStringList(txtAllergens.Text, ","));
             }
             this.Close();
+        }
+
+        // Converts to string AND formats it ready for AllergenIngredients enum
+        private static string[] ConvertToStringList(string entry, string splitter)
+        {
+            string[] list = entry.Replace(" ", "").Split(splitter);
+            foreach (string srt in list)
+            {
+                list[list.IndexOf(srt)] = srt[0].ToString().ToUpper() + srt.Substring(1).ToLower();
+            }
+
+            return list;
         }
 
         private bool IsValidData()
@@ -73,7 +105,7 @@ namespace OliveBranchBakes.Forms.Admin
             errorMessage += Validator.IsPresent(txtName.Text, "Item Name");
             errorMessage += Validator.IsPresent(txtPrice.Text, "Price");
             errorMessage += Validator.IsDecimal(txtPrice.Text, "Price");
-            errorMessage += Validator.IsPresent(txtAllergens.Text, "Allergen Ingredients");
+            //errorMessage += Validator.IsPresent(txtAllergens.Text, "Allergen Ingredients");
 
             if (errorMessage != "")
             {

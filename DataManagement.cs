@@ -40,13 +40,15 @@ namespace OliveBranchBakes
                     if (columns[0] == nameof(Donut))
                     if (columns[0] == nameof(Cake))
                     */
+
+                    string[] allergens = columns[2].Split(",");
                     // if the item is seasonal
                     if (columns[3] == "s")
                     {
                         item = new OrderItem(
                                     columns[0],
                                     Convert.ToDecimal(columns[1]),
-                                    columns[2],
+                                    allergens,
                                     columns[4],
                                     columns[5]);
                     }
@@ -55,7 +57,7 @@ namespace OliveBranchBakes
                         item = new OrderItem(
                                     columns[0],
                                     Convert.ToDecimal(columns[1]),
-                                    columns[2]);
+                                    allergens);
                     }
 
                     // add item to items list
@@ -90,7 +92,7 @@ namespace OliveBranchBakes
         {
             textOut.Write(item.Name + Delimiter);
             textOut.Write(item.Price.ToString() + Delimiter);
-            textOut.Write(item.Allergens);
+            textOut.Write(item.AllergenList.GetDisplayText(",") + Delimiter);
             textOut.WriteLine(item.SeasonalInfo());
         }
     }

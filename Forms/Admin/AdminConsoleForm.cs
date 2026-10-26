@@ -25,8 +25,7 @@ namespace OliveBranchBakes.Forms
             items.Fill();
             FillItemListBox();
 
-            lblDate.Text = "placeholder";
-            lblDate.Text = DateTime.Today.ToString();
+            lblDate.Text = DateRange.FormatDate(DateTime.Today);
         }
 
         // Add an Item to the list of available OrderItems
@@ -116,7 +115,7 @@ namespace OliveBranchBakes.Forms
                 item = items[i];
                 ListViewItem viewItem = new(item.Name);
                 viewItem.SubItems.Add(item.Price.ToString());
-                viewItem.SubItems.Add(item.Allergens);
+                viewItem.SubItems.Add(item.AllergenList.GetDisplayText(", "));
                 
                 // Shows which items are in season; Green if true, OrangeRed if false
                 if (item.Seasonal)
