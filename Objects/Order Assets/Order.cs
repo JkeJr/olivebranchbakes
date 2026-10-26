@@ -23,12 +23,28 @@ namespace OliveBranchBakes.Objects
             this.comments = comments;
         }
 
-        //public OrderItem this[int i] => items[i];
+        // Finds the index of an OrderItem in items that matches the name and allergy
+        // Returns -1 if not found
+        public int IndexOf(OrderItem item)
+        {
+            for (int i = 0; i < this.Count; i++)
+            {
+                if (this[i].Equals(item))
+                    return items.IndexOf(item);
+            }
+
+            return -1;
+        }
         
         // Adding to the list
         public void Add(OrderItem item)
         {
-            items.Add(item);
+            int i = IndexOf(item);
+            if (i == -1)
+                items.Add(item);
+            else
+                this[i].Add(item);
+
             if (OrderChanged != null)
                 OrderChanged(this);
         }

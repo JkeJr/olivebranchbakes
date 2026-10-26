@@ -61,7 +61,7 @@ namespace OliveBranchBakes
                     }
 
                     // add item to items list
-                    if (item != null)
+                    if (item != null!)
                         items.Add(item);
                 }
             }

@@ -99,9 +99,16 @@ namespace OliveBranchBakes.Forms
                     if (chkboxAllergy.Checked == true)
                         item.Allergy = new Allergen(cmbboxAllergy.SelectedItem.ToString());
                     item.Count = (int)numAmount.Value;
-                    item.Price = item.Price * item.Count;
-                    
-                    order.Add(item);
+                    //item.Price = item.Price * item.Count;
+
+                    if (order.IndexOf(item) != -1)
+                    {
+                        order[order.IndexOf(item)].Count += item.Count;
+                    }
+                    else
+                        order += item;
+
+                    // Reset numAmount value to 1
                     numAmount.Value = 1;
                 }
             }

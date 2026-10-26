@@ -195,6 +195,7 @@
             // numAmount
             // 
             numAmount.Location = new Point(127, 328);
+            numAmount.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numAmount.Name = "numAmount";
             numAmount.Size = new Size(106, 27);
             numAmount.TabIndex = 3;
