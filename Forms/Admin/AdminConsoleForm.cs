@@ -21,7 +21,7 @@ namespace OliveBranchBakes.Forms
         }
         private void AdminConsoleForm_Load(object sender, EventArgs e)
         {
-            items.Changed += new ItemList.ChangeHandler(HandleChange);
+            items.ItemListChanged += new ItemList.ChangeHandler(HandleChange);
             items.Fill();
             FillItemListBox();
 

@@ -7,3 +7,4 @@ Custom decorated cake|45.00|Wheat,Milk,Egg|ns|null|null
 Honey butter (jar)|5.00|None|ns|null|null
 Cranberry Orange Scone|3.25|Wheat,Egg|s|11/1|1/15+
 Key Lime Pie|12.00|Wheat,Egg,Milk|s|9/1|10/31
+Donut|100|Wheat,Milk,Peanut|s|10/25|10/25

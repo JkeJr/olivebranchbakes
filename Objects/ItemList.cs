@@ -8,9 +8,9 @@ namespace OliveBranchBakes.Objects
     {
         private List<OrderItem> items;
 
-        // Event handler
+        // Change Event
         public delegate void ChangeHandler(ItemList invItems);
-        public event ChangeHandler Changed = null!;
+        public event ChangeHandler ItemListChanged = null!;
 
         public ItemList() => items = new();
 
@@ -18,8 +18,8 @@ namespace OliveBranchBakes.Objects
         public void Add(OrderItem item)
         {
             items.Add(item);
-            if (Changed != null)
-                Changed(this);
+            if (ItemListChanged != null)
+                ItemListChanged(this);
         }
         public static ItemList operator + (ItemList list, OrderItem item)
         {
@@ -31,8 +31,8 @@ namespace OliveBranchBakes.Objects
         public void Remove(OrderItem item)
         {
             items.Remove(item);
-            if (Changed != null)
-                Changed(this);
+            if (ItemListChanged != null)
+                ItemListChanged(this);
         }
         public static ItemList operator - (ItemList list, OrderItem item)
         {
@@ -61,8 +61,8 @@ namespace OliveBranchBakes.Objects
             set
             {
                 items[i] = value;
-                if (Changed != null)
-                    Changed(this);
+                if (ItemListChanged != null)
+                    ItemListChanged(this);
             }
         }
         

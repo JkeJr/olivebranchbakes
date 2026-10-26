@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewItem listViewItem2 = new ListViewItem("");
+            ListViewItem listViewItem1 = new ListViewItem("");
             label1 = new Label();
             label2 = new Label();
             btnContinue = new Button();
@@ -56,6 +56,7 @@
             colOrderedPrice = new ColumnHeader();
             colOrderedCount = new ColumnHeader();
             colOrderedAllergen = new ColumnHeader();
+            btnBack = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -152,6 +153,7 @@
             // 
             // splitContainer2.Panel1
             // 
+            splitContainer2.Panel1.Controls.Add(btnBack);
             splitContainer2.Panel1.Controls.Add(label1);
             // 
             // splitContainer2.Panel2
@@ -307,7 +309,7 @@
             listviewOrder.FullRowSelect = true;
             listviewOrder.GridLines = true;
             listviewOrder.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            listviewOrder.Items.AddRange(new ListViewItem[] { listViewItem2 });
+            listviewOrder.Items.AddRange(new ListViewItem[] { listViewItem1 });
             listviewOrder.Location = new Point(3, 29);
             listviewOrder.Name = "listviewOrder";
             listviewOrder.Size = new Size(338, 226);
@@ -334,6 +336,16 @@
             // 
             colOrderedAllergen.Text = "Allergen";
             colOrderedAllergen.Width = 80;
+            // 
+            // btnBack
+            // 
+            btnBack.Location = new Point(308, 3);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(114, 29);
+            btnBack.TabIndex = 2;
+            btnBack.Text = "Back";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
             // 
             // OrderForm
             // 
@@ -390,5 +402,6 @@
         private ColumnHeader colOrderedPrice;
         private ColumnHeader colOrderedCount;
         private ColumnHeader colOrderedAllergen;
+        private Button btnBack;
     }
 }
