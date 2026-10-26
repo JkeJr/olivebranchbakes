@@ -132,6 +132,7 @@
             dtpStart.Name = "dtpStart";
             dtpStart.Size = new Size(150, 27);
             dtpStart.TabIndex = 4;
+            dtpStart.Value = new DateTime(2026, 10, 26, 0, 0, 0, 0);
             dtpStart.ValueChanged += dtpStart_ValueChanged;
             // 
             // label4

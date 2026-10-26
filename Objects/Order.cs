@@ -5,7 +5,7 @@ using System.Threading.Channels;
 
 namespace OliveBranchBakes.Objects
 {
-    internal class Order
+    public class Order
     {
         private List<OrderItem> items;
         public int Count => items.Count;
@@ -28,6 +28,13 @@ namespace OliveBranchBakes.Objects
         // Adding to the list
         public void Add(OrderItem item)
         {
+            items.Add(item);
+            if (OrderChanged != null)
+                OrderChanged(this);
+        }
+        public void Add(OrderItem item, int count)
+        {
+            item.Count = count;
             items.Add(item);
             if (OrderChanged != null)
                 OrderChanged(this);

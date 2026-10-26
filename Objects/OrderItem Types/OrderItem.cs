@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Security.Policy;
 using System.Text;
 
@@ -9,8 +10,9 @@ namespace OliveBranchBakes.Objects
     {
         public string Name = "";
         public decimal Price;
-        public string Allergens = "";
+        public Allergen Allergy { get; set; } = new(AllergenIngredients.None);
         public AllergenList AllergenList;
+        public int Count = 1;
 
         public bool Seasonal { get; init; } = false;
 
@@ -20,7 +22,7 @@ namespace OliveBranchBakes.Objects
         {
             Name = "unnamed";
             Price = 0;
-            Allergens = "none";
+            AllergenList = new(Allergy);
         }
 
         public OrderItem(string name, decimal price, string[] allergens)
@@ -67,7 +69,7 @@ namespace OliveBranchBakes.Objects
 
         public string GetDisplayText()
         {
-            return $"{Name} | {Price} | {Allergens}";
+            return $"{Name} | {Price} | {AllergenList.GetDisplayText(", ")}";
         }
     }
 }

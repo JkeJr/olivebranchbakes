@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OliveBranchBakes")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+93a16df4112448479ca138269311d195076bbfb9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4b0fa402e7616eb04be954086e68ab1d77384b90")]
 [assembly: System.Reflection.AssemblyProductAttribute("OliveBranchBakes")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OliveBranchBakes")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

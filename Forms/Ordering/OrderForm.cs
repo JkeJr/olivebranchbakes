@@ -67,8 +67,12 @@ namespace OliveBranchBakes.Forms
             for (int i = 0; i < order.Count; i++)
             {
                 item = order[i];
+                ListViewItem viewItem = new(item.Name);
+                viewItem.SubItems.Add(item.Count.ToString());
+                viewItem.SubItems.Add(item.Allergy.ToString());
+                viewItem.SubItems.Add(item.Price.ToString());
 
-                listviewOrder.Items.Add(item.Name);
+                listviewOrder.Items.Add(viewItem);
             }
         }
 
@@ -91,20 +95,59 @@ namespace OliveBranchBakes.Forms
                 int i = listviewItems.Items.IndexOf(listviewItems.SelectedItems[0]);
                 OrderItem item = items[i];
                 if (item != null)
+                {
+                    if (chkboxAllergy.Checked == true)
+                        item.Allergy = new Allergen(cmbboxAllergy.SelectedItem.ToString());
+                    item.Count = (int)numAmount.Value;
+                    item.Price = item.Price * item.Count;
+                    
                     order.Add(item);
+                    numAmount.Value = 1;
+                }
             }
         }
 
         private void btnContinue_Click(object sender, EventArgs e)
         {
-            new PaymentEntryForm().Show();
-            this.Close();
+            PaymentEntryForm paymentEntry = new();
+            if (order.Count == 0)
+            {
+                MessageBox.Show("This order is empty. Add items to continue.", "Empty Order");
+            }
+            else if (paymentEntry.ConfirmOrder(order))
+            {
+                this.Close();
+                new PaymentEntryForm().Show();
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
             WelcomeForm.Current.Show();
+        }
+
+        // Any time a new item is clicked, reset Allergy Check Box to unchecked
+        private void listviewItems_SelectedIndexChanged(object sender, EventArgs e) => chkboxAllergy.Checked = false;
+
+        // Fill Allergy Combo Box to have the correct values
+        private void chkboxAllergy_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbboxAllergy.Enabled = chkboxAllergy.Checked;
+            if (chkboxAllergy.Checked)
+            {
+                cmbboxAllergy.Items.Clear();
+
+                // gets the index of the selected item, and then copies the item
+                int i = listviewItems.Items.IndexOf(listviewItems.SelectedItems[0]);
+                OrderItem item = items[i];
+
+                // for each Allergen in item's AllergenList, add that value as a stirng to cmbboxAllergy
+                for (int n = 0; n < item.AllergenList.Count; n++)
+                {
+                    cmbboxAllergy.Items.Add(item.AllergenList[n].ToString());
+                }
+            }
         }
     }
 }

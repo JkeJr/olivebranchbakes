@@ -36,6 +36,7 @@
             btnDelete = new Button();
             splitContainer1 = new SplitContainer();
             splitContainer2 = new SplitContainer();
+            btnBack = new Button();
             btnAdd = new Button();
             numAmount = new NumericUpDown();
             label6 = new Label();
@@ -53,10 +54,9 @@
             label3 = new Label();
             listviewOrder = new ListView();
             colOrderedName = new ColumnHeader();
-            colOrderedPrice = new ColumnHeader();
             colOrderedCount = new ColumnHeader();
             colOrderedAllergen = new ColumnHeader();
-            btnBack = new Button();
+            colOrderedPrice = new ColumnHeader();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -171,6 +171,16 @@
             splitContainer2.SplitterDistance = 63;
             splitContainer2.TabIndex = 2;
             // 
+            // btnBack
+            // 
+            btnBack.Location = new Point(308, 3);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(114, 29);
+            btnBack.TabIndex = 2;
+            btnBack.Text = "Back";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
+            // 
             // btnAdd
             // 
             btnAdd.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold);
@@ -238,6 +248,7 @@
             chkboxAllergy.TabIndex = 1;
             chkboxAllergy.Text = "Allergy?";
             chkboxAllergy.UseVisualStyleBackColor = true;
+            chkboxAllergy.CheckedChanged += chkboxAllergy_CheckedChanged;
             // 
             // label4
             // 
@@ -264,6 +275,7 @@
             listviewItems.TabStop = false;
             listviewItems.UseCompatibleStateImageBehavior = false;
             listviewItems.View = View.Details;
+            listviewItems.SelectedIndexChanged += listviewItems_SelectedIndexChanged;
             // 
             // colName
             // 
@@ -305,7 +317,7 @@
             // listviewOrder
             // 
             listviewOrder.BackColor = Color.AntiqueWhite;
-            listviewOrder.Columns.AddRange(new ColumnHeader[] { colOrderedName, colOrderedPrice, colOrderedCount, colOrderedAllergen });
+            listviewOrder.Columns.AddRange(new ColumnHeader[] { colOrderedName, colOrderedCount, colOrderedAllergen, colOrderedPrice });
             listviewOrder.FullRowSelect = true;
             listviewOrder.GridLines = true;
             listviewOrder.HeaderStyle = ColumnHeaderStyle.Nonclickable;
@@ -323,10 +335,6 @@
             colOrderedName.Text = "Name";
             colOrderedName.Width = 150;
             // 
-            // colOrderedPrice
-            // 
-            colOrderedPrice.Text = "$__.__";
-            // 
             // colOrderedCount
             // 
             colOrderedCount.Text = "#";
@@ -337,15 +345,9 @@
             colOrderedAllergen.Text = "Allergen";
             colOrderedAllergen.Width = 80;
             // 
-            // btnBack
+            // colOrderedPrice
             // 
-            btnBack.Location = new Point(308, 3);
-            btnBack.Name = "btnBack";
-            btnBack.Size = new Size(114, 29);
-            btnBack.TabIndex = 2;
-            btnBack.Text = "Back";
-            btnBack.UseVisualStyleBackColor = true;
-            btnBack.Click += btnBack_Click;
+            colOrderedPrice.Text = "$__.__";
             // 
             // OrderForm
             // 
