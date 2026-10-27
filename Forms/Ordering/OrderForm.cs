@@ -1,6 +1,7 @@
 ﻿using OliveBranchBakes.Forms.Admin;
 using OliveBranchBakes.Forms.Payment;
 using OliveBranchBakes.Objects;
+using OliveBranchBakes.Objects.Order_Assets;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,11 @@ namespace OliveBranchBakes.Forms
         {
             this.FormClosed += new FormClosedEventHandler(Form1_FormClosed);
             order.OrderChanged += new Order.ChangeHandler(HandleChange);
+            chkboxAllergy.Enabled = false;
+
+            cmbboxAllergy.Enabled = false;
+            cmbboxAllergy.Items.Clear();
+            cmbboxAllergy.Text = "";
 
             items.Fill();
             FillItemListBox();
@@ -33,13 +39,17 @@ namespace OliveBranchBakes.Forms
             InitializeComponent();
         }
 
-        // Event handler for changing order
+        /// <summary>
+        /// Event handler for changing order
+        /// </summary>
         private void HandleChange(Order order)
         {
             FillOrderBox();
         }
 
-        // Fills listviewItems with values from items
+        /// <summary>
+        /// Fills listviewItems with values from items
+        /// </summary>
         private void FillItemListBox()
         {
             OrderItem item;
@@ -59,18 +69,21 @@ namespace OliveBranchBakes.Forms
             }
         }
 
-        // Fills listviewOrder with values from order
+        /// <summary>
+        /// Fills listviewOrder with values from order
+        /// </summary>
         private void FillOrderBox()
         {
-            OrderItem item;
+            OrderItemGroup itemGroup;
             listviewOrder.Items.Clear();
             for (int i = 0; i < order.Count; i++)
             {
-                item = order[i];
-                ListViewItem viewItem = new(item.Name);
-                viewItem.SubItems.Add(item.Count.ToString());
-                viewItem.SubItems.Add(item.Allergy.ToString());
-                viewItem.SubItems.Add(item.Price.ToString());
+                // Gets itemGroup at i index of order.itemGroups
+                itemGroup = order[i];
+                ListViewItem viewItem = new(itemGroup.ItemType.Name);
+                viewItem.SubItems.Add(itemGroup.Count.ToString());
+                viewItem.SubItems.Add(itemGroup.Allergy.ToString());
+                viewItem.SubItems.Add(itemGroup.Price.ToString());
 
                 listviewOrder.Items.Add(viewItem);
             }
@@ -81,7 +94,9 @@ namespace OliveBranchBakes.Forms
             // something
         }
 
-        // Add selected item to order
+        /// <summary>
+        /// Add selected item to order
+        /// <summary>
         private void btnAdd_Click(object sender, EventArgs e)
         {
             // checks if selected item exists and is valid
@@ -92,22 +107,31 @@ namespace OliveBranchBakes.Forms
             else
             {
                 // gets the index of the selected item, and then copies the item
-                int i = listviewItems.Items.IndexOf(listviewItems.SelectedItems[0]);
-                OrderItem item = items[i];
-                if (item != null)
-                {
-                    if (chkboxAllergy.Checked == true)
-                        item.Allergy = new Allergen(cmbboxAllergy.SelectedItem.ToString());
-                    item.Count = (int)numAmount.Value;
-                    //item.Price = item.Price * item.Count;
+                int inventoryIndex = listviewItems.Items.IndexOf(listviewItems.SelectedItems[0]);
 
-                    if (order.IndexOf(item) != -1)
+                if (items[inventoryIndex] != null)
+                {
+                    Allergen allergen = (chkboxAllergy.Checked) ? new Allergen(cmbboxAllergy.SelectedItem.ToString()) : new Allergen(AllergenIngredients.None);
+                    int orderIndex = order.IndexOf(items[inventoryIndex], allergen);
+
+                    // check if item can be found in order.itemGroups
+                    if (orderIndex != -1 /*&& order[orderIndex].Allergy == allergen*/)
                     {
-                        order[order.IndexOf(item)].Count += item.Count;
+                        //order[orderIndex].Count += (int)numAmount.Value;
+                        order.Add(orderIndex, (int)numAmount.Value);
+                        //order = order[orderIndex] + (int)numAmount.Value;
                     }
                     else
-                        order += item;
-
+                    {
+                        // Add new itemGroup to order.itemGroups
+                        OrderItemGroup itemGroup = new()
+                        {
+                            ItemType = items[inventoryIndex],
+                            Allergy = allergen,
+                            Count = (int)numAmount.Value,
+                        };
+                        order += itemGroup;
+                    }
                     // Reset numAmount value to 1
                     numAmount.Value = 1;
                 }
@@ -134,10 +158,22 @@ namespace OliveBranchBakes.Forms
             WelcomeForm.Current.Show();
         }
 
-        // Any time a new item is clicked, reset Allergy Check Box to unchecked
-        private void listviewItems_SelectedIndexChanged(object sender, EventArgs e) => chkboxAllergy.Checked = false;
+        /// <summary>
+        /// Any time a new item is clicked, reset Allergy Check Box to enabled but unchecked
+        /// </summary>
+        private void listviewItems_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            chkboxAllergy.Checked = false;
+            chkboxAllergy.Enabled = true;
 
-        // Fill Allergy Combo Box to have the correct values
+            cmbboxAllergy.Enabled = false;
+            cmbboxAllergy.Items.Clear();
+            cmbboxAllergy.Text = "";
+        }
+
+        /// <summary>
+        /// Fill Allergy Combo Box to have the correct values
+        /// </summary>
         private void chkboxAllergy_CheckedChanged(object sender, EventArgs e)
         {
             cmbboxAllergy.Enabled = chkboxAllergy.Checked;
@@ -150,10 +186,20 @@ namespace OliveBranchBakes.Forms
                 OrderItem item = items[i];
 
                 // for each Allergen in item's AllergenList, add that value as a stirng to cmbboxAllergy
-                for (int n = 0; n < item.AllergenList.Count; n++)
+                cmbboxAllergy.Items.Add(AllergenIngredients.None);
+                if (i != -1)
                 {
-                    cmbboxAllergy.Items.Add(item.AllergenList[n].ToString());
+                    for (int n = 0; n < item.AllergenList.Count; n++)
+                    {
+                        cmbboxAllergy.Items.Add(item.AllergenList[n].ToString());
+                    }
                 }
+                cmbboxAllergy.SelectedIndex = 0;
+            }
+            else
+            {
+                cmbboxAllergy.Items.Clear();
+                cmbboxAllergy.Text = "";
             }
         }
     }

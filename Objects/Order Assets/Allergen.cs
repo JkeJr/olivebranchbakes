@@ -37,5 +37,10 @@ namespace OliveBranchBakes.Objects
         {
             return type.ToString();
         }
+
+        public bool Equals(Allergen allergen2) => this.type == allergen2.type;
+
+        public static bool operator ==(Allergen allergen1, Allergen allergen2) => allergen1.Equals(allergen2);
+        public static bool operator !=(Allergen allergen1, Allergen allergen2) => !allergen1.Equals(allergen2);
     }
 }

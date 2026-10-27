@@ -1,4 +1,5 @@
 ﻿using OliveBranchBakes.Objects;
+using OliveBranchBakes.Objects.Order_Assets;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,13 +33,14 @@ namespace OliveBranchBakes.Forms.Payment
 
         private void FillOrderBox()
         {
-            OrderItem item;
+            OrderItemGroup itemGroup;
+            
             listviewOrder.Items.Clear();
             for (int i = 0; i < order.Count; i++)
             {
-                item = order[i];
+                itemGroup = order[i];
 
-                listviewOrder.Items.Add(item.Name);
+                listviewOrder.Items.Add(itemGroup.ItemType.Name);
             }
         }
     }

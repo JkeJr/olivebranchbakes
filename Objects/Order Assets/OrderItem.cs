@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OliveBranchBakes.Objects.Order_Assets;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics.Tracing;
@@ -11,8 +12,9 @@ namespace OliveBranchBakes.Objects
     public class OrderItem
     {
         public string Name = "";
+        public ItemCategories categories;
         public decimal Price { get; set; }
-        public Allergen Allergy { get; set; } = new(AllergenIngredients.None);
+        //public Allergen Allergy { get; set; } = new(AllergenIngredients.None);
         public AllergenList AllergenList;
 
         public int Count { get; set; }
@@ -25,7 +27,6 @@ namespace OliveBranchBakes.Objects
         {
             Name = "unnamed";
             Price = 0;
-            AllergenList = new(Allergy);
         }
 
         public OrderItem(string name, decimal price, string[] allergens)
@@ -82,32 +83,7 @@ namespace OliveBranchBakes.Objects
             return item1;
         }
 
-        // Equality method, based on Name and Allergy
-        public bool Equals(OrderItem item)
-        {
-            if (item == null!)
-            {
-                if (this == null!)
-                {
-                    return true;
-                }
-                else
-                    return false;
-            }
-            else if (this.Name == item.Name && this.Allergy == item.Allergy)
-                return true;
-            else
-                return false;
-        }
-        /*public static bool operator ==(OrderItem item1, OrderItem item2)
-        {
-            return item1.Equals(item2);
-        }
-        public static bool operator !=(OrderItem item1, OrderItem item2)
-        {
-            return !(item1.Equals(item2));
-        }*/
-
+        
         // return formatted string for writing seasonal info to file
         public string SeasonalInfo() => (this.Seasonal) ? $"s|{Season.Start}|{Season.End}" : "ns|null|null";
 

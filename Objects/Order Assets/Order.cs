@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OliveBranchBakes.Objects.Order_Assets;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Channels;
@@ -7,8 +8,8 @@ namespace OliveBranchBakes.Objects
 {
     public class Order
     {
-        private List<OrderItem> items;
-        public int Count => items.Count;
+        private List<OrderItemGroup> itemGroups;
+        public int Count => itemGroups.Count;
 
         // Change Event
         public delegate void ChangeHandler(Order order);
@@ -16,66 +17,79 @@ namespace OliveBranchBakes.Objects
 
         public string comments;
 
-        public Order() => items = new();
-        public Order(List<OrderItem> items, string comments)
+        public Order() => itemGroups = new();
+        public Order(List<OrderItemGroup> items, string comments)
         {
-            this.items = items;
+            this.itemGroups = items;
             this.comments = comments;
         }
 
         // Finds the index of an OrderItem in items that matches the name and allergy
         // Returns -1 if not found
-        public int IndexOf(OrderItem item)
+        public int IndexOf(OrderItem item, Allergen allergen)
         {
-            for (int i = 0; i < this.Count; i++)
+            // loop through each itemGroup
+            foreach (OrderItemGroup itemGroup in itemGroups)
             {
-                if (this[i].Equals(item))
-                    return items.IndexOf(item);
+                if (item.Name == itemGroup.ItemType.Name && allergen == itemGroup.Allergy)
+                {
+                    return itemGroups.IndexOf(itemGroup);
+                }
             }
 
             return -1;
         }
+
+        /*public void Group(OrderItem item, int amnt)
+        {
+            this[IndexOf(item)].Count += amnt;
+            this[IndexOf(item)].Price += item.Price * amnt;
+            if (OrderChanged != null)
+                OrderChanged(this);
+        }*/
         
         // Adding to the list
-        public void Add(OrderItem item)
+        public void Add(OrderItemGroup itemGroup)
         {
-            int i = IndexOf(item);
+            /*int i = IndexOf(item);
             if (i == -1)
                 items.Add(item);
             else
                 this[i].Add(item);
+            */
+            itemGroups.Add(itemGroup);
+            if (OrderChanged != null)
+                OrderChanged(this);
+        }
+        // Adding count to itemGroups at index
+        public void Add(int index, int count)
+        {
+            this[index].Count += count;
+            if (OrderChanged != null)
+                OrderChanged(this);
+        }
 
-            if (OrderChanged != null)
-                OrderChanged(this);
-        }
-        public void Add(OrderItem item, int count)
+        public static Order operator + (Order order, OrderItemGroup itemGroup)
         {
-            item.Count = count;
-            items.Add(item);
-            if (OrderChanged != null)
-                OrderChanged(this);
-        }
-        public static Order operator + (Order order, OrderItem item)
-        {
-            order.Add(item);
+            order.Add(itemGroup);
             return order;
         }
 
         // Deleting from the list
-        public void Remove(OrderItem item)
+        public void Remove(OrderItemGroup itemGroup)
         {
-            items.Remove(item);
+            itemGroups.Remove(itemGroup);
             if (OrderChanged != null)
                 OrderChanged(this);
         }
-        public static Order operator - (Order order, OrderItem item)
+        public static Order operator - (Order order, OrderItemGroup itemGroup)
         {
-            order.Remove(item);
+            order.Remove(itemGroup);
             return order;
         }
 
         // Method for indexer
-        public OrderItem this[int i]
+        public OrderItemGroup this[int i]
         {
             get
             {
@@ -83,16 +97,16 @@ namespace OliveBranchBakes.Objects
                 {
                     throw new ArgumentOutOfRangeException(i.ToString());
                 }
-                else if (i > items.Count)
+                else if (i > itemGroups.Count)
                 {
                     throw new ArgumentOutOfRangeException(i.ToString());
                 }
                 else
-                    return items[i];
+                    return itemGroups[i];
             }
             set
             {
-                items[i] = value;
+                itemGroups[i] = value;
                 if (OrderChanged != null)
                     OrderChanged(this);
             }
