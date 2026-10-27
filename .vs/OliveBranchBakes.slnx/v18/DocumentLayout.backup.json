@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\OliveBranchBakes\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|d:\\backup\\documents\\school\\faulkner\\cs3388 object oriented programming\\projects\\olivebranchbakes\\forms\\admin\\adminconsoleform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|solutionrelative:forms\\admin\\adminconsoleform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|d:\\backup\\documents\\school\\faulkner\\cs3388 object oriented programming\\projects\\olivebranchbakes\\forms\\admin\\adminconsoleform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|solutionrelative:forms\\admin\\adminconsoleform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|d:\\backup\\documents\\school\\faulkner\\cs3388 object oriented programming\\projects\\olivebranchbakes\\objects\\order assets\\itemcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|solutionrelative:objects\\order assets\\itemcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|d:\\backup\\documents\\school\\faulkner\\cs3388 object oriented programming\\projects\\olivebranchbakes\\forms\\admin\\adminconsoleform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|solutionrelative:forms\\admin\\adminconsoleform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|d:\\backup\\documents\\school\\faulkner\\cs3388 object oriented programming\\projects\\olivebranchbakes\\datamanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -17,6 +17,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|d:\\backup\\documents\\school\\faulkner\\cs3388 object oriented programming\\projects\\olivebranchbakes\\objects\\order assets\\allergenlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|solutionrelative:objects\\order assets\\allergenlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|d:\\backup\\documents\\school\\faulkner\\cs3388 object oriented programming\\projects\\olivebranchbakes\\objects\\order assets\\itemcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|solutionrelative:objects\\order assets\\itemcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|d:\\backup\\documents\\school\\faulkner\\cs3388 object oriented programming\\projects\\olivebranchbakes\\objects\\order assets\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -47,12 +51,24 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "AdminConsoleForm.cs [Design]",
+              "DocumentMoniker": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\OliveBranchBakes\\Forms\\Admin\\AdminConsoleForm.cs",
+              "RelativeDocumentMoniker": "Forms\\Admin\\AdminConsoleForm.cs",
+              "ToolTip": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\OliveBranchBakes\\Forms\\Admin\\AdminConsoleForm.cs [Design]",
+              "RelativeToolTip": "Forms\\Admin\\AdminConsoleForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-27T20:57:00.74Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "AdminConsoleForm.cs",
               "DocumentMoniker": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\OliveBranchBakes\\Forms\\Admin\\AdminConsoleForm.cs",
               "RelativeDocumentMoniker": "Forms\\Admin\\AdminConsoleForm.cs",
-              "ToolTip": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\OliveBranchBakes\\Forms\\Admin\\AdminConsoleForm.cs*",
-              "RelativeToolTip": "Forms\\Admin\\AdminConsoleForm.cs*",
-              "ViewState": "AgIAAGcAAAAAAAAAAAAtwHMAAABLAAAAAAAAAA==",
+              "ToolTip": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\OliveBranchBakes\\Forms\\Admin\\AdminConsoleForm.cs",
+              "RelativeToolTip": "Forms\\Admin\\AdminConsoleForm.cs",
+              "ViewState": "AgIAAGcAAAAAAAAAAAAtwHMAAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-27T20:47:08.085Z",
               "EditorCaption": ""
@@ -85,7 +101,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "OrderItem.cs",
               "DocumentMoniker": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\OliveBranchBakes\\Objects\\Order Assets\\OrderItem.cs",
               "RelativeDocumentMoniker": "Objects\\Order Assets\\OrderItem.cs",
@@ -98,7 +114,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "ItemCategory.cs",
               "DocumentMoniker": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\OliveBranchBakes\\Objects\\Order Assets\\ItemCategory.cs",
               "RelativeDocumentMoniker": "Objects\\Order Assets\\ItemCategory.cs",
@@ -111,7 +127,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "OrderForm.cs",
               "DocumentMoniker": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\OliveBranchBakes\\Forms\\Ordering\\OrderForm.cs",
               "RelativeDocumentMoniker": "Forms\\Ordering\\OrderForm.cs",
@@ -124,7 +140,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "ItemStorage.txt",
               "DocumentMoniker": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\OliveBranchBakes\\Documents\\ItemStorage.txt",
               "RelativeDocumentMoniker": "Documents\\ItemStorage.txt",
@@ -137,7 +153,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Order.cs",
               "DocumentMoniker": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\OliveBranchBakes\\Objects\\Order Assets\\Order.cs",
               "RelativeDocumentMoniker": "Objects\\Order Assets\\Order.cs",
