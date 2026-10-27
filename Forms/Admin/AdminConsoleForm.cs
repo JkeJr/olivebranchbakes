@@ -113,9 +113,10 @@ namespace OliveBranchBakes.Forms
             for (int i = 0; i < items.Count; i++)
             {
                 item = items[i];
-                ListViewItem viewItem = new(item.Name);
+                ListViewItem viewItem = new(item.Categories.ToString(", "));
+                viewItem.SubItems.Add(item.Name);
                 viewItem.SubItems.Add(item.Price.ToString());
-                viewItem.SubItems.Add(item.AllergenList.GetDisplayText(", "));
+                viewItem.SubItems.Add(item.AllergenList.ToString(", "));
                 
                 // Shows which items are in season; Green if true, OrangeRed if false
                 if (item.Seasonal)

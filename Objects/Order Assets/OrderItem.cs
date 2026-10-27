@@ -12,7 +12,7 @@ namespace OliveBranchBakes.Objects
     public class OrderItem
     {
         public string Name = "";
-        public ItemCategories categories;
+        public ItemCategories Categories;
         public decimal Price { get; set; }
         //public Allergen Allergy { get; set; } = new(AllergenIngredients.None);
         public AllergenList AllergenList;
@@ -25,19 +25,22 @@ namespace OliveBranchBakes.Objects
 
         public OrderItem()
         {
+            Categories = new();
             Name = "unnamed";
             Price = 0;
         }
 
-        public OrderItem(string name, decimal price, string[] allergens)
+        public OrderItem(string[] categories, string name, decimal price, string[] allergens)
         {
+            Categories = new(categories);
             Name = name;
             Price = price;
             AllergenList = new(allergens);
             Count = 1;
         }
-        public OrderItem(string name, decimal price, string[] allergens, DateRange range)
+        public OrderItem(string[] categories, string name, decimal price, string[] allergens, DateRange range)
         {
+            Categories = new(categories);
             Name = name;
             Price = price;
             AllergenList = new(allergens);
@@ -46,8 +49,9 @@ namespace OliveBranchBakes.Objects
             Seasonal = true;
             Season = range;
         }
-        public OrderItem(string name, decimal price, string[] allergens, string start, string end)
+        public OrderItem(string[] categories, string name, decimal price, string[] allergens, string start, string end)
         {
+            Categories = new(categories);
             Name = name;
             Price = price;
             AllergenList = new(allergens);
@@ -89,7 +93,7 @@ namespace OliveBranchBakes.Objects
 
         public string GetDisplayText()
         {
-            return $"{Name} | {Price} | {Count} | {AllergenList.GetDisplayText(", ")}";
+            return $"{Name} | {Price} | {Count} | {AllergenList.ToString(", ")}";
         }
     }
 }

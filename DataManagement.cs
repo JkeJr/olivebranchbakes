@@ -33,7 +33,7 @@ namespace OliveBranchBakes
 
                 // Check if each row has been split correctly. Update whenever I add new pieces of info
                 // Name|Price|Allergens|Seasonal?|Start|End
-                if (columns.Length == 6)
+                if (columns.Length == 7)
                 {
                     OrderItem item = null!;
                     /*      TODO: Add type specific checks in the first column of each row
@@ -41,22 +41,25 @@ namespace OliveBranchBakes
                     if (columns[0] == nameof(Cake))
                     */
 
-                    string[] allergens = columns[2].Split(",");
+                    string[] categories = columns[0].Split(",");
+                    string[] allergens = columns[3].Split(",");
                     // if the item is seasonal
                     if (columns[3] == "s")
                     {
                         item = new OrderItem(
-                                    columns[0],
-                                    Convert.ToDecimal(columns[1]),
+                                    categories,
+                                    columns[1],
+                                    Convert.ToDecimal(columns[2]),
                                     allergens,
-                                    columns[4],
-                                    columns[5]);
+                                    columns[5],
+                                    columns[6]);
                     }
                     else
                     {
                         item = new OrderItem(
-                                    columns[0],
-                                    Convert.ToDecimal(columns[1]),
+                                    categories,
+                                    columns[1],
+                                    Convert.ToDecimal(columns[2]),
                                     allergens);
                     }
 
@@ -90,10 +93,23 @@ namespace OliveBranchBakes
         // Write main chunk of the item data
         private static void WriteBase(OrderItem item, StreamWriter textOut)
         {
+            textOut.Write(item.Categories.ToString(","), ", ");
             textOut.Write(item.Name + Delimiter);
             textOut.Write(item.Price.ToString() + Delimiter);
-            textOut.Write(item.AllergenList.GetDisplayText(",") + Delimiter);
+            textOut.Write(item.AllergenList.ToString(",") + Delimiter);
             textOut.WriteLine(item.SeasonalInfo());
+        }
+
+        public static string DisplayListText(string[] List, string separator)
+        {
+            string result = "";
+            foreach (Object o in List)
+            {
+                result += o.ToString();
+                if (List.IndexOf(o) < List.Length - 1)
+                    result += separator;
+            }
+            return result;
         }
     }
 }

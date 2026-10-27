@@ -56,17 +56,12 @@ namespace OliveBranchBakes.Objects
             return allergens;
         }
 
-        public string GetDisplayText(string separator)
+        public string ToString(string separator)
         {
-            string result = "";
-            foreach (Allergen a in allergens)
-            {
-                result += a.ToString();
-                if (allergens.IndexOf(a) < allergens.Count - 1)
-                    result += separator;
-            }
-
-            return result;
+            string[] items = new string[allergens.Count];
+            for (int i = 0; i < allergens.Count; i++)
+                items[i] = allergens[i].ToString();
+            return DataManagement.DisplayListText(items, separator);
         }
     }
 }

@@ -62,7 +62,7 @@ namespace OliveBranchBakes.Forms
                 {
                     ListViewItem viewItem = new(item.Name);
                     viewItem.SubItems.Add(item.Price.ToString());
-                    viewItem.SubItems.Add(item.AllergenList.GetDisplayText(", "));
+                    viewItem.SubItems.Add(item.AllergenList.ToString(","));
 
                     listviewItems.Items.Add(viewItem);
                 }

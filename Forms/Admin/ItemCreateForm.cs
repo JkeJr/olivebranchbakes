@@ -40,7 +40,7 @@ namespace OliveBranchBakes.Forms.Admin
         {
             txtName.Text = orderItem.Name;
             txtPrice.Text = orderItem.Price.ToString();
-            txtAllergens.Text = orderItem.AllergenList.GetDisplayText(", ");
+            txtAllergens.Text = orderItem.AllergenList.ToString(", ");
 
             // Fill in seasonal data if applicable
             if (orderItem.Seasonal)
@@ -71,12 +71,14 @@ namespace OliveBranchBakes.Forms.Admin
             {
                 if (chkSeasonal.Checked)
                     item = new(
+                            [""],
                             txtName.Text,
                             Convert.ToDecimal(txtPrice.Text),
                             (txtAllergens.Text.IsWhiteSpace()) ? ["None"] : ConvertToStringList(txtAllergens.Text, ","), 
                             new DateRange(dtpStart.Value, dtpEnd.Value));
                 else
                     item = new(
+                            [""],
                             txtName.Text,
                             Convert.ToDecimal(txtPrice.Text),
                             (txtAllergens.Text.IsWhiteSpace()) ? ["None"] : ConvertToStringList(txtAllergens.Text, ","));

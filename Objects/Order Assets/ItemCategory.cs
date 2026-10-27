@@ -5,24 +5,25 @@ using System.Text;
 
 namespace OliveBranchBakes.Objects.Order_Assets
 {
-    public enum Categories
+    public enum CategoryEnums
     {
         Cookie,
         Pie,
         Cake,
         Bread,
         Pastry,
+        Muffin,
         Misc,
     }
 
     public class ItemCategories
     {
-        private List<Categories> categoryList;
+        private List<CategoryEnums> categoryList;
 
         public ItemCategories()
         {
             categoryList = new();
-            categoryList.Add(Categories.Misc);
+            categoryList.Add(CategoryEnums.Misc);
         }
         public ItemCategories(string[] values)
         {
@@ -35,7 +36,15 @@ namespace OliveBranchBakes.Objects.Order_Assets
 
         private void Add(string category)
         {
-            categoryList.Add((Categories)Enum.Parse(typeof(Categories), category));
+            categoryList.Add((CategoryEnums)Enum.Parse(typeof(CategoryEnums), category));
+        }
+
+        public string ToString(string separator)
+        {
+            string[] items = new string[categoryList.Count];
+            for (int i = 0; i < categoryList.Count; i++)
+                items[i] = categoryList[i].ToString();
+            return DataManagement.DisplayListText(items, separator);
         }
     }
 }
