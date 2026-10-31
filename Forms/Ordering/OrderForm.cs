@@ -30,6 +30,12 @@ namespace OliveBranchBakes.Forms
             cmbboxAllergy.Items.Clear();
             cmbboxAllergy.Text = "";
 
+            cmbboxFilter.Items.Clear();
+            cmbboxFilter.Items.Add("None");
+            foreach (string category in Enum.GetNames(typeof(CategoryEnums)))
+                cmbboxFilter.Items.Add(category);
+            cmbboxFilter.SelectedIndex = 0;
+
             items.Fill();
             FillItemListBox();
         }
@@ -57,14 +63,32 @@ namespace OliveBranchBakes.Forms
             for (int i = 0; i < items.Count; i++)
             {
                 item = items[i];
+                CategoryEnums category = CategoryEnums.Misc;
 
-                if (item.InSeason())
+                // More complicated than it has to be
+                if (cmbboxFilter.SelectedItem.ToString() != "None")
                 {
-                    ListViewItem viewItem = new(item.Name);
-                    viewItem.SubItems.Add(item.Price.ToString());
-                    viewItem.SubItems.Add(item.AllergenList.ToString(","));
+                    category = (CategoryEnums)Enum.Parse(typeof(CategoryEnums), cmbboxFilter.SelectedItem.ToString()!);
 
-                    listviewItems.Items.Add(viewItem);
+                    if (item.Categories.IndexOf(category) != -1 && item.InSeason())
+                    {
+                        ListViewItem viewItem = new(item.Name);
+                        viewItem.SubItems.Add(item.Price.ToString());
+                        viewItem.SubItems.Add(item.AllergenList.ToString(", "));
+
+                        listviewItems.Items.Add(viewItem);
+                    }
+                }
+                else
+                {
+                    if (item.InSeason())
+                    {
+                        ListViewItem viewItem = new(item.Name);
+                        viewItem.SubItems.Add(item.Price.ToString());
+                        viewItem.SubItems.Add(item.AllergenList.ToString(", "));
+
+                        listviewItems.Items.Add(viewItem);
+                    }
                 }
             }
         }
@@ -201,6 +225,11 @@ namespace OliveBranchBakes.Forms
                 cmbboxAllergy.Items.Clear();
                 cmbboxAllergy.Text = "";
             }
+        }
+
+        private void cmbboxFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FillItemListBox();
         }
     }
 }
