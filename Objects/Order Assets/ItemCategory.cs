@@ -34,9 +34,17 @@ namespace OliveBranchBakes.Objects.Order_Assets
             }
         }
 
-        private void Add(string category)
+        public void Add(string category)
         {
-            categoryList.Add((CategoryEnums)Enum.Parse(typeof(CategoryEnums), category));
+            if (category.IsWhiteSpace() || category == "")
+                categoryList.Add(CategoryEnums.Misc);
+            else
+                categoryList.Add((CategoryEnums)Enum.Parse(typeof(CategoryEnums), category));
+        }
+
+        public void Add(CategoryEnums category)
+        {
+            categoryList.Add(category);
         }
 
         public string ToString(string separator)

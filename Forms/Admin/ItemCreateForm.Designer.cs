@@ -197,6 +197,7 @@
             btnAddAllergy.TabIndex = 9;
             btnAddAllergy.Text = "Add";
             btnAddAllergy.UseVisualStyleBackColor = true;
+            btnAddAllergy.Click += btnAddAllergy_Click;
             // 
             // btnRemoveAllergy
             // 
@@ -206,6 +207,7 @@
             btnRemoveAllergy.TabIndex = 11;
             btnRemoveAllergy.Text = "Remove";
             btnRemoveAllergy.UseVisualStyleBackColor = true;
+            btnRemoveAllergy.Click += btnRemoveAllergy_Click;
             // 
             // lbCategories
             // 
@@ -269,6 +271,7 @@
             btnClearAllergies.TabIndex = 17;
             btnClearAllergies.Text = "Clear";
             btnClearAllergies.UseVisualStyleBackColor = true;
+            btnClearAllergies.Click += btnClearAllergies_Click;
             // 
             // ItemCreateForm
             // 

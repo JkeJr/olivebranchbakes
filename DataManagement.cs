@@ -44,13 +44,13 @@ namespace OliveBranchBakes
                     string[] categories = columns[0].Split(",");
                     string[] allergens = columns[3].Split(",");
                     // if the item is seasonal
-                    if (columns[3] == "s")
+                    if (columns[4] == "s")
                     {
                         item = new OrderItem(
                                     categories,
                                     columns[1],
                                     Convert.ToDecimal(columns[2]),
-                                    allergens,
+                                    new AllergenList(allergens),
                                     columns[5],
                                     columns[6]);
                     }
@@ -60,7 +60,7 @@ namespace OliveBranchBakes
                                     categories,
                                     columns[1],
                                     Convert.ToDecimal(columns[2]),
-                                    allergens);
+                                    new AllergenList(allergens));
                     }
 
                     // add item to items list

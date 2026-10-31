@@ -37,6 +37,16 @@ namespace OliveBranchBakes.Objects
         // custom indexer 
         public Allergen this[int i] => allergens[i];
 
+        // Works the same as typical IndexOf functions, gets int index and returns -1 if DNE
+        public int IndexOf(Allergen allergen)
+        {
+            for (int i = 0; i < Count; i++)
+                if (this[i] == allergen)
+                    return i;
+            
+            return -1;
+        }
+
         // For adding allergens
         public void Add(Allergen allergen)
         {
@@ -54,6 +64,24 @@ namespace OliveBranchBakes.Objects
         {
             allergens.Add(allergen);
             return allergens;
+        }
+
+        // Removing Allergens
+        public void Remove(AllergenIngredients ingredient)
+        {
+            allergens.Remove(new Allergen(ingredient));
+        }
+        public void Remove(Allergen allergen)
+        {
+            RemoveAt(IndexOf(allergen));
+        }
+        public void RemoveAt(int index)
+        {
+            allergens.RemoveAt(index);
+        }
+        public void Clear()
+        {
+            allergens.Clear();
         }
 
         public string ToString(string separator)
