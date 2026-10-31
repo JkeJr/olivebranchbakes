@@ -65,6 +65,13 @@ namespace OliveBranchBakes.Objects
                     ItemListChanged(this);
             }
         }
+        public int IndexOf(string name)
+        {
+            for (int i = 0; i < Count; i++)
+                if (items[i].Name == name)
+                    return i;
+            return -1;
+        }
         
         public void Fill() => items = DataManagement.GetItems();
         public void Save() => DataManagement.SaveItems(items);

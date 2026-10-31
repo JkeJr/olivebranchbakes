@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewItem listViewItem1 = new ListViewItem("");
+            ListViewItem listViewItem2 = new ListViewItem("");
             label1 = new Label();
             label2 = new Label();
             btnContinue = new Button();
@@ -57,6 +57,8 @@
             colOrderedCount = new ColumnHeader();
             colOrderedAllergen = new ColumnHeader();
             colOrderedPrice = new ColumnHeader();
+            txtSubtotal = new TextBox();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -132,7 +134,9 @@
             // 
             // splitContainer1.Panel2
             // 
+            splitContainer1.Panel2.Controls.Add(txtSubtotal);
             splitContainer1.Panel2.Controls.Add(rtxtComments);
+            splitContainer1.Panel2.Controls.Add(label7);
             splitContainer1.Panel2.Controls.Add(label3);
             splitContainer1.Panel2.Controls.Add(listviewOrder);
             splitContainer1.Panel2.Controls.Add(label2);
@@ -324,10 +328,10 @@
             listviewOrder.FullRowSelect = true;
             listviewOrder.GridLines = true;
             listviewOrder.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            listviewOrder.Items.AddRange(new ListViewItem[] { listViewItem1 });
+            listviewOrder.Items.AddRange(new ListViewItem[] { listViewItem2 });
             listviewOrder.Location = new Point(3, 29);
             listviewOrder.Name = "listviewOrder";
-            listviewOrder.Size = new Size(338, 225);
+            listviewOrder.Size = new Size(338, 198);
             listviewOrder.TabIndex = 4;
             listviewOrder.TabStop = false;
             listviewOrder.UseCompatibleStateImageBehavior = false;
@@ -351,6 +355,25 @@
             // colOrderedPrice
             // 
             colOrderedPrice.Text = "$__.__";
+            // 
+            // txtSubtotal
+            // 
+            txtSubtotal.Location = new Point(241, 233);
+            txtSubtotal.Name = "txtSubtotal";
+            txtSubtotal.ReadOnly = true;
+            txtSubtotal.Size = new Size(100, 27);
+            txtSubtotal.TabIndex = 9;
+            txtSubtotal.TabStop = false;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Trebuchet MS", 7.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label7.Location = new Point(174, 238);
+            label7.Name = "label7";
+            label7.Size = new Size(61, 18);
+            label7.TabIndex = 5;
+            label7.Text = "Subtotal:";
             // 
             // OrderForm
             // 
@@ -408,5 +431,7 @@
         private ColumnHeader colOrderedCount;
         private ColumnHeader colOrderedAllergen;
         private Button btnBack;
+        private TextBox txtSubtotal;
+        private Label label7;
     }
 }

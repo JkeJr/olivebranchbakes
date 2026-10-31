@@ -17,13 +17,16 @@ namespace OliveBranchBakes.Forms
         private ItemList items = new();
         private Order order = new();
 
-        // Source - https://stackoverflow.com/a/8750673
-        // Posted by competent_tech
-        // Retrieved 2026-10-22, License - CC BY-SA 3.0
+        
         private void OrderForm_Load(object sender, EventArgs e)
         {
-            this.FormClosed += new FormClosedEventHandler(Form1_FormClosed);
+            // Source - https://stackoverflow.com/a/8750673
+            // Posted by competent_tech
+            // Retrieved 2026-10-22, License - CC BY-SA 3.0
+            this.FormClosed += new FormClosedEventHandler(Form1_FormClosed!);
             order.OrderChanged += new Order.ChangeHandler(HandleChange);
+            
+            // Initialize
             chkboxAllergy.Enabled = false;
 
             cmbboxAllergy.Enabled = false;
@@ -111,6 +114,8 @@ namespace OliveBranchBakes.Forms
 
                 listviewOrder.Items.Add(viewItem);
             }
+
+            txtSubtotal.Text = $"${order.Subtotal}";
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -132,10 +137,11 @@ namespace OliveBranchBakes.Forms
             {
                 // gets the index of the selected item, and then copies the item
                 int inventoryIndex = listviewItems.Items.IndexOf(listviewItems.SelectedItems[0]);
+                inventoryIndex = items.IndexOf(listviewItems.Items[inventoryIndex].SubItems[0].Text);
 
                 if (items[inventoryIndex] != null)
                 {
-                    Allergen allergen = (chkboxAllergy.Checked) ? new Allergen(cmbboxAllergy.SelectedItem.ToString()) : new Allergen(AllergenIngredients.None);
+                    Allergen allergen = (chkboxAllergy.Checked) ? new Allergen(cmbboxAllergy.SelectedItem.ToString()!) : new Allergen(AllergenIngredients.None);
                     int orderIndex = order.IndexOf(items[inventoryIndex], allergen);
 
                     // check if item can be found in order.itemGroups

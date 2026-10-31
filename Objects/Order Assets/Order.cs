@@ -10,6 +10,17 @@ namespace OliveBranchBakes.Objects
     {
         private List<OrderItemGroup> itemGroups;
         public int Count => itemGroups.Count;
+        public decimal Subtotal
+        {
+            get
+            {
+                decimal subtotal = Convert.ToDecimal("0.00");
+                foreach (OrderItemGroup itemGroup in itemGroups)
+                    subtotal += itemGroup.Price;
+
+                return subtotal;
+            }
+        }
 
         // Change Event
         public delegate void ChangeHandler(Order order);
