@@ -226,6 +226,7 @@
             btnClearCategories.TabIndex = 13;
             btnClearCategories.Text = "Clear";
             btnClearCategories.UseVisualStyleBackColor = true;
+            btnClearCategories.Click += btnClearCategories_Click;
             // 
             // label6
             // 
@@ -245,6 +246,7 @@
             btnRemoveCategory.TabIndex = 14;
             btnRemoveCategory.Text = "Remove";
             btnRemoveCategory.UseVisualStyleBackColor = true;
+            btnRemoveCategory.Click += btnRemoveCategory_Click;
             // 
             // btnAddCategory
             // 
@@ -254,6 +256,7 @@
             btnAddCategory.TabIndex = 15;
             btnAddCategory.Text = "Add";
             btnAddCategory.UseVisualStyleBackColor = true;
+            btnAddCategory.Click += btnAddCategory_Click;
             // 
             // txtCategories
             // 

@@ -20,6 +20,8 @@ namespace OliveBranchBakes.Objects.Order_Assets
     {
         private List<CategoryEnums> categoryList;
 
+        public int Count => categoryList.Count;
+
         public ItemCategories()
         {
             categoryList = new();
@@ -34,6 +36,7 @@ namespace OliveBranchBakes.Objects.Order_Assets
             }
         }
 
+        // Add to list
         public void Add(string category)
         {
             if (category.IsWhiteSpace() || category == "")
@@ -45,6 +48,31 @@ namespace OliveBranchBakes.Objects.Order_Assets
         public void Add(CategoryEnums category)
         {
             categoryList.Add(category);
+        }
+
+        // Remove 
+        public void Remove(CategoryEnums category)
+        {
+            categoryList.Remove(category);
+        }
+        public void RemoveAt(int index)
+        {
+            categoryList.RemoveAt(index);
+        }
+        public void Clear()
+        {
+            categoryList.Clear();
+        }
+
+        // Indexing
+        public CategoryEnums this[int i] => categoryList[i];
+        public int IndexOf(CategoryEnums category)
+        {
+            for (int i = 0; i < Count; i++)
+                if (categoryList[i] == category)
+                    return i;
+
+            return -1;
         }
 
         public string ToString(string separator)

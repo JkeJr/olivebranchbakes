@@ -30,17 +30,17 @@ namespace OliveBranchBakes.Objects
             Price = 0;
         }
 
-        public OrderItem(string[] categories, string name, decimal price, AllergenList allergens)
+        public OrderItem(ItemCategories categories, string name, decimal price, AllergenList allergens)
         {
-            Categories = new(categories);
+            Categories = categories;
             Name = name;
             Price = price;
             AllergenList = allergens;
             Count = 1;
         }
-        public OrderItem(string[] categories, string name, decimal price, AllergenList allergens, DateRange range)
+        public OrderItem(ItemCategories categories, string name, decimal price, AllergenList allergens, DateRange range)
         {
-            Categories = new(categories);
+            Categories = categories;
             Name = name;
             Price = price;
             AllergenList = allergens;
@@ -49,9 +49,9 @@ namespace OliveBranchBakes.Objects
             Seasonal = true;
             Season = range;
         }
-        public OrderItem(string[] categories, string name, decimal price, AllergenList allergens, string start, string end)
+        public OrderItem(ItemCategories categories, string name, decimal price, AllergenList allergens, string start, string end)
         {
-            Categories = new(categories);
+            Categories = categories;
             Name = name;
             Price = price;
             AllergenList = allergens;

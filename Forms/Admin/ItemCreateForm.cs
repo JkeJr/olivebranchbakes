@@ -21,6 +21,23 @@ namespace OliveBranchBakes.Forms.Admin
         }
         private void ItemCreateForm_Load(object sender, EventArgs e)
         {
+            // Lists
+            Fill();
+
+            txtAllergens.Clear();
+            txtCategories.Clear();
+
+            UpdateAllergenText();
+            UpdateCategoryText();
+
+            //categoryList.Add(CategoryEnums.Misc);
+            //txtCategories.Text = categoryList.ToString(", ");
+        }
+
+        private OrderItem item = null!;
+
+        public OrderItem GetNewItem()
+        {
             // Seasonal initialization
             chkSeasonal.Checked = false;
 
@@ -32,20 +49,6 @@ namespace OliveBranchBakes.Forms.Admin
             dtpStart.MinDate = new DateTime(DateTime.Today.Year, 1, 1);
             dtpStart.MaxDate = new DateTime(DateTime.Today.Year + 1, 12, 31);
 
-            // Lists
-            Fill();
-
-            txtAllergens.Clear();
-            UpdateAllergenText();
-
-            //categoryList.Add(CategoryEnums.Misc);
-            //txtCategories.Text = categoryList.ToString(", ");
-        }
-
-        private OrderItem item = null!;
-
-        public OrderItem GetNewItem()
-        {
             this.ShowDialog();
             return item;
         }
@@ -55,13 +58,15 @@ namespace OliveBranchBakes.Forms.Admin
             txtName.Text = orderItem.Name;
             txtPrice.Text = orderItem.Price.ToString();
             txtAllergens.Text = orderItem.AllergenList.ToString(", ");
+            categoryList = orderItem.Categories;
+            allergenList = orderItem.AllergenList;
 
             // Fill in seasonal data if applicable
             if (orderItem.Seasonal)
             {
                 chkSeasonal.Checked = true;
-                DateTime start = (DateTime)orderItem.Season[0];
-                DateTime end = (DateTime)orderItem.Season[1];
+                DateTime start = (DateTime)orderItem.Season[0]!;
+                DateTime end = (DateTime)orderItem.Season[1]!;
 
                 dtpStart.Enabled = chkSeasonal.Checked;
                 dtpStart.MinDate = new DateTime(DateTime.Today.Year, 1, 1);
@@ -74,6 +79,19 @@ namespace OliveBranchBakes.Forms.Admin
                 dtpStart.Value = start;
                 dtpEnd.Value = end;
             }
+            else
+            {
+                // Seasonal initialization
+                chkSeasonal.Checked = false;
+
+                dtpStart.Enabled = chkSeasonal.Checked;
+                dtpStart.MinDate = new DateTime(DateTime.Today.Year, 1, 1);
+                dtpStart.MaxDate = new DateTime(DateTime.Today.Year, 12, 31);
+
+                dtpEnd.Enabled = chkSeasonal.Checked;
+                dtpStart.MinDate = new DateTime(DateTime.Today.Year, 1, 1);
+                dtpStart.MaxDate = new DateTime(DateTime.Today.Year + 1, 12, 31);
+            }
 
             this.ShowDialog();
             return item;
@@ -85,31 +103,19 @@ namespace OliveBranchBakes.Forms.Admin
             {
                 if (chkSeasonal.Checked)
                     item = new(
-                            [""],
+                            categoryList,
                             txtName.Text,
                             Convert.ToDecimal(txtPrice.Text),
                             allergenList,
                             new DateRange(dtpStart.Value, dtpEnd.Value));
                 else
                     item = new(
-                            [""],
+                            categoryList,
                             txtName.Text,
                             Convert.ToDecimal(txtPrice.Text),
                             allergenList);
             }
             this.Close();
-        }
-
-        // Converts to string AND formats it ready for AllergenIngredients enum
-        private static string[] ConvertToStringList(string entry, string splitter)
-        {
-            string[] list = entry.Replace(" ", "").Split(splitter);
-            foreach (string srt in list)
-            {
-                list[list.IndexOf(srt)] = srt[0].ToString().ToUpper() + srt.Substring(1).ToLower();
-            }
-
-            return list;
         }
 
         private bool IsValidData()
@@ -213,6 +219,55 @@ namespace OliveBranchBakes.Forms.Admin
             UpdateAllergenText();
         }
 
+        // Category
+        private void btnAddCategory_Click(object sender, EventArgs e)
+        {
+            // fetches the category from the selection
+            int index = lbCategories.SelectedIndex;
+            CategoryEnums category = (CategoryEnums)Enum.Parse(typeof(CategoryEnums), lbCategories.Items[index].ToString()!);
+
+            if (index == -1)
+            {
+                MessageBox.Show("Please select a Category", "Selection Error");
+            }
+            // Check if Allergy already exists in allergyList
+            else if (categoryList.IndexOf(category) != -1)
+            {
+                MessageBox.Show("Category already in list", "Selection Error");
+            }
+            else
+            {
+                categoryList.Add(category);
+                UpdateCategoryText();
+            }
+        }
+        private void btnRemoveCategory_Click(object sender, EventArgs e)
+        {
+            int index = lbCategories.SelectedIndex;
+            CategoryEnums category = (CategoryEnums)Enum.Parse(typeof(CategoryEnums), lbCategories.Items[index].ToString()!);
+
+            if (index == -1)
+            {
+                MessageBox.Show("Please select a Category", "Selection Error");
+            }
+            else if (categoryList.IndexOf(category) == -1)
+            {
+                MessageBox.Show("Category is not in list", "Selection Error");
+            }
+            else
+            {
+                categoryList.Remove(category);
+                UpdateCategoryText();
+            }
+        }
+        private void btnClearCategories_Click(object sender, EventArgs e)
+        {
+            categoryList.Clear();
+            UpdateCategoryText();
+        }
+
+        // Updating listboxes
+
         // Set allergen text to the correct list
         private void UpdateAllergenText()
         {
@@ -227,6 +282,21 @@ namespace OliveBranchBakes.Forms.Admin
                     allergenList.RemoveAt(n);
             }
             txtAllergens.Text = allergenList.ToString(", ");
+        }
+        // Set category text to the correct list
+        private void UpdateCategoryText()
+        {
+            // If the list is empty, add "Misc" as the listed allergen
+            if (categoryList.Count == 0)
+                categoryList.Add(CategoryEnums.Misc);
+            else if (categoryList.Count > 1)
+            {
+                // If "Misc" is a listed allergen among others, remove it
+                int n = categoryList.IndexOf(CategoryEnums.Misc);
+                if (n != -1)
+                    categoryList.RemoveAt(n);
+            }
+            txtCategories.Text = categoryList.ToString(", ");
         }
 
         // Fills the listbox items

@@ -1,4 +1,5 @@
 ﻿using OliveBranchBakes.Objects;
+using OliveBranchBakes.Objects.Order_Assets;
 using System;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
@@ -47,7 +48,7 @@ namespace OliveBranchBakes
                     if (columns[4] == "s")
                     {
                         item = new OrderItem(
-                                    categories,
+                                    new ItemCategories(categories),
                                     columns[1],
                                     Convert.ToDecimal(columns[2]),
                                     new AllergenList(allergens),
@@ -57,7 +58,7 @@ namespace OliveBranchBakes
                     else
                     {
                         item = new OrderItem(
-                                    categories,
+                                    new ItemCategories(categories),
                                     columns[1],
                                     Convert.ToDecimal(columns[2]),
                                     new AllergenList(allergens));
@@ -93,7 +94,7 @@ namespace OliveBranchBakes
         // Write main chunk of the item data
         private static void WriteBase(OrderItem item, StreamWriter textOut)
         {
-            textOut.Write(item.Categories.ToString(","), ", ");
+            textOut.Write(item.Categories.ToString(",") + Delimiter);
             textOut.Write(item.Name + Delimiter);
             textOut.Write(item.Price.ToString() + Delimiter);
             textOut.Write(item.AllergenList.ToString(",") + Delimiter);
