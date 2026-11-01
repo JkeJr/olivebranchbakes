@@ -39,8 +39,8 @@ namespace OliveBranchBakes.Forms
 
                 // Will add more options for type of item. For now, generic message
                 string message = "";
-                if (item is OrderItem o)
-                    message = $"{o.GetType().ToString()} type {o.Name} has been added.";
+                //if (item is OrderItem o)
+                message = $"{item.GetType().Namespace} type {item.Name} has been added.";
 
                 MessageBox.Show(message, "Success!");
             }

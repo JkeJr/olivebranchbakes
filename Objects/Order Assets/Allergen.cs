@@ -15,6 +15,7 @@ namespace OliveBranchBakes.Objects
         Shellfish,
         Fish,
         Sesame,
+        Caffiene,
         None
     }
 

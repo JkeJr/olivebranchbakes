@@ -212,12 +212,14 @@ namespace OliveBranchBakes.Forms
                 cmbboxAllergy.Items.Clear();
 
                 // gets the index of the selected item, and then copies the item
-                int i = listviewItems.Items.IndexOf(listviewItems.SelectedItems[0]);
-                OrderItem item = items[i];
+                int inventoryIndex = listviewItems.Items.IndexOf(listviewItems.SelectedItems[0]);
+                inventoryIndex = items.IndexOf(listviewItems.Items[inventoryIndex].SubItems[0].Text);
+
+                OrderItem item = items[inventoryIndex];
 
                 // for each Allergen in item's AllergenList, add that value as a stirng to cmbboxAllergy
                 cmbboxAllergy.Items.Add(AllergenIngredients.None);
-                if (i != -1)
+                if (inventoryIndex != -1)
                 {
                     for (int n = 0; n < item.AllergenList.Count; n++)
                     {

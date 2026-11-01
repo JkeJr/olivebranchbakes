@@ -13,6 +13,8 @@ namespace OliveBranchBakes.Objects.Order_Assets
         Bread,
         Pastry,
         Muffin,
+        Coffee,
+        Tea,
         Misc,
     }
 
