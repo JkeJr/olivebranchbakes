@@ -9,7 +9,7 @@ using System.Text;
 
 namespace OliveBranchBakes.Objects
 {
-    public class OrderItem
+    public abstract class OrderItem
     {
         public string Name = "";
         public ItemCategories Categories;
@@ -22,13 +22,6 @@ namespace OliveBranchBakes.Objects
         public bool Seasonal { get; init; } = false;
 
         public DateRange? Season;
-
-        public OrderItem()
-        {
-            Categories = new();
-            Name = "unnamed";
-            Price = 0;
-        }
 
         public OrderItem(ItemCategories categories, string name, decimal price, AllergenList allergens)
         {
@@ -65,7 +58,7 @@ namespace OliveBranchBakes.Objects
         {
             if (this.Seasonal)
             {
-                if (DateTime.Today < Season[0])
+                if (DateTime.Today < Season![0])
                     return false;
                 else if (DateTime.Today > Season[1])
                     return false;
@@ -89,7 +82,7 @@ namespace OliveBranchBakes.Objects
 
         
         // return formatted string for writing seasonal info to file
-        public string SeasonalInfo() => (this.Seasonal) ? $"s|{Season.Start}|{Season.End}" : "ns|null|null";
+        public string SeasonalInfo() => (this.Seasonal) ? $"s|{Season!.Start}|{Season.End}" : "ns|null|null";
 
         public string GetDisplayText()
         {

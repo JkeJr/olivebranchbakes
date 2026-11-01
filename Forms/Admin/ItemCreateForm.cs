@@ -1,5 +1,6 @@
 ﻿using OliveBranchBakes.Objects;
 using OliveBranchBakes.Objects.Order_Assets;
+using OliveBranchBakes.Objects.OrderItem_Types;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -61,11 +62,25 @@ namespace OliveBranchBakes.Forms.Admin
             categoryList = orderItem.Categories;
             allergenList = orderItem.AllergenList;
 
+            // Check Object Type
+            if (orderItem is DrinkItem drinkItem)
+            {
+                rdbDrink.Checked = true;
+                lblAmount.Text = "Ounces:";
+                txtAmount.Text = drinkItem.Ounces.ToString();
+            }
+            else if (orderItem is FoodItem foodItem)
+            {
+                rdbFood.Checked = true;
+                lblAmount.Text = "Calories:";
+                txtAmount.Text = foodItem.Calories.ToString();
+            }
+
             // Fill in seasonal data if applicable
             if (orderItem.Seasonal)
             {
                 chkSeasonal.Checked = true;
-                DateTime start = (DateTime)orderItem.Season[0]!;
+                DateTime start = (DateTime)orderItem.Season![0]!;
                 DateTime end = (DateTime)orderItem.Season[1]!;
 
                 dtpStart.Enabled = chkSeasonal.Checked;
@@ -101,19 +116,51 @@ namespace OliveBranchBakes.Forms.Admin
         {
             if (IsValidData())
             {
+                // Check if seasonal
                 if (chkSeasonal.Checked)
-                    item = new(
+                {
+                    // Check object type
+
+                    // FoodItem
+                    if (rdbFood.Checked)
+                        item = new FoodItem(
+                            Convert.ToInt16(txtAmount.Text),
                             categoryList,
                             txtName.Text,
                             Convert.ToDecimal(txtPrice.Text),
                             allergenList,
                             new DateRange(dtpStart.Value, dtpEnd.Value));
+                    // DrinkItem
+                    else
+                        item = new DrinkItem(
+                            Convert.ToInt16(txtAmount.Text),
+                            categoryList,
+                            txtName.Text,
+                            Convert.ToDecimal(txtPrice.Text),
+                            allergenList,
+                            new DateRange(dtpStart.Value, dtpEnd.Value));
+                }
                 else
-                    item = new(
+                {
+                    // Check Object Type
+
+                    // FoodItem
+                    if (rdbFood.Checked)
+                        item = new FoodItem(
+                            Convert.ToInt16(txtAmount.Text),
                             categoryList,
                             txtName.Text,
                             Convert.ToDecimal(txtPrice.Text),
                             allergenList);
+                    // DrinkItem
+                    else
+                        item = new DrinkItem(
+                            Convert.ToInt16(txtAmount.Text),
+                            categoryList,
+                            txtName.Text,
+                            Convert.ToDecimal(txtPrice.Text),
+                            allergenList);
+                } 
             }
             this.Close();
         }
@@ -127,6 +174,9 @@ namespace OliveBranchBakes.Forms.Admin
             errorMessage += Validator.IsPresent(txtName.Text, "Item Name");
             errorMessage += Validator.IsPresent(txtPrice.Text, "Price");
             errorMessage += Validator.IsDecimal(txtPrice.Text, "Price");
+            errorMessage += Validator.IsPresent(txtAmount.Text, (rdbFood.Checked) ? "Calories" : "Ounces");
+            errorMessage += Validator.IsInteger(txtAmount.Text, (rdbFood.Checked)? "Calories" : "Ounces");
+
             //errorMessage += Validator.IsPresent(txtAllergens.Text, "Allergen Ingredients");
 
             if (errorMessage != "")
@@ -142,6 +192,17 @@ namespace OliveBranchBakes.Forms.Admin
             this.Close();
         }
 
+        // Track Type
+        // 
+        // Clear txtAmount, and set lblAmount to the correct variable name
+        private void rdbFood_CheckedChanged(object sender, EventArgs e)
+        {
+            txtAmount.Clear();
+
+            lblAmount.Text = (rdbFood.Checked) ? "Calories:" : "Ounces:";
+        }
+
+        // Seasonal Info
         private void chkSeasonal_CheckedChanged(object sender, EventArgs e)
         {
             dtpStart.Enabled = chkSeasonal.Checked;

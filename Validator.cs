@@ -24,5 +24,13 @@ namespace OliveBranchBakes
                 msg = $"{name} must be a valid decimal value.{LineEnd}";
             return msg;
         }
+
+        public static string IsInteger(string value, string name)
+        {
+            string msg = "";
+            if (!int.TryParse(value, out _))
+                msg = $"{name} must be a valid integer value.{LineEnd}";
+            return msg;
+        }
     }
 }

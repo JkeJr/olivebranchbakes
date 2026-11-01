@@ -1,5 +1,6 @@
 ﻿using OliveBranchBakes.Objects;
 using OliveBranchBakes.Objects.Order_Assets;
+using OliveBranchBakes.Objects.OrderItem_Types;
 using System;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
@@ -33,8 +34,8 @@ namespace OliveBranchBakes
                 string[] columns = row.Split(Delimiter); //split the row into an array using Delimiter
 
                 // Check if each row has been split correctly. Update whenever I add new pieces of info
-                // Name|Price|Allergens|Seasonal?|Start|End
-                if (columns.Length == 7)
+                // Type|measurement|categories|Name|Price|Allergens|Seasonal?|Start|End
+                if (columns.Length == 9)
                 {
                     OrderItem item = null!;
                     /*      TODO: Add type specific checks in the first column of each row
@@ -42,30 +43,55 @@ namespace OliveBranchBakes
                     if (columns[0] == nameof(Cake))
                     */
 
-                    string[] categories = columns[0].Split(",");
-                    string[] allergens = columns[3].Split(",");
+                    string[] categories = columns[2].Split(",");
+                    string[] allergens = columns[5].Split(",");
+
                     // if the item is seasonal
-                    if (columns[4] == "s")
+                    if (columns[6] == "s")
                     {
-                        item = new OrderItem(
-                                    new ItemCategories(categories),
-                                    columns[1],
-                                    Convert.ToDecimal(columns[2]),
-                                    new AllergenList(allergens),
-                                    columns[5],
-                                    columns[6]);
+                        // if item is DrinkItem
+                        if (columns[0] == nameof(DrinkItem))
+                            item = new DrinkItem(
+                                        Convert.ToInt16(columns[1]),
+                                        new ItemCategories(categories),
+                                        columns[3],
+                                        Convert.ToDecimal(columns[4]),
+                                        new AllergenList(allergens),
+                                        columns[7],
+                                        columns[8]);
+                        // if item is FoodItem
+                        else if (columns[0] == nameof(FoodItem))
+                            item = new FoodItem(
+                                        Convert.ToInt16(columns[1]),
+                                        new ItemCategories(categories),
+                                        columns[3],
+                                        Convert.ToDecimal(columns[4]),
+                                        new AllergenList(allergens),
+                                        columns[7],
+                                        columns[8]);
                     }
                     else
                     {
-                        item = new OrderItem(
+                        // if item is DrinkItem
+                        if (columns[0] == nameof(DrinkItem))
+                            item = new DrinkItem(
+                                    Convert.ToInt16(columns[1]),
                                     new ItemCategories(categories),
-                                    columns[1],
-                                    Convert.ToDecimal(columns[2]),
+                                    columns[3],
+                                    Convert.ToDecimal(columns[4]),
+                                    new AllergenList(allergens));
+                        // if item is FoodItem
+                        else if (columns[0] == nameof(FoodItem))
+                            item = new FoodItem(
+                                    Convert.ToInt16(columns[1]),
+                                    new ItemCategories(categories),
+                                    columns[3],
+                                    Convert.ToDecimal(columns[4]),
                                     new AllergenList(allergens));
                     }
 
                     // add item to items list
-                    if (item != null!)
+                    if (item != null)
                         items.Add(item);
                 }
             }
@@ -85,8 +111,13 @@ namespace OliveBranchBakes
             // loop through each OrderItem in List<OrderItem>
             foreach (OrderItem item in items)
             {
-                // This will be needed when multiple child instances of OrderItem exists
-                // textOut.Write(item.GetType().Name + Delimiter);
+                // Type|Amount|
+                textOut.Write(item.GetType().Name + Delimiter);
+                if (item is DrinkItem drinkItem)
+                    textOut.Write(drinkItem.Ounces + Delimiter);
+                else if (item is FoodItem foodItem)
+                    textOut.Write(foodItem.Calories + Delimiter);
+
                 WriteBase(item, textOut);
             }
         }

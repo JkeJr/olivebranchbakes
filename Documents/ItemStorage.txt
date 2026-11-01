@@ -1,12 +1,13 @@
-Bread|Sourdough loaf|7.50|Wheat|ns|null|null
-Cookie|Chocolate chip cookie|2.25|Wheat,Egg|ns|null|null
-Bread,Muffin|Blueberry muffin|3.00|Wheat,Egg,Milk|ns|null|null
-Pastry|Cinnamon roll|3.75|Wheat,Egg,Milk|ns|null|null
-Pastry,Pie|Apple pie (9 inch)|22.00|Wheat|ns|null|null
-Cake|Custom decorated cake|45.00|Wheat,Milk,Egg|ns|null|null
-Misc|Honey butter (jar)|5.00|None|ns|null|null
-Bread,Cake|Cranberry Orange Scone|3.25|Wheat,Egg|s|11/1|1/15+
-Pastry,Pie|Key Lime Pie|12.00|Wheat,Egg,Milk|s|9/1|10/31
-Pastry|Donut|2.00|Wheat,Milk|ns|null|null
-Cake|Chocolate cake|10.99|Milk,Egg,Wheat|ns|null|null
-Muffin|Crumble Muffin|3.99|Wheat|ns|null|null
+FoodItem|500|Bread|Sourdough loaf|7.50|Wheat|ns|null|null
+FoodItem|500|Cookie|Chocolate chip cookie|2.25|Wheat,Egg|ns|null|null
+FoodItem|500|Bread,Muffin|Blueberry muffin|3.00|Wheat,Egg,Milk|ns|null|null
+FoodItem|500|Pastry|Cinnamon roll|3.75|Wheat,Egg,Milk|ns|null|null
+FoodItem|500|Pastry,Pie|Apple pie (9 inch)|22.00|Wheat|ns|null|null
+FoodItem|500|Cake|Custom decorated cake|45.00|Wheat,Milk,Egg|ns|null|null
+FoodItem|500|Misc|Honey butter (jar)|5.00|None|ns|null|null
+FoodItem|500|Bread,Cake|Cranberry Orange Scone|3.25|Wheat,Egg|s|11/1|1/15+
+FoodItem|500|Pastry,Pie|Key Lime Pie|12.00|Wheat,Egg,Milk|s|9/1|10/31
+FoodItem|500|Pastry|Donut|2.00|Wheat,Milk|ns|null|null
+FoodItem|500|Cake|Chocolate cake|10.99|Milk,Egg,Wheat|ns|null|null
+FoodItem|500|Muffin|Crumble Muffin|3.99|Wheat|ns|null|null
+DrinkItem|16|Misc|Iced Latte|5.50|Milk|s|9/1|11/30

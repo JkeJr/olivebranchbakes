@@ -51,6 +51,12 @@
             btnAddCategory = new Button();
             txtCategories = new TextBox();
             btnClearAllergies = new Button();
+            rdbDrink = new RadioButton();
+            rdbFood = new RadioButton();
+            lblAmount = new Label();
+            panel1 = new Panel();
+            txtAmount = new TextBox();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -80,7 +86,7 @@
             // 
             // txtPrice
             // 
-            txtPrice.Location = new Point(72, 56);
+            txtPrice.Location = new Point(70, 56);
             txtPrice.Name = "txtPrice";
             txtPrice.Size = new Size(70, 27);
             txtPrice.TabIndex = 1;
@@ -102,13 +108,14 @@
             txtAllergens.ReadOnly = true;
             txtAllergens.Size = new Size(214, 27);
             txtAllergens.TabIndex = 2;
+            txtAllergens.TabStop = false;
             // 
             // btnAdd
             // 
             btnAdd.Location = new Point(371, 377);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(79, 29);
-            btnAdd.TabIndex = 7;
+            btnAdd.TabIndex = 15;
             btnAdd.Text = "Enter";
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
@@ -118,7 +125,7 @@
             btnBack.Location = new Point(9, 377);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(74, 29);
-            btnBack.TabIndex = 6;
+            btnBack.TabIndex = 14;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
@@ -129,7 +136,7 @@
             chkSeasonal.Location = new Point(301, 14);
             chkSeasonal.Name = "chkSeasonal";
             chkSeasonal.Size = new Size(97, 24);
-            chkSeasonal.TabIndex = 3;
+            chkSeasonal.TabIndex = 5;
             chkSeasonal.Text = "Seasonal?";
             chkSeasonal.UseVisualStyleBackColor = true;
             chkSeasonal.CheckedChanged += chkSeasonal_CheckedChanged;
@@ -143,7 +150,7 @@
             dtpStart.MinDate = new DateTime(2026, 1, 1, 0, 0, 0, 0);
             dtpStart.Name = "dtpStart";
             dtpStart.Size = new Size(150, 27);
-            dtpStart.TabIndex = 4;
+            dtpStart.TabIndex = 6;
             dtpStart.Value = new DateTime(2026, 10, 26, 0, 0, 0, 0);
             dtpStart.ValueChanged += dtpStart_ValueChanged;
             // 
@@ -166,7 +173,7 @@
             dtpEnd.MinDate = new DateTime(2026, 10, 25, 0, 0, 0, 0);
             dtpEnd.Name = "dtpEnd";
             dtpEnd.Size = new Size(150, 27);
-            dtpEnd.TabIndex = 5;
+            dtpEnd.TabIndex = 7;
             dtpEnd.Value = new DateTime(2026, 10, 26, 0, 0, 0, 0);
             dtpEnd.ValueChanged += dtpEnd_ValueChanged;
             // 
@@ -188,13 +195,14 @@
             lbAllergens.Name = "lbAllergens";
             lbAllergens.Size = new Size(130, 184);
             lbAllergens.TabIndex = 8;
+            lbAllergens.TabStop = false;
             // 
             // btnAddAllergy
             // 
             btnAddAllergy.Location = new Point(148, 281);
             btnAddAllergy.Name = "btnAddAllergy";
             btnAddAllergy.Size = new Size(75, 57);
-            btnAddAllergy.TabIndex = 9;
+            btnAddAllergy.TabIndex = 10;
             btnAddAllergy.Text = "Add";
             btnAddAllergy.UseVisualStyleBackColor = true;
             btnAddAllergy.Click += btnAddAllergy_Click;
@@ -204,7 +212,7 @@
             btnRemoveAllergy.Location = new Point(148, 191);
             btnRemoveAllergy.Name = "btnRemoveAllergy";
             btnRemoveAllergy.Size = new Size(75, 29);
-            btnRemoveAllergy.TabIndex = 11;
+            btnRemoveAllergy.TabIndex = 9;
             btnRemoveAllergy.Text = "Remove";
             btnRemoveAllergy.UseVisualStyleBackColor = true;
             btnRemoveAllergy.Click += btnRemoveAllergy_Click;
@@ -217,13 +225,14 @@
             lbCategories.Name = "lbCategories";
             lbCategories.Size = new Size(130, 184);
             lbCategories.TabIndex = 12;
+            lbCategories.TabStop = false;
             // 
             // btnClearCategories
             // 
             btnClearCategories.Location = new Point(375, 156);
             btnClearCategories.Name = "btnClearCategories";
             btnClearCategories.Size = new Size(75, 29);
-            btnClearCategories.TabIndex = 13;
+            btnClearCategories.TabIndex = 11;
             btnClearCategories.Text = "Clear";
             btnClearCategories.UseVisualStyleBackColor = true;
             btnClearCategories.Click += btnClearCategories_Click;
@@ -243,7 +252,7 @@
             btnRemoveCategory.Location = new Point(375, 191);
             btnRemoveCategory.Name = "btnRemoveCategory";
             btnRemoveCategory.Size = new Size(75, 29);
-            btnRemoveCategory.TabIndex = 14;
+            btnRemoveCategory.TabIndex = 12;
             btnRemoveCategory.Text = "Remove";
             btnRemoveCategory.UseVisualStyleBackColor = true;
             btnRemoveCategory.Click += btnRemoveCategory_Click;
@@ -253,7 +262,7 @@
             btnAddCategory.Location = new Point(375, 281);
             btnAddCategory.Name = "btnAddCategory";
             btnAddCategory.Size = new Size(75, 57);
-            btnAddCategory.TabIndex = 15;
+            btnAddCategory.TabIndex = 13;
             btnAddCategory.Text = "Add";
             btnAddCategory.UseVisualStyleBackColor = true;
             btnAddCategory.Click += btnAddCategory_Click;
@@ -265,16 +274,66 @@
             txtCategories.ReadOnly = true;
             txtCategories.Size = new Size(211, 27);
             txtCategories.TabIndex = 16;
+            txtCategories.TabStop = false;
             // 
             // btnClearAllergies
             // 
             btnClearAllergies.Location = new Point(148, 156);
             btnClearAllergies.Name = "btnClearAllergies";
             btnClearAllergies.Size = new Size(75, 29);
-            btnClearAllergies.TabIndex = 17;
+            btnClearAllergies.TabIndex = 8;
             btnClearAllergies.Text = "Clear";
             btnClearAllergies.UseVisualStyleBackColor = true;
             btnClearAllergies.Click += btnClearAllergies_Click;
+            // 
+            // rdbDrink
+            // 
+            rdbDrink.AutoSize = true;
+            rdbDrink.Location = new Point(10, 53);
+            rdbDrink.Name = "rdbDrink";
+            rdbDrink.Size = new Size(65, 24);
+            rdbDrink.TabIndex = 3;
+            rdbDrink.Text = "Drink";
+            rdbDrink.UseVisualStyleBackColor = true;
+            // 
+            // rdbFood
+            // 
+            rdbFood.AutoSize = true;
+            rdbFood.Checked = true;
+            rdbFood.Location = new Point(10, 13);
+            rdbFood.Name = "rdbFood";
+            rdbFood.Size = new Size(64, 24);
+            rdbFood.TabIndex = 2;
+            rdbFood.TabStop = true;
+            rdbFood.Text = "Food";
+            rdbFood.UseVisualStyleBackColor = true;
+            rdbFood.CheckedChanged += rdbFood_CheckedChanged;
+            // 
+            // lblAmount
+            // 
+            lblAmount.Location = new Point(-10, 99);
+            lblAmount.Name = "lblAmount";
+            lblAmount.RightToLeft = RightToLeft.No;
+            lblAmount.Size = new Size(74, 22);
+            lblAmount.TabIndex = 0;
+            lblAmount.Text = "Calories:";
+            lblAmount.TextAlign = ContentAlignment.TopRight;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(rdbDrink);
+            panel1.Controls.Add(rdbFood);
+            panel1.Location = new Point(149, 44);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(84, 92);
+            panel1.TabIndex = 20;
+            // 
+            // txtAmount
+            // 
+            txtAmount.Location = new Point(70, 96);
+            txtAmount.Name = "txtAmount";
+            txtAmount.Size = new Size(70, 27);
+            txtAmount.TabIndex = 4;
             // 
             // ItemCreateForm
             // 
@@ -284,6 +343,8 @@
             CancelButton = btnBack;
             ClientSize = new Size(462, 418);
             ControlBox = false;
+            Controls.Add(txtAmount);
+            Controls.Add(panel1);
             Controls.Add(btnClearAllergies);
             Controls.Add(txtCategories);
             Controls.Add(btnAddCategory);
@@ -305,12 +366,15 @@
             Controls.Add(txtName);
             Controls.Add(label6);
             Controls.Add(label3);
+            Controls.Add(lblAmount);
             Controls.Add(label2);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "ItemCreateForm";
             Text = "ItemCreateForm";
             Load += ItemCreateForm_Load;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -341,5 +405,10 @@
         private Button btnAddCategory;
         private TextBox txtCategories;
         private Button btnClearAllergies;
+        private RadioButton rdbDrink;
+        private RadioButton rdbFood;
+        private Label lblAmount;
+        private Panel panel1;
+        private TextBox txtAmount;
     }
 }
