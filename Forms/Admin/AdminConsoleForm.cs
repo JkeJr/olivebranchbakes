@@ -40,7 +40,7 @@ namespace OliveBranchBakes.Forms
                 // Will add more options for type of item. For now, generic message
                 string message = "";
                 //if (item is OrderItem o)
-                message = $"{item.GetType().Namespace} type {item.Name} has been added.";
+                message = $"{item.GetType().Name} type, {item.Name}, has been added.";
 
                 MessageBox.Show(message, "Success!");
             }
@@ -70,8 +70,8 @@ namespace OliveBranchBakes.Forms
 
                     // Will add more options for type of item. For now, generic message
                     string message = "";
-                    if (item is OrderItem o)
-                        message = $"{o.GetType().ToString()} type {o.Name} has been edited.";
+                    
+                    message = $"{item.GetType().Name} type, {item.Name}, has been edited.";
 
                     MessageBox.Show(message, "Success!");
                 }
@@ -97,7 +97,6 @@ namespace OliveBranchBakes.Forms
                     MessageBox.Show(message, "Confirm Delete",
                     MessageBoxButtons.YesNo);
 
-                // listviewItems.Items.Remove(listviewItems.SelectedItems[0]);
                 if (result == DialogResult.Yes)
                 {
                     items -= item;

@@ -87,6 +87,10 @@ namespace OliveBranchBakes.Objects
         }
 
         // Deleting from the list
+        public void RemoveAt(int index)
+        {
+            this.Remove(itemGroups[index]);
+        }
         public void Remove(OrderItemGroup itemGroup)
         {
             itemGroups.Remove(itemGroup);
@@ -97,6 +101,12 @@ namespace OliveBranchBakes.Objects
         {
             order.Remove(itemGroup);
             return order;
+        }
+        public void Clear()
+        {
+            itemGroups.Clear();
+            if (OrderChanged != null)
+                OrderChanged(this);
         }
 
         // Method for indexer

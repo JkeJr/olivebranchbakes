@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewItem listViewItem2 = new ListViewItem("");
+            ListViewItem listViewItem1 = new ListViewItem("");
             label1 = new Label();
             label2 = new Label();
             btnContinue = new Button();
@@ -50,15 +50,15 @@
             colPrice = new ColumnHeader();
             colAllergens = new ColumnHeader();
             colCount = new ColumnHeader();
+            txtSubtotal = new TextBox();
             rtxtComments = new RichTextBox();
+            label7 = new Label();
             label3 = new Label();
             listviewOrder = new ListView();
             colOrderedName = new ColumnHeader();
             colOrderedCount = new ColumnHeader();
             colOrderedAllergen = new ColumnHeader();
             colOrderedPrice = new ColumnHeader();
-            txtSubtotal = new TextBox();
-            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -112,6 +112,7 @@
             btnClear.TabIndex = 8;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Click;
             // 
             // btnDelete
             // 
@@ -122,6 +123,7 @@
             btnDelete.TabIndex = 7;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // splitContainer1
             // 
@@ -302,6 +304,15 @@
             // 
             colCount.Text = "#";
             // 
+            // txtSubtotal
+            // 
+            txtSubtotal.Location = new Point(241, 233);
+            txtSubtotal.Name = "txtSubtotal";
+            txtSubtotal.ReadOnly = true;
+            txtSubtotal.Size = new Size(100, 27);
+            txtSubtotal.TabIndex = 9;
+            txtSubtotal.TabStop = false;
+            // 
             // rtxtComments
             // 
             rtxtComments.BackColor = Color.AntiqueWhite;
@@ -310,6 +321,16 @@
             rtxtComments.Size = new Size(338, 73);
             rtxtComments.TabIndex = 5;
             rtxtComments.Text = "";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Trebuchet MS", 7.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label7.Location = new Point(174, 238);
+            label7.Name = "label7";
+            label7.Size = new Size(61, 18);
+            label7.TabIndex = 5;
+            label7.Text = "Subtotal:";
             // 
             // label3
             // 
@@ -328,7 +349,7 @@
             listviewOrder.FullRowSelect = true;
             listviewOrder.GridLines = true;
             listviewOrder.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            listviewOrder.Items.AddRange(new ListViewItem[] { listViewItem2 });
+            listviewOrder.Items.AddRange(new ListViewItem[] { listViewItem1 });
             listviewOrder.Location = new Point(3, 29);
             listviewOrder.Name = "listviewOrder";
             listviewOrder.Size = new Size(338, 198);
@@ -355,25 +376,6 @@
             // colOrderedPrice
             // 
             colOrderedPrice.Text = "$__.__";
-            // 
-            // txtSubtotal
-            // 
-            txtSubtotal.Location = new Point(241, 233);
-            txtSubtotal.Name = "txtSubtotal";
-            txtSubtotal.ReadOnly = true;
-            txtSubtotal.Size = new Size(100, 27);
-            txtSubtotal.TabIndex = 9;
-            txtSubtotal.TabStop = false;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Trebuchet MS", 7.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            label7.Location = new Point(174, 238);
-            label7.Name = "label7";
-            label7.Size = new Size(61, 18);
-            label7.TabIndex = 5;
-            label7.Text = "Subtotal:";
             // 
             // OrderForm
             // 

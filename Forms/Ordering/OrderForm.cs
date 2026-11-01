@@ -17,7 +17,7 @@ namespace OliveBranchBakes.Forms
         private ItemList items = new();
         private Order order = new();
 
-        
+
         private void OrderForm_Load(object sender, EventArgs e)
         {
             // Source - https://stackoverflow.com/a/8750673
@@ -25,7 +25,7 @@ namespace OliveBranchBakes.Forms
             // Retrieved 2026-10-22, License - CC BY-SA 3.0
             this.FormClosed += new FormClosedEventHandler(Form1_FormClosed!);
             order.OrderChanged += new Order.ChangeHandler(HandleChange);
-            
+
             // Initialize
             chkboxAllergy.Enabled = false;
 
@@ -132,7 +132,7 @@ namespace OliveBranchBakes.Forms
             if (listviewItems.Items.Count == 0)
                 MessageBox.Show("Item list is empty.", "No Items");
             else if (listviewItems.SelectedItems.Count == 0)
-                MessageBox.Show("Please select an item to edit.", "No item selected");
+                MessageBox.Show("Please select an item to add.", "No item selected");
             else
             {
                 // gets the index of the selected item, and then copies the item
@@ -238,6 +238,33 @@ namespace OliveBranchBakes.Forms
         private void cmbboxFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             FillItemListBox();
+        }
+
+        // Delete OrderItemGroup from Order
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            // checks if selected item exists and is valid
+            if (listviewOrder.Items.Count == 0)
+                MessageBox.Show("Order is empty.", "Deletion Error");
+            else if (listviewOrder.SelectedItems.Count == 0)
+                MessageBox.Show("Please select an item to delete.", "Selection Error");
+            else
+            {
+                // gets the index of the selected item, and then copies the item
+                int orderIndex = listviewOrder.Items.IndexOf(listviewOrder.SelectedItems[0]);
+                if (orderIndex == -1)
+                    MessageBox.Show("Item DNE", "Selection Error");
+                else
+                    order.RemoveAt(orderIndex);
+            }
+        }
+        // Clear all OrderItemGroups from Order
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            if (listviewOrder.Items.Count == 0)
+                MessageBox.Show("Order is empty.", "Clear Error");
+            else
+                order.Clear();
         }
     }
 }
