@@ -61,9 +61,9 @@ namespace OliveBranchBakes.Objects
 
             int[] intValues = new int[3];
             string[] strValues = date.Split("/");
-            foreach (string value in strValues)
+            for (int i = 0; i < strValues.Length; i++)
             {
-                intValues[strValues.IndexOf(value)] = Convert.ToInt16(value);
+                intValues[i] = Convert.ToInt16(strValues[i]);
             }
 
             DateTime dateTime = new(intValues[2], intValues[0], intValues[1]);

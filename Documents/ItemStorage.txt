@@ -10,5 +10,7 @@ FoodItem|500|Pastry,Pie|Key Lime Pie|12.00|Wheat,Egg,Milk|s|9/1|10/31
 FoodItem|500|Pastry|Donut|2.00|Wheat,Milk|ns|null|null
 FoodItem|500|Cake|Chocolate cake|10.99|Milk,Egg,Wheat|ns|null|null
 FoodItem|500|Muffin|Crumble Muffin|3.99|Wheat|ns|null|null
-DrinkItem|16|Coffee|Iced Latte|5.50|Milk,Caffiene|s|9/1|11/30
+DrinkItem|16|Coffee|Pumkin Spice Latte|6.50|Milk,Caffiene|s|10/1|11/30
 DrinkItem|12|Tea|Black Tea|3.40|Caffiene|ns|null|null
+FoodItem|600|Pastry|Apple Fritter|7.50|Milk,Egg,Wheat|ns|null|null
+DrinkItem|10|Coffee|Americano|2.50|Caffiene|ns|null|null

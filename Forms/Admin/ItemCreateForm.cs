@@ -47,8 +47,8 @@ namespace OliveBranchBakes.Forms.Admin
             dtpStart.MaxDate = new DateTime(DateTime.Today.Year, 12, 31);
 
             dtpEnd.Enabled = chkSeasonal.Checked;
-            dtpStart.MinDate = new DateTime(DateTime.Today.Year, 1, 1);
-            dtpStart.MaxDate = new DateTime(DateTime.Today.Year + 1, 12, 31);
+            dtpEnd.MinDate = new DateTime(DateTime.Today.Year, 1, 1);
+            dtpEnd.MaxDate = new DateTime(DateTime.Today.Year + 1, 12, 31);
 
             this.ShowDialog();
             return item;
@@ -88,8 +88,8 @@ namespace OliveBranchBakes.Forms.Admin
                 dtpStart.MaxDate = end;
 
                 dtpEnd.Enabled = chkSeasonal.Checked;
-                dtpStart.MinDate = start;
-                dtpStart.MaxDate = new DateTime(DateTime.Today.Year + 1, 12, 31);
+                dtpEnd.MinDate = start;
+                dtpEnd.MaxDate = new DateTime(DateTime.Today.Year + 1, 12, 31);
 
                 dtpStart.Value = start;
                 dtpEnd.Value = end;
@@ -104,8 +104,8 @@ namespace OliveBranchBakes.Forms.Admin
                 dtpStart.MaxDate = new DateTime(DateTime.Today.Year, 12, 31);
 
                 dtpEnd.Enabled = chkSeasonal.Checked;
-                dtpStart.MinDate = new DateTime(DateTime.Today.Year, 1, 1);
-                dtpStart.MaxDate = new DateTime(DateTime.Today.Year + 1, 12, 31);
+                dtpEnd.MinDate = new DateTime(DateTime.Today.Year, 1, 1);
+                dtpEnd.MaxDate = new DateTime(DateTime.Today.Year + 1, 12, 31);
             }
 
             this.ShowDialog();
