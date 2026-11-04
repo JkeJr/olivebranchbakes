@@ -11,7 +11,8 @@ namespace OliveBranchBakes
 {
     public static class DataManagement
     {
-        private const string Path = @"..\..\..\Documents\ItemStorage.txt";
+        private const string PathItems = @"..\..\..\Documents\ItemStorage.txt";
+        private const string PathOrders = @"..\..\..\Documents\OrderListStorage.txt";
         private const string Delimiter = "|";
 
         // Heavily borrowed from ExtraStarts ch14
@@ -22,7 +23,7 @@ namespace OliveBranchBakes
             // create the object for the input stream for a text file
             using StreamReader textIn =
                 new StreamReader(
-                new FileStream(Path, FileMode.OpenOrCreate, FileAccess.Read));
+                new FileStream(PathItems, FileMode.OpenOrCreate, FileAccess.Read));
 
             // create the list
             List<OrderItem> items = new();
@@ -106,7 +107,7 @@ namespace OliveBranchBakes
             // create the output stream for a text file that exists
             using StreamWriter textOut =
                 new StreamWriter(
-                new FileStream(Path, FileMode.Create, FileAccess.Write));
+                new FileStream(PathItems, FileMode.Create, FileAccess.Write));
 
             // loop through each OrderItem in List<OrderItem>
             foreach (OrderItem item in items)
@@ -119,6 +120,50 @@ namespace OliveBranchBakes
                     textOut.Write(foodItem.Calories + Delimiter);
 
                 WriteBase(item, textOut);
+            }
+        }
+
+        public static List<Order> GetOrders()
+        {
+            // create the object for the input stream for a text file
+            using StreamReader textIn =
+                new StreamReader(
+                new FileStream(PathOrders, FileMode.OpenOrCreate, FileAccess.Read));
+
+            // create the list
+            List<Order> orders = new();
+
+            // read the data from the file and store it in the list
+            while (textIn.Peek() != -1)
+            {
+                string row = textIn.ReadLine() ?? "";
+                string[] columns = row.Split(Delimiter); //split the row into an array using Delimiter
+
+                // number|name|status
+                if (columns.Length == 3)
+                {
+                    Order order = new(
+                        Convert.ToInt32(columns[0]),
+                        columns[1]);
+                    orders.Add(order);
+                }
+            }
+
+            return orders;
+        }
+        public static void SaveOrders(List<Order> orders)
+        {
+            // create the output stream for a text file that exists
+            using StreamWriter textOut =
+                new StreamWriter(
+                new FileStream(PathOrders, FileMode.Create, FileAccess.Write));
+
+            // loop through each Order in List<Order>
+            foreach (Order order in orders)
+            {
+                textOut.Write(order.Number + Delimiter);
+                textOut.Write(order.Name + Delimiter);
+                textOut.WriteLine("Recieved");
             }
         }
 

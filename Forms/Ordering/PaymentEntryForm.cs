@@ -13,7 +13,7 @@ namespace OliveBranchBakes.Forms.Payment
     public partial class PaymentEntryForm : Form
     {
         public Order order;
-        
+
         private void PaymentEntryForm_Load(object sender, EventArgs e)
         {
             FillOrderBox();
@@ -34,7 +34,7 @@ namespace OliveBranchBakes.Forms.Payment
         private void FillOrderBox()
         {
             OrderItemGroup itemGroup;
-            
+
             listviewOrder.Items.Clear();
             for (int i = 0; i < order.Count; i++)
             {
@@ -42,6 +42,19 @@ namespace OliveBranchBakes.Forms.Payment
 
                 listviewOrder.Items.Add(itemGroup.ItemType.Name);
             }
+        }
+
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+            order.Name = txtNameFirst.Text.Trim() + txtNameLast.Text.Trim();
+            
+            List<Order> orders = DataManagement.GetOrders();
+            orders.Add(order);
+
+            DataManagement.SaveOrders(orders);
+
+            MessageBox.Show("Order has been made and received successfully.","Order Received");
+            this.Close();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using OliveBranchBakes.Objects.Order_Assets;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Text;
 using System.Threading.Channels;
 
@@ -10,6 +11,10 @@ namespace OliveBranchBakes.Objects
     {
         private List<OrderItemGroup> itemGroups;
         public int Count => itemGroups.Count;
+        public int Number { get; init; }
+        public string Name { get; set; } = "";
+        public string Comments { get; set; } = "";
+
         public decimal Subtotal
         {
             get
@@ -26,13 +31,32 @@ namespace OliveBranchBakes.Objects
         public delegate void ChangeHandler(Order order);
         public event ChangeHandler OrderChanged = null!;
 
-        public string comments;
+        public Order()
+        {
+            itemGroups = new();
 
-        public Order() => itemGroups = new();
+            // Set Number to a random integer, check every order on file to check for duplicate order numbers.
+            // If there's a matching number, repeat the process. Otherwise, end the loop.
+            bool unique = true;
+            do
+            {
+                Number = new Random().Next(99999999);
+
+                List<Order> orders = DataManagement.GetOrders();
+                foreach (Order order in orders)
+                    unique = (order.Number == this.Number) ? false : true;
+            } while (!unique);
+        }
+        public Order(int num, string name)
+        {
+            itemGroups = new();
+            Number = num;
+            Name = name;
+        }
         public Order(List<OrderItemGroup> items, string comments)
         {
             this.itemGroups = items;
-            this.comments = comments;
+            this.Comments = comments;
         }
 
         // Finds the index of an OrderItem in items that matches the name and allergy

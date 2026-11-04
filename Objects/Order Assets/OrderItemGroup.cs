@@ -9,15 +9,8 @@ namespace OliveBranchBakes.Objects.Order_Assets
         public required OrderItem ItemType;
         public required Allergen Allergy { get; init; }
 
-        private int count;
-        public required int Count
-        {
-            get { return count; }
-            set
-            {
-                count = value;
-            }
-        }
+        public required int Count { get; set; }
+
         public decimal Price => ItemType.Price * Count;
     }
 }
