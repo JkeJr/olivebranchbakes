@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.DirectoryServices.ActiveDirectory;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -16,6 +17,8 @@ namespace OliveBranchBakes.Forms
     {
         private ItemList items = new();
         private Order order = new();
+        private bool Guest { get; init; }
+        private int AccountNumber;
 
 
         private void OrderForm_Load(object sender, EventArgs e)
@@ -45,6 +48,12 @@ namespace OliveBranchBakes.Forms
 
         public OrderForm()
         {
+            Guest = true;
+            InitializeComponent();
+        }
+        public OrderForm(int accountNum)
+        {
+            Guest = false;
             InitializeComponent();
         }
 
@@ -178,7 +187,7 @@ namespace OliveBranchBakes.Forms
             else if (paymentEntry.ConfirmOrder(order))
             {
                 this.Close();
-                new PaymentEntryForm().Show();
+                WelcomeForm.Current.Show();
             }
         }
 

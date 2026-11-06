@@ -13,6 +13,7 @@ namespace OliveBranchBakes.Forms.Payment
     public partial class PaymentEntryForm : Form
     {
         public Order order;
+        private bool confirmed = false;
 
         private void PaymentEntryForm_Load(object sender, EventArgs e)
         {
@@ -28,7 +29,7 @@ namespace OliveBranchBakes.Forms.Payment
         {
             this.order = order;
             this.ShowDialog();
-            return false;
+            return confirmed;
         }
 
         private void FillOrderBox()
@@ -53,6 +54,7 @@ namespace OliveBranchBakes.Forms.Payment
 
             DataManagement.SaveOrders(orders);
 
+            confirmed = true;
             MessageBox.Show("Order has been made and received successfully.","Order Received");
             this.Close();
         }

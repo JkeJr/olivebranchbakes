@@ -1,4 +1,5 @@
 ﻿using OliveBranchBakes.Forms;
+using OliveBranchBakes.Objects.Customers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +12,7 @@ namespace OliveBranchBakes
 {
     public partial class WelcomeForm : Form
     {
-        public static WelcomeForm Current;
+        public static WelcomeForm? Current;
         
         public WelcomeForm()
         {
@@ -27,10 +28,22 @@ namespace OliveBranchBakes
 
         private void btnLoginGo_Click(object sender, EventArgs e)
         {
-            //LoginForm loginForm = new();
-            //loginForm.ShowDialog();
-            new AdminConsoleForm().Show();
-            this.Hide();
+            LoginForm loginForm = new();
+            Account account = loginForm.Login();
+
+            if (account != null)
+            {
+                if (account.AccountType == "Admin")
+                {
+                    new AdminConsoleForm().Show();
+                    this.Hide();
+                }
+                else if (account.AccountType == "Customer")
+                {
+                    new OrderForm().Show();
+                    this.Hide();
+                }
+            }
         }
     }
 }

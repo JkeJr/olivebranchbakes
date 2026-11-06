@@ -33,12 +33,14 @@
             label2 = new Label();
             txtPassword = new TextBox();
             btnEnter = new Button();
+            btnBack = new Button();
+            btnCreateAccount = new Button();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 18);
+            label1.Location = new Point(11, 19);
             label1.Name = "label1";
             label1.Size = new Size(76, 20);
             label1.TabIndex = 0;
@@ -48,13 +50,13 @@
             // 
             txtUsername.Location = new Point(94, 15);
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(125, 27);
-            txtUsername.TabIndex = 1;
+            txtUsername.Size = new Size(163, 27);
+            txtUsername.TabIndex = 0;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 59);
+            label2.Location = new Point(11, 59);
             label2.Name = "label2";
             label2.Size = new Size(75, 20);
             label2.TabIndex = 0;
@@ -64,29 +66,56 @@
             // 
             txtPassword.Location = new Point(94, 56);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(125, 27);
+            txtPassword.Size = new Size(163, 27);
             txtPassword.TabIndex = 1;
+            txtPassword.UseSystemPasswordChar = true;
             // 
             // btnEnter
             // 
-            btnEnter.Location = new Point(125, 104);
+            btnEnter.Location = new Point(163, 92);
             btnEnter.Name = "btnEnter";
             btnEnter.Size = new Size(94, 29);
             btnEnter.TabIndex = 2;
-            btnEnter.Text = "Enter";
+            btnEnter.Text = "Login";
             btnEnter.UseVisualStyleBackColor = true;
             btnEnter.Click += btnEnter_Click;
+            // 
+            // btnBack
+            // 
+            btnBack.Location = new Point(14, 152);
+            btnBack.Margin = new Padding(3, 4, 3, 4);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(86, 31);
+            btnBack.TabIndex = 3;
+            btnBack.Text = "Back";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
+            // 
+            // btnCreateAccount
+            // 
+            btnCreateAccount.Location = new Point(163, 152);
+            btnCreateAccount.Margin = new Padding(3, 4, 3, 4);
+            btnCreateAccount.Name = "btnCreateAccount";
+            btnCreateAccount.Size = new Size(94, 31);
+            btnCreateAccount.TabIndex = 4;
+            btnCreateAccount.Text = "Sign Up";
+            btnCreateAccount.UseVisualStyleBackColor = true;
+            btnCreateAccount.Click += btnCreateAccount_Click;
             // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(239, 145);
+            ClientSize = new Size(271, 199);
+            ControlBox = false;
+            Controls.Add(btnCreateAccount);
+            Controls.Add(btnBack);
             Controls.Add(btnEnter);
             Controls.Add(txtPassword);
             Controls.Add(txtUsername);
             Controls.Add(label2);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "LoginForm";
             Text = "LoginForm";
             ResumeLayout(false);
@@ -100,5 +129,7 @@
         private Label label2;
         private TextBox txtPassword;
         private Button btnEnter;
+        private Button btnBack;
+        private Button btnCreateAccount;
     }
 }
