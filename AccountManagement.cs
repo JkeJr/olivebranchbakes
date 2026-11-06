@@ -27,20 +27,18 @@ namespace OliveBranchBakes
                 string row = textIn.ReadLine() ?? "";
                 string[] columns = row.Split(Delimiter); //split the row into an array using Delimiter
 
-                // number|customer/admin|username|password
+                // number|customer/admin|username
                 if (columns.Length == 3)
                 {
-                    Account a = new()
-                    {
-                        AccountID = Convert.ToInt32(columns[0]),
-                        UserName = columns[1],
-                        Password = columns[2],
-                    };
-                    a.Load();
+                    // Uses the list of numbers to fetch each account
+                    Account a = Account.Load(Convert.ToInt32(columns[0]));
                     accounts.Add(a);
                 }
             }
 
+            // on fetching of accounts, save any updated information that might be
+            // out of date in the AccountList.txt file
+            SaveAccounts(accounts);
             return accounts;
         }
         public static void SaveAccounts(List<Account> accounts)
@@ -51,12 +49,12 @@ namespace OliveBranchBakes
                 new FileStream(PathAccounts, FileMode.Create, FileAccess.Write));
 
             // loop through each Order in List<Order>
-            // accountID|customer/admin|username|email|password
+            // accountID|customer/admin|username
             foreach (Account account in accounts)
             {
                 textOut.Write(account.AccountID + Delimiter);
-                textOut.Write(account.UserName + Delimiter);
-                textOut.WriteLine(account.Password);
+                textOut.Write(account.AccountType + Delimiter);
+                textOut.WriteLine(account.UserName);
             }
         }
     }

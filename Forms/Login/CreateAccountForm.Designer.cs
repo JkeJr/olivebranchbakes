@@ -180,8 +180,10 @@
             // 
             // CreateAccountForm
             // 
+            AcceptButton = btnEnter;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = btnCancel;
             ClientSize = new Size(387, 223);
             ControlBox = false;
             Controls.Add(txtPassword);

@@ -38,7 +38,7 @@ namespace OliveBranchBakes.Forms
             foreach (Account account in accounts)
                 if (txtUsername.Text == account.UserName && txtPassword.Text == account.Password)
                 {
-                    account.Load();
+                    //account.Load();
                     this.account = account;
                     found = true;
                 }

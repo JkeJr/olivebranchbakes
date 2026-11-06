@@ -47,10 +47,12 @@
             txtEmail = new TextBox();
             listviewOrder = new ListView();
             colGroupName = new ColumnHeader();
-            colAllergy = new ColumnHeader();
             colCount = new ColumnHeader();
+            colAllergy = new ColumnHeader();
             colPrice = new ColumnHeader();
             label7 = new Label();
+            label8 = new Label();
+            cmmbEmail = new ComboBox();
             SuspendLayout();
             // 
             // btnConfirm
@@ -58,7 +60,7 @@
             btnConfirm.Location = new Point(529, 265);
             btnConfirm.Name = "btnConfirm";
             btnConfirm.Size = new Size(94, 29);
-            btnConfirm.TabIndex = 6;
+            btnConfirm.TabIndex = 5;
             btnConfirm.Text = "Confirm";
             btnConfirm.UseVisualStyleBackColor = true;
             btnConfirm.Click += btnConfirm_Click;
@@ -78,7 +80,7 @@
             btnBack.Location = new Point(346, 263);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(94, 29);
-            btnBack.TabIndex = 5;
+            btnBack.TabIndex = 4;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = true;
             // 
@@ -89,6 +91,7 @@
             txtPriceTotal.ReadOnly = true;
             txtPriceTotal.Size = new Size(94, 27);
             txtPriceTotal.TabIndex = 0;
+            txtPriceTotal.TabStop = false;
             // 
             // label3
             // 
@@ -138,7 +141,7 @@
             dtpPickup.MinDate = new DateTime(2026, 10, 26, 0, 0, 0, 0);
             dtpPickup.Name = "dtpPickup";
             dtpPickup.Size = new Size(214, 27);
-            dtpPickup.TabIndex = 4;
+            dtpPickup.TabIndex = 3;
             dtpPickup.Value = new DateTime(2026, 11, 11, 0, 0, 0, 0);
             // 
             // label4
@@ -153,7 +156,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(346, 67);
+            label5.Location = new Point(362, 70);
             label5.Name = "label5";
             label5.Size = new Size(39, 20);
             label5.TabIndex = 6;
@@ -161,15 +164,15 @@
             // 
             // txtNameFirst
             // 
-            txtNameFirst.Location = new Point(391, 67);
+            txtNameFirst.Location = new Point(407, 67);
             txtNameFirst.Name = "txtNameFirst";
-            txtNameFirst.Size = new Size(91, 27);
-            txtNameFirst.TabIndex = 1;
+            txtNameFirst.Size = new Size(82, 27);
+            txtNameFirst.TabIndex = 0;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(488, 67);
+            label6.Location = new Point(497, 70);
             label6.Name = "label6";
             label6.Size = new Size(38, 20);
             label6.TabIndex = 6;
@@ -177,15 +180,15 @@
             // 
             // txtNameLast
             // 
-            txtNameLast.Location = new Point(532, 67);
+            txtNameLast.Location = new Point(541, 67);
             txtNameLast.Name = "txtNameLast";
-            txtNameLast.Size = new Size(91, 27);
-            txtNameLast.TabIndex = 2;
+            txtNameLast.Size = new Size(82, 27);
+            txtNameLast.TabIndex = 1;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(396, 110);
+            label2.Location = new Point(352, 113);
             label2.Name = "label2";
             label2.Size = new Size(49, 20);
             label2.TabIndex = 6;
@@ -193,18 +196,19 @@
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(451, 110);
+            txtEmail.Location = new Point(407, 110);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(170, 27);
-            txtEmail.TabIndex = 3;
+            txtEmail.Size = new Size(82, 27);
+            txtEmail.TabIndex = 2;
             // 
             // listviewOrder
             // 
-            listviewOrder.Columns.AddRange(new ColumnHeader[] { colGroupName, colAllergy, colCount, colPrice });
+            listviewOrder.Columns.AddRange(new ColumnHeader[] { colGroupName, colCount, colAllergy, colPrice });
             listviewOrder.FullRowSelect = true;
             listviewOrder.GridLines = true;
             listviewOrder.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             listviewOrder.Location = new Point(12, 37);
+            listviewOrder.MultiSelect = false;
             listviewOrder.Name = "listviewOrder";
             listviewOrder.Size = new Size(328, 144);
             listviewOrder.TabIndex = 11;
@@ -215,17 +219,17 @@
             // colGroupName
             // 
             colGroupName.Text = "Name";
-            colGroupName.Width = 170;
-            // 
-            // colAllergy
-            // 
-            colAllergy.Text = "Allergy";
+            colGroupName.Width = 140;
             // 
             // colCount
             // 
             colCount.Text = "#";
             colCount.TextAlign = HorizontalAlignment.Center;
             colCount.Width = 35;
+            // 
+            // colAllergy
+            // 
+            colAllergy.Text = "Allergy";
             // 
             // colPrice
             // 
@@ -242,6 +246,25 @@
             label7.TabIndex = 2;
             label7.Text = "Enter Info:";
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(497, 113);
+            label8.Name = "label8";
+            label8.Size = new Size(23, 20);
+            label8.TabIndex = 12;
+            label8.Text = "@";
+            // 
+            // cmmbEmail
+            // 
+            cmmbEmail.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmmbEmail.FormattingEnabled = true;
+            cmmbEmail.Items.AddRange(new object[] { "gmail.com", "hotmail.com", "icloud.com", "outlook.com", "yahoo.com" });
+            cmmbEmail.Location = new Point(518, 110);
+            cmmbEmail.Name = "cmmbEmail";
+            cmmbEmail.Size = new Size(105, 28);
+            cmmbEmail.TabIndex = 13;
+            // 
             // PaymentEntryForm
             // 
             AcceptButton = btnConfirm;
@@ -250,6 +273,8 @@
             CancelButton = btnBack;
             ClientSize = new Size(633, 305);
             ControlBox = false;
+            Controls.Add(cmmbEmail);
+            Controls.Add(label8);
             Controls.Add(listviewOrder);
             Controls.Add(txtNameLast);
             Controls.Add(txtEmail);
@@ -299,5 +324,7 @@
         private ColumnHeader colCount;
         private ColumnHeader colPrice;
         private Label label7;
+        private Label label8;
+        private ComboBox cmmbEmail;
     }
 }

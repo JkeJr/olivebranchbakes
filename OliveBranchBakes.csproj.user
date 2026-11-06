@@ -7,13 +7,7 @@
     <Compile Update="Forms\Admin\ItemCreateForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\Login\AdminLoginForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Forms\Login\CreateAccountForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Forms\Login\CustomerLoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\Ordering\GuestOrderForm.cs">

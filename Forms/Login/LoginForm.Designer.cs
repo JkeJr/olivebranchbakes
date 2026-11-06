@@ -104,8 +104,10 @@
             // 
             // LoginForm
             // 
+            AcceptButton = btnEnter;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = btnBack;
             ClientSize = new Size(271, 199);
             ControlBox = false;
             Controls.Add(btnCreateAccount);

@@ -175,7 +175,7 @@ namespace OliveBranchBakes.Forms.Admin
             errorMessage += Validator.IsPresent(txtPrice.Text, "Price");
             errorMessage += Validator.IsDecimal(txtPrice.Text, "Price");
             errorMessage += Validator.IsPresent(txtAmount.Text, (rdbFood.Checked) ? "Calories" : "Ounces");
-            errorMessage += Validator.IsInteger(txtAmount.Text, (rdbFood.Checked)? "Calories" : "Ounces");
+            errorMessage += Validator.IsInteger(txtAmount.Text, (rdbFood.Checked) ? "Calories" : "Ounces");
 
             //errorMessage += Validator.IsPresent(txtAllergens.Text, "Allergen Ingredients");
 

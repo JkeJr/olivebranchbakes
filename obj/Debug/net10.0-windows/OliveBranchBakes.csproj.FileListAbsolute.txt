@@ -16,8 +16,6 @@ D:\Backup\Documents\School\Faulkner\CS3388 Object Oriented Programming\Projects\
 D:\Backup\Documents\School\Faulkner\CS3388 Object Oriented Programming\Projects\OliveBranchBakes\obj\Debug\net10.0-windows\ref\OliveBranchBakes.dll
 D:\Backup\Documents\School\Faulkner\CS3388 Object Oriented Programming\Projects\OliveBranchBakes\obj\Debug\net10.0-windows\OliveBra.0FF45637.Up2Date
 D:\Backup\Documents\School\Faulkner\CS3388 Object Oriented Programming\Projects\OliveBranchBakes\obj\Debug\net10.0-windows\OliveBranchBakes.Forms.AdminConsoleForm.resources
-D:\Backup\Documents\School\Faulkner\CS3388 Object Oriented Programming\Projects\OliveBranchBakes\obj\Debug\net10.0-windows\OliveBranchBakes.Forms.AdminLoginForm.resources
-D:\Backup\Documents\School\Faulkner\CS3388 Object Oriented Programming\Projects\OliveBranchBakes\obj\Debug\net10.0-windows\OliveBranchBakes.Forms.CustomerLoginForm.resources
 D:\Backup\Documents\School\Faulkner\CS3388 Object Oriented Programming\Projects\OliveBranchBakes\obj\Debug\net10.0-windows\OliveBranchBakes.Forms.LoginForm.resources
 D:\Backup\Documents\School\Faulkner\CS3388 Object Oriented Programming\Projects\OliveBranchBakes\obj\Debug\net10.0-windows\OliveBranchBakes.Forms.GuestOrderForm.resources
 D:\Backup\Documents\School\Faulkner\CS3388 Object Oriented Programming\Projects\OliveBranchBakes\obj\Debug\net10.0-windows\OliveBranchBakes.Forms.OrderForm.resources

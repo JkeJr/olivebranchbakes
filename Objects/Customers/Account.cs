@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Web;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace OliveBranchBakes.Objects.Customers
 {
     public class Account
     {
-        private string Path => $@"..\..\..\Documents\Accounts\{AccountID}.txt";
+        private static string pathStart => $@"..\..\..\Documents\Accounts\";
 
         public string Firstname { get; set; }
         public string LastName { get; set; }
@@ -17,11 +18,30 @@ namespace OliveBranchBakes.Objects.Customers
         public int AccountID { get; init; }
         public string AccountType { get; set; }
 
+
+        public Account()
+        {
+            bool unique = true;
+            do
+            {
+                AccountID = new Random().Next(99999999);
+
+                List<Account> accounts = AccountManagement.GetAccounts();
+                foreach (Account account in accounts)
+                    unique = !(account.AccountID == this.AccountID);
+            } while (!unique);
+        }
+        public Account(int accountID)
+        {
+            AccountID = accountID;
+        }
+
+        private static string GetPath(int accountID) => $@"{pathStart}{accountID}.txt";
         public void Save()
         {
             using StreamWriter textOut =
                 new StreamWriter(
-                new FileStream(Path, FileMode.Create, FileAccess.Write));
+                new FileStream(GetPath(AccountID), FileMode.Create, FileAccess.Write));
 
             textOut.WriteLine(Firstname);
             textOut.WriteLine(LastName);
@@ -31,11 +51,11 @@ namespace OliveBranchBakes.Objects.Customers
             textOut.WriteLine(Password);
         }
 
-        public void Load()
+        public static Account Load(int accountID)
         {
             using StreamReader textIn =
                 new StreamReader(
-                new FileStream(Path, FileMode.OpenOrCreate, FileAccess.Read));
+                new FileStream(GetPath(accountID), FileMode.OpenOrCreate, FileAccess.Read));
 
             List<string> lines = new();
             while (textIn.Peek() != -1)
@@ -45,13 +65,17 @@ namespace OliveBranchBakes.Objects.Customers
                 lines.Add(row);
             }
 
-            //string[] lines = textIn.ReadToEnd().Split('\n');
-            Firstname = lines[0];
-            LastName = lines[1];
-            AccountType = lines[2];
-            Email = lines[3];
-            UserName = lines[4];
-            Password = lines[5];
+            Account account = new(accountID)
+            {
+                Firstname = lines[0],
+                LastName = lines[1],
+                AccountType = lines[2],
+                Email = lines[3],
+                UserName = lines[4],
+                Password = lines[5],
+            };
+
+            return account;
         }
 
         public bool Equals(Account account)

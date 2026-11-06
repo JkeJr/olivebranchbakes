@@ -24,32 +24,26 @@ namespace OliveBranchBakes.Forms.Login
 
         private void btnEnter_Click(object sender, EventArgs e)
         {
-            bool exists = false;
-            foreach (Account a in AccountManagement.GetAccounts())
-                if (txtUsername.Text == a.UserName)
-                    exists = true;
+            if (IsValidData())
+            {
+                bool exists = false;
+                foreach (Account a in AccountManagement.GetAccounts())
+                    if (txtUsername.Text == a.UserName)
+                        exists = true;
 
-            if (exists)
-            {
-                MessageBox.Show($"Account, {txtUsername.Text}, already exists.", "Creation Error");
-            }
-            else
-            {
-                Account account;
-                if (cmbbEmail.Text == "" || cmbbEmail.Text.IsWhiteSpace() || cmbbEmail.Text == null)
+                if (exists)
                 {
-                    MessageBox.Show("Please select a valid domain", "Invalid Email");
+                    MessageBox.Show($"Account, {txtUsername.Text}, already exists.", "Creation Error");
                 }
                 else
                 {
-                    account = new()
+                    Account account = new()
                     {
                         UserName = txtUsername.Text,
                         Password = txtPassword.Text,
                         Email = $"{txtEmail.Text}@{cmbbEmail.Text}",
                         Firstname = txtFirstName.Text,
                         LastName = txtLastName.Text,
-                        AccountID = new Random().Next(99999999),
                         AccountType = "Customer"
                     };
                     account.Save();
@@ -68,6 +62,26 @@ namespace OliveBranchBakes.Forms.Login
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private bool IsValidData()
+        {
+            bool success = true;
+            string errorMessage = "";
+
+            errorMessage += Validator.IsPresent(txtUsername.Text, "Username");
+            errorMessage += Validator.IsPresent(txtPassword.Text, "Password");
+            errorMessage += Validator.IsPresent(txtFirstName.Text, "First Name");
+            errorMessage += Validator.IsPresent(txtLastName.Text, "Last Name");
+            errorMessage += Validator.IsPresent(txtEmail.Text, "Email Username");
+            errorMessage += Validator.IsPresent(cmbbEmail.Text, "Email Domain");
+
+            if (errorMessage != "")
+            {
+                success = false;
+                MessageBox.Show(errorMessage, "Entry Error");
+            }
+            return success;
         }
     }
 }

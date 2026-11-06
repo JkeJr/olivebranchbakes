@@ -19,13 +19,15 @@ namespace OliveBranchBakes.Objects
         {
             get
             {
-                decimal subtotal = Convert.ToDecimal("0.00");
+                decimal subtotal = 0.00m;
                 foreach (OrderItemGroup itemGroup in itemGroups)
                     subtotal += itemGroup.Price;
 
                 return subtotal;
             }
         }
+        public decimal Discounted => Subtotal - (RuleManagement.GetDiscount(Subtotal));
+        public decimal Total => Discounted + (RuleManagement.GetTax(Discounted));
 
         // Change Event
         public delegate void ChangeHandler(Order order);
@@ -44,7 +46,7 @@ namespace OliveBranchBakes.Objects
 
                 List<Order> orders = DataManagement.GetOrders();
                 foreach (Order order in orders)
-                    unique = (order.Number == this.Number) ? false : true;
+                    unique = !(order.Number == this.Number);
             } while (!unique);
         }
         public Order(int num, string name)

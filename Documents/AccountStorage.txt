@@ -1,2 +1,3 @@
-36564436|honeymustard|password
-67395139|luvmuffin|1luvMuFF1n$
+36564436|Admin|honeymustard
+67395139|Customer|luvmuffin
+64110583|Customer|happy
