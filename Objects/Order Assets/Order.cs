@@ -77,6 +77,20 @@ namespace OliveBranchBakes.Objects
             return -1;
         }
 
+        public int CategoryCount(CategoryEnums category)
+        {
+            int amount = 0;
+            for (int i = 0; i < this.Count; i++)
+            {
+                if (this[i].ItemType.Categories.IndexOf(category) != -1)
+                {
+                    amount += this[i].Count;
+                }
+            }
+
+            return amount;
+        }
+
         /*public void Group(OrderItem item, int amnt)
         {
             this[IndexOf(item)].Count += amnt;

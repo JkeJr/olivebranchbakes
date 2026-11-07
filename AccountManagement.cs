@@ -38,7 +38,7 @@ namespace OliveBranchBakes
 
             // on fetching of accounts, save any updated information that might be
             // out of date in the AccountList.txt file
-            SaveAccounts(accounts);
+            //SaveAccounts(accounts);
             return accounts;
         }
         public static void SaveAccounts(List<Account> accounts)

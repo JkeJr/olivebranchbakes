@@ -184,6 +184,10 @@ namespace OliveBranchBakes.Forms
             {
                 MessageBox.Show("This order is empty. Add items to continue.", "Empty Order");
             }
+            else if (!RuleManagement.CanOperate(order))
+            {
+                MessageBox.Show($"Amount of Pies exceeds limit of 12 per order.\nYou currently have: {order.CategoryCount(CategoryEnums.Pie)} pies in cart.", "Item Exceeds Limit");
+            }
             else if (paymentEntry.ConfirmOrder(order))
             {
                 this.Close();

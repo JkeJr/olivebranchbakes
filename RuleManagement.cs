@@ -1,4 +1,5 @@
-﻿using OliveBranchBakes.Objects.Order_Assets;
+﻿using OliveBranchBakes.Objects;
+using OliveBranchBakes.Objects.Order_Assets;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,6 +20,7 @@ namespace OliveBranchBakes
         }
         public static decimal GetTax(decimal subTotal) => subTotal * 0.085m;
 
-        public static bool CanOperate(OrderItemGroup orderItemGroup) => true;
+        // no more than 12 pies in one order
+        public static bool CanOperate(Order order) => !(order.CategoryCount(CategoryEnums.Pie) > 12);
     }
 }
