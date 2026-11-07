@@ -44,10 +44,15 @@
             listView2 = new ListView();
             colOrderNum = new ColumnHeader();
             colCustomer = new ColumnHeader();
-            colPayment = new ColumnHeader();
+            colStatus = new ColumnHeader();
             colCount = new ColumnHeader();
             btnDetails = new Button();
             label2 = new Label();
+            label4 = new Label();
+            listView1 = new ListView();
+            colCustomerID = new ColumnHeader();
+            colCustomerName = new ColumnHeader();
+            colDateJoined = new ColumnHeader();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -73,8 +78,10 @@
             // 
             // splitContainer1.Panel2
             // 
+            splitContainer1.Panel2.Controls.Add(listView1);
             splitContainer1.Panel2.Controls.Add(listView2);
             splitContainer1.Panel2.Controls.Add(btnDetails);
+            splitContainer1.Panel2.Controls.Add(label4);
             splitContainer1.Panel2.Controls.Add(label2);
             splitContainer1.Size = new Size(951, 450);
             splitContainer1.SplitterDistance = 567;
@@ -83,19 +90,20 @@
             // lblDate
             // 
             lblDate.AutoSize = true;
-            lblDate.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblDate.Font = new Font("Trebuchet MS", 7.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
             lblDate.ForeColor = SystemColors.GrayText;
-            lblDate.Location = new Point(479, 61);
+            lblDate.Location = new Point(486, 63);
             lblDate.Name = "lblDate";
-            lblDate.Size = new Size(85, 20);
+            lblDate.Size = new Size(78, 18);
             lblDate.TabIndex = 4;
             lblDate.Text = "10/25/2026";
             // 
             // btnEdit
             // 
+            btnEdit.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnEdit.Location = new Point(123, 395);
             btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(64, 52);
+            btnEdit.Size = new Size(85, 52);
             btnEdit.TabIndex = 2;
             btnEdit.Text = "Edit";
             btnEdit.UseVisualStyleBackColor = true;
@@ -103,6 +111,7 @@
             // 
             // btnAdd
             // 
+            btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnAdd.Location = new Point(3, 395);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(114, 52);
@@ -113,6 +122,7 @@
             // 
             // btnDelete
             // 
+            btnDelete.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnDelete.Location = new Point(470, 395);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(94, 52);
@@ -123,7 +133,7 @@
             // 
             // listviewItems
             // 
-            listviewItems.BackColor = Color.MistyRose;
+            listviewItems.BackColor = Color.AntiqueWhite;
             listviewItems.Columns.AddRange(new ColumnHeader[] { colCategory, colName, colPrice, colAllergens });
             listviewItems.FullRowSelect = true;
             listviewItems.GridLines = true;
@@ -145,7 +155,7 @@
             // colName
             // 
             colName.Text = "Name";
-            colName.Width = 200;
+            colName.Width = 170;
             // 
             // colPrice
             // 
@@ -158,9 +168,10 @@
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(470, 13);
+            btnBack.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBack.Location = new Point(470, 9);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(94, 29);
+            btnBack.Size = new Size(94, 52);
             btnBack.TabIndex = 0;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = true;
@@ -169,33 +180,36 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(3, 61);
+            label3.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Maroon;
+            label3.Location = new Point(3, 55);
             label3.Name = "label3";
-            label3.Size = new Size(114, 20);
+            label3.Size = new Size(165, 26);
             label3.TabIndex = 0;
             label3.Text = "Available Items:";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(3, 13);
+            label1.Font = new Font("Trebuchet MS", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.Maroon;
+            label1.Location = new Point(3, 9);
             label1.Name = "label1";
-            label1.Size = new Size(134, 20);
+            label1.Size = new Size(263, 38);
             label1.TabIndex = 0;
             label1.Text = "Welcome, Admin!";
             // 
             // listView2
             // 
-            listView2.BackColor = Color.MistyRose;
-            listView2.Columns.AddRange(new ColumnHeader[] { colOrderNum, colCustomer, colPayment, colCount });
+            listView2.BackColor = Color.AntiqueWhite;
+            listView2.Columns.AddRange(new ColumnHeader[] { colOrderNum, colCustomer, colCount, colStatus });
             listView2.FullRowSelect = true;
             listView2.GridLines = true;
             listView2.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            listView2.Location = new Point(3, 32);
+            listView2.Location = new Point(3, 40);
             listView2.MultiSelect = false;
             listView2.Name = "listView2";
-            listView2.Size = new Size(374, 357);
+            listView2.Size = new Size(374, 173);
             listView2.TabIndex = 2;
             listView2.TabStop = false;
             listView2.UseCompatibleStateImageBehavior = false;
@@ -209,21 +223,24 @@
             // colCustomer
             // 
             colCustomer.Text = "Customer";
-            colCustomer.Width = 170;
+            colCustomer.Width = 150;
             // 
-            // colPayment
+            // colStatus
             // 
-            colPayment.Text = "$__.__";
+            colStatus.Text = "Status";
+            colStatus.Width = 75;
             // 
             // colCount
             // 
-            colCount.Text = "Item #";
+            colCount.Text = "#";
+            colCount.Width = 30;
             // 
             // btnDetails
             // 
-            btnDetails.Location = new Point(258, 395);
+            btnDetails.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnDetails.Location = new Point(215, 395);
             btnDetails.Name = "btnDetails";
-            btnDetails.Size = new Size(119, 52);
+            btnDetails.Size = new Size(162, 52);
             btnDetails.TabIndex = 4;
             btnDetails.Text = "View Details";
             btnDetails.UseVisualStyleBackColor = true;
@@ -231,11 +248,53 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(3, 9);
+            label2.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.Maroon;
+            label2.Location = new Point(3, 11);
             label2.Name = "label2";
-            label2.Size = new Size(101, 20);
+            label2.Size = new Size(150, 26);
             label2.TabIndex = 0;
             label2.Text = "Active Orders:";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Maroon;
+            label4.Location = new Point(3, 216);
+            label4.Name = "label4";
+            label4.Size = new Size(118, 26);
+            label4.TabIndex = 0;
+            label4.Text = "Customers:";
+            // 
+            // listView1
+            // 
+            listView1.BackColor = Color.AntiqueWhite;
+            listView1.Columns.AddRange(new ColumnHeader[] { colCustomerID, colCustomerName, colDateJoined });
+            listView1.FullRowSelect = true;
+            listView1.GridLines = true;
+            listView1.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            listView1.Location = new Point(3, 245);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(374, 144);
+            listView1.TabIndex = 5;
+            listView1.UseCompatibleStateImageBehavior = false;
+            listView1.View = View.Details;
+            // 
+            // colCustomerID
+            // 
+            colCustomerID.Text = "ID#";
+            colCustomerID.Width = 80;
+            // 
+            // colCustomerName
+            // 
+            colCustomerName.Text = "Name";
+            colCustomerName.Width = 150;
+            // 
+            // colDateJoined
+            // 
+            colDateJoined.Text = "Date Joined";
+            colDateJoined.Width = 105;
             // 
             // AdminConsoleForm
             // 
@@ -272,7 +331,7 @@
         private ColumnHeader colAllergens;
         private ColumnHeader colCustomer;
         private ColumnHeader colCount;
-        private ColumnHeader colPayment;
+        private ColumnHeader colStatus;
         private ColumnHeader colOrderNum;
         private Button button3;
         private Button btnAdd;
@@ -281,5 +340,10 @@
         private Button btnEdit;
         private Label lblDate;
         private ColumnHeader colCategory;
+        private ListView listView1;
+        private Label label4;
+        private ColumnHeader colCustomerID;
+        private ColumnHeader colCustomerName;
+        private ColumnHeader colDateJoined;
     }
 }
