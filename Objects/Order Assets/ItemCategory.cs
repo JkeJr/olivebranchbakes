@@ -18,7 +18,7 @@ namespace OliveBranchBakes.Objects.Order_Assets
         Misc,
     }
 
-    public class ItemCategories
+    public class ItemCategories : IDisplayableList<CategoryEnums>
     {
         private List<CategoryEnums> categoryList;
 

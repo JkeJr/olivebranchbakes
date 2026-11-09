@@ -1,10 +1,11 @@
-﻿using System;
+﻿using OliveBranchBakes.Objects.Order_Assets;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace OliveBranchBakes.Objects
 {
-    public class AllergenList
+    public class AllergenList : IDisplayableList<Allergen>
     {
         private List<Allergen> allergens;
         public int Count => allergens.Count;
@@ -14,16 +15,6 @@ namespace OliveBranchBakes.Objects
         {
             this.allergens = new();
             this.Add(AllergenIngredients.None);
-        }
-        public AllergenList(Allergen allergen)
-        {
-            this.allergens = new();
-            this.Add(allergen);
-        }
-        public AllergenList(string allergen)
-        {
-            this.allergens = new();
-            this.Add(allergen);
         }
         public AllergenList(string[] allergens)
         {
