@@ -22,6 +22,8 @@ namespace OliveBranchBakes.Forms.Payment
             dtpPickup.MinDate = DateTime.Today.AddDays(1);
             dtpPickup.MaxDate = DateTime.Today.AddMonths(3);
 
+            rtbComments.Text = order.Comments;
+
             FillOrderBox();
             FillTotalBox();
         }
@@ -98,7 +100,8 @@ namespace OliveBranchBakes.Forms.Payment
                 DataManagement.SaveOrders(orders);
 
                 confirmed = true;
-                MessageBox.Show("Order has been made and received successfully.", "Order Received");
+                MessageBox.Show("Order has been made and received successfully.\n\n" +
+                    order.GetDisplayText(), "Order Received");
                 this.Close();
             }
         }

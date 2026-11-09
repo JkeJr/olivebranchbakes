@@ -191,14 +191,14 @@ namespace OliveBranchBakes.Forms
             else if (paymentEntry.ConfirmOrder(order))
             {
                 this.Close();
-                WelcomeForm.Current.Show();
+                WelcomeForm.Current!.Show();
             }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
-            WelcomeForm.Current.Show();
+            WelcomeForm.Current!.Show();
         }
 
         /// <summary>
@@ -250,6 +250,8 @@ namespace OliveBranchBakes.Forms
 
         private void cmbboxFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
+            chkboxAllergy.Checked = false;
+            cmbboxAllergy.Enabled = false;
             FillItemListBox();
         }
 
@@ -278,6 +280,11 @@ namespace OliveBranchBakes.Forms
                 MessageBox.Show("Order is empty.", "Clear Error");
             else
                 order.Clear();
+        }
+
+        private void rtxtComments_TextChanged(object sender, EventArgs e)
+        {
+            order.Comments = rtxtComments.Text;
         }
     }
 }

@@ -99,6 +99,9 @@ namespace OliveBranchBakes.Objects
             textOut.Write(DateScheduled.ToShortDateString());
             textOut.WriteLine(Status.ToString());
 
+            // comment
+            textOut.WriteLine(Comments);
+
             // itemtypename|allergy|count
             for (int i = 0; i < Count; i++)
             {
@@ -127,7 +130,7 @@ namespace OliveBranchBakes.Objects
             string[] dateScheduled = info[2].Split("/");
 
             List<OrderItemGroup> groups = new();
-            for (int i = 1; i < lines.Count; i++)
+            for (int i = 2; i < lines.Count; i++)
             {
                 string[] groupInfo = lines[i].Split("|");
                 ItemList itemList = new();
@@ -144,6 +147,7 @@ namespace OliveBranchBakes.Objects
 
             Order order = new(orderID)
             {
+                Comments = lines[1],
                 itemGroups = groups,
                 DateOrdered = new DateTime(Convert.ToInt16(dateOrdered[2]), Convert.ToInt16(dateOrdered[0]), Convert.ToInt16(dateOrdered[1])),
                 DateScheduled = new DateTime(Convert.ToInt16(dateScheduled[2]), Convert.ToInt16(dateScheduled[0]), Convert.ToInt16(dateScheduled[1])),
@@ -245,6 +249,10 @@ namespace OliveBranchBakes.Objects
             // list of item groups
             for (int i = 0; i < itemGroups.Count; i++)
                 text += $"Item {i + 1}: {itemGroups[i].GetDisplayText()}\n";
+
+            // comment
+            if (!Comments.IsWhiteSpace() && Comments.Length > 0)
+                text += $"\nComments:\n\"{Comments}\"\n\n";
 
             // total
             text += $"Total: {Total.ToString("C")}";

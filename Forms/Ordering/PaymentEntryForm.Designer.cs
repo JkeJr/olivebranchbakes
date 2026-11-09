@@ -53,6 +53,7 @@
             label7 = new Label();
             label8 = new Label();
             cmmbEmail = new ComboBox();
+            rtbComments = new RichTextBox();
             SuspendLayout();
             // 
             // btnConfirm
@@ -158,7 +159,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(362, 70);
+            label5.Location = new Point(362, 40);
             label5.Name = "label5";
             label5.Size = new Size(39, 20);
             label5.TabIndex = 6;
@@ -166,7 +167,7 @@
             // 
             // txtNameFirst
             // 
-            txtNameFirst.Location = new Point(407, 67);
+            txtNameFirst.Location = new Point(407, 37);
             txtNameFirst.Name = "txtNameFirst";
             txtNameFirst.Size = new Size(82, 27);
             txtNameFirst.TabIndex = 0;
@@ -174,7 +175,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(497, 70);
+            label6.Location = new Point(497, 40);
             label6.Name = "label6";
             label6.Size = new Size(38, 20);
             label6.TabIndex = 6;
@@ -182,7 +183,7 @@
             // 
             // txtNameLast
             // 
-            txtNameLast.Location = new Point(541, 67);
+            txtNameLast.Location = new Point(541, 37);
             txtNameLast.Name = "txtNameLast";
             txtNameLast.Size = new Size(82, 27);
             txtNameLast.TabIndex = 1;
@@ -190,7 +191,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(352, 113);
+            label2.Location = new Point(352, 83);
             label2.Name = "label2";
             label2.Size = new Size(49, 20);
             label2.TabIndex = 6;
@@ -198,7 +199,7 @@
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(407, 110);
+            txtEmail.Location = new Point(407, 80);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(82, 27);
             txtEmail.TabIndex = 2;
@@ -242,7 +243,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(346, 37);
+            label7.Location = new Point(346, 14);
             label7.Name = "label7";
             label7.Size = new Size(83, 20);
             label7.TabIndex = 2;
@@ -251,7 +252,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(497, 113);
+            label8.Location = new Point(497, 83);
             label8.Name = "label8";
             label8.Size = new Size(23, 20);
             label8.TabIndex = 12;
@@ -262,10 +263,20 @@
             cmmbEmail.DropDownStyle = ComboBoxStyle.DropDownList;
             cmmbEmail.FormattingEnabled = true;
             cmmbEmail.Items.AddRange(new object[] { "gmail.com", "hotmail.com", "icloud.com", "outlook.com", "yahoo.com" });
-            cmmbEmail.Location = new Point(518, 110);
+            cmmbEmail.Location = new Point(518, 80);
             cmmbEmail.Name = "cmmbEmail";
             cmmbEmail.Size = new Size(105, 28);
             cmmbEmail.TabIndex = 13;
+            // 
+            // rtbComments
+            // 
+            rtbComments.Location = new Point(346, 113);
+            rtbComments.Name = "rtbComments";
+            rtbComments.ReadOnly = true;
+            rtbComments.Size = new Size(277, 112);
+            rtbComments.TabIndex = 14;
+            rtbComments.TabStop = false;
+            rtbComments.Text = "";
             // 
             // PaymentEntryForm
             // 
@@ -275,6 +286,7 @@
             CancelButton = btnBack;
             ClientSize = new Size(633, 305);
             ControlBox = false;
+            Controls.Add(rtbComments);
             Controls.Add(cmmbEmail);
             Controls.Add(label8);
             Controls.Add(listviewOrder);
@@ -328,5 +340,6 @@
         private Label label7;
         private Label label8;
         private ComboBox cmmbEmail;
+        private RichTextBox rtbComments;
     }
 }

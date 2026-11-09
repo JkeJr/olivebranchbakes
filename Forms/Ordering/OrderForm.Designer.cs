@@ -321,6 +321,7 @@
             rtxtComments.Size = new Size(338, 73);
             rtxtComments.TabIndex = 5;
             rtxtComments.Text = "";
+            rtxtComments.TextChanged += rtxtComments_TextChanged;
             // 
             // label7
             // 
