@@ -1,19 +1,26 @@
-﻿using OliveBranchBakes.Objects.Order_Assets;
+﻿using OliveBranchBakes.Objects.Customers;
+using OliveBranchBakes.Objects.Order_Assets;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Text;
 using System.Threading.Channels;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace OliveBranchBakes.Objects
 {
     public class Order
     {
+        private static string pathStart => $@"..\..\..\Documents\Orders\";
+
         private List<OrderItemGroup> itemGroups;
         public int Count => itemGroups.Count;
         public int Number { get; init; }
-        public string Name { get; set; } = "";
+        public Account CustomerAccount { get; set; }
+        public string GuestName { get; set; } = "";
         public string Comments { get; set; } = "";
+        public DateTime DateOrdered { get; set; }
+        public DateTime DateScheduled { get; set; }
 
         public decimal Subtotal
         {
@@ -49,16 +56,94 @@ namespace OliveBranchBakes.Objects
                     unique = !(order.Number == this.Number);
             } while (!unique);
         }
+        public Order(int num)
+        {
+            Number = num;
+        }
         public Order(int num, string name)
         {
             itemGroups = new();
             Number = num;
-            Name = name;
+            GuestName = name;
         }
         public Order(List<OrderItemGroup> items, string comments)
         {
             this.itemGroups = items;
             this.Comments = comments;
+        }
+
+        private static string GetPath(int orderID) => $@"{pathStart}{orderID}.txt";
+        public void Save()
+        {
+            using StreamWriter textOut =
+                new StreamWriter(
+                new FileStream(GetPath(Number), FileMode.Create, FileAccess.Write));
+
+            // accountID|date created|date scheduled
+
+            // if account is null, set accoundID to the guestname
+            if (this.CustomerAccount == null)
+                textOut.Write(GuestName + "|");
+            else 
+                textOut.Write(CustomerAccount.AccountID + "|");
+
+            textOut.Write(DateOrdered.ToShortDateString() + "|");
+            textOut.WriteLine(DateScheduled.ToShortDateString());
+
+            // itemtypename|allergy|count
+            for (int i = 0; i < Count; i++)
+            {
+                textOut.Write(this[i].ItemType.Name + "|");
+                textOut.Write(this[i].Allergy.type.ToString() + "|");
+                textOut.WriteLine(this[i].Count);
+            }
+        }
+        public static Order Load(int orderID)
+        {
+            using StreamReader textIn =
+                new StreamReader(
+                new FileStream(GetPath(orderID), FileMode.OpenOrCreate, FileAccess.Read));
+
+            List<string> lines = new();
+            while (textIn.Peek() != -1)
+            {
+                string row = textIn.ReadLine() ?? "";
+
+                lines.Add(row);
+            }
+
+            // num|mm/dd/yyyy|mm/dd/yyyy
+            string[] info = lines[0].Split("|");
+            string[] dateOrdered = info[1].Split("/");
+            string[] dateScheduled = info[2].Split("/");
+
+            List<OrderItemGroup> groups = new();
+            for (int i = 1; i < lines.Count; i++)
+            {
+                string[] groupInfo = lines[i].Split("|");
+                ItemList itemList = new();
+                itemList.Fill();
+
+                OrderItemGroup group = new()
+                {
+                    ItemType = itemList[itemList.IndexOf(groupInfo[0])],
+                    Allergy = new(groupInfo[1]),
+                    Count = Convert.ToInt32(groupInfo[2]),
+                };
+            }
+
+            Order order = new(orderID)
+            {
+                itemGroups = groups,
+                DateOrdered = new DateTime(Convert.ToInt16(dateOrdered[2]), Convert.ToInt16(dateOrdered[0]), Convert.ToInt16(dateOrdered[1])),
+                DateScheduled = new DateTime(Convert.ToInt16(dateScheduled[2]), Convert.ToInt16(dateScheduled[0]), Convert.ToInt16(dateScheduled[1]))
+            };
+            if (int.TryParse(info[0], out int result))
+                order.CustomerAccount = Account.Load(Convert.ToInt32(info[0]));
+            else
+                order.GuestName = info[0];
+
+            return order;
         }
 
         // Finds the index of an OrderItem in items that matches the name and allergy
@@ -90,24 +175,8 @@ namespace OliveBranchBakes.Objects
 
             return amount;
         }
-
-        /*public void Group(OrderItem item, int amnt)
-        {
-            this[IndexOf(item)].Count += amnt;
-            this[IndexOf(item)].Price += item.Price * amnt;
-            if (OrderChanged != null)
-                OrderChanged(this);
-        }*/
-        
-        // Adding to the list
         public void Add(OrderItemGroup itemGroup)
         {
-            /*int i = IndexOf(item);
-            if (i == -1)
-                items.Add(item);
-            else
-                this[i].Add(item);
-            */
             itemGroups.Add(itemGroup);
             if (OrderChanged != null)
                 OrderChanged(this);

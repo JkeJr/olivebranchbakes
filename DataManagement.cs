@@ -142,9 +142,7 @@ namespace OliveBranchBakes
                 // number|name|status
                 if (columns.Length == 3)
                 {
-                    Order order = new(
-                        Convert.ToInt32(columns[0]),
-                        columns[1]);
+                    Order order = Order.Load(Convert.ToInt32(columns[0]));
                     orders.Add(order);
                 }
             }
@@ -161,8 +159,12 @@ namespace OliveBranchBakes
             // loop through each Order in List<Order>
             foreach (Order order in orders)
             {
-                textOut.Write(order.Number + Delimiter);
-                textOut.Write(order.Name + Delimiter);
+                textOut.Write(order.Number.ToString("D8") + Delimiter);
+
+                if (order.CustomerAccount == null)
+                    textOut.Write(order.GuestName + Delimiter);
+                else 
+                    textOut.Write(order.CustomerAccount.GetName() + Delimiter);
                 textOut.WriteLine("Recieved");
             }
         }

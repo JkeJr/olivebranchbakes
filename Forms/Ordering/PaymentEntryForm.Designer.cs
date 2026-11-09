@@ -135,6 +135,7 @@
             // 
             // dtpPickup
             // 
+            dtpPickup.Checked = false;
             dtpPickup.CustomFormat = "MMM d',' yyyy',' h':00' tt";
             dtpPickup.Format = DateTimePickerFormat.Custom;
             dtpPickup.Location = new Point(407, 231);
@@ -142,7 +143,8 @@
             dtpPickup.Name = "dtpPickup";
             dtpPickup.Size = new Size(214, 27);
             dtpPickup.TabIndex = 3;
-            dtpPickup.Value = new DateTime(2026, 11, 11, 0, 0, 0, 0);
+            dtpPickup.Value = new DateTime(2026, 11, 8, 0, 0, 0, 0);
+            dtpPickup.ValueChanged += dtpPickup_ValueChanged;
             // 
             // label4
             // 

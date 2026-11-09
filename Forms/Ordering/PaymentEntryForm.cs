@@ -1,4 +1,5 @@
 ﻿using OliveBranchBakes.Objects;
+using OliveBranchBakes.Objects.Customers;
 using OliveBranchBakes.Objects.Order_Assets;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,9 @@ namespace OliveBranchBakes.Forms.Payment
 
         private void PaymentEntryForm_Load(object sender, EventArgs e)
         {
+            dtpPickup.MinDate = DateTime.Today.AddDays(1);
+            dtpPickup.MaxDate = DateTime.Today.AddMonths(3);
+
             FillOrderBox();
             FillTotalBox();
         }
@@ -82,8 +86,11 @@ namespace OliveBranchBakes.Forms.Payment
         {
             if (IsValidData())
             {
-                order.Name = txtNameFirst.Text.Trim() + txtNameLast.Text.Trim();
+                order.GuestName = txtNameFirst.Text.Trim() + " " + txtNameLast.Text.Trim();
+                order.DateOrdered = DateTime.Today;
+                order.DateScheduled = dtpPickup.Value;
 
+                order.Save();
                 List<Order> orders = DataManagement.GetOrders();
                 orders.Add(order);
 
@@ -92,7 +99,7 @@ namespace OliveBranchBakes.Forms.Payment
                 confirmed = true;
                 MessageBox.Show("Order has been made and received successfully.", "Order Received");
                 this.Close();
-            }   
+            }
         }
 
         private bool IsValidData()
@@ -111,6 +118,11 @@ namespace OliveBranchBakes.Forms.Payment
                 MessageBox.Show(errorMessage, "Entry Error");
             }
             return success;
+        }
+
+        private void dtpPickup_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

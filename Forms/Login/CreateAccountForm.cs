@@ -47,7 +47,6 @@ namespace OliveBranchBakes.Forms.Login
                         AccountType = "Customer"
                     };
                     account.Save();
-
                     List<Account> accounts = AccountManagement.GetAccounts();
                     accounts.Add(account);
                     AccountManagement.SaveAccounts(accounts);

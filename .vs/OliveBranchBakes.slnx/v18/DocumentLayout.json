@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\OliveBranchBakes\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|d:\\backup\\documents\\school\\faulkner\\cs3388 object oriented programming\\projects\\olivebranchbakes\\objects\\order assets\\itemcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|solutionrelative:objects\\order assets\\itemcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|d:\\backup\\documents\\school\\faulkner\\cs3388 object oriented programming\\projects\\olivebranchbakes\\accountmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|solutionrelative:accountmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|d:\\backup\\documents\\school\\faulkner\\cs3388 object oriented programming\\projects\\olivebranchbakes\\datamanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|solutionrelative:datamanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|d:\\backup\\documents\\school\\faulkner\\cs3388 object oriented programming\\projects\\olivebranchbakes\\forms\\login\\createaccountform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|solutionrelative:forms\\login\\createaccountform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|d:\\backup\\documents\\school\\faulkner\\cs3388 object oriented programming\\projects\\olivebranchbakes\\forms\\ordering\\paymententryform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|solutionrelative:forms\\ordering\\paymententryform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|d:\\backup\\documents\\school\\faulkner\\cs3388 object oriented programming\\projects\\olivebranchbakes\\objects\\customers\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE7F6598-272F-BFA5-ADE3-BB5E1BB8BDE9}|OliveBranchBakes.csproj|solutionrelative:objects\\customers\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,19 +30,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ItemCategory.cs",
-              "DocumentMoniker": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\OliveBranchBakes\\Objects\\Order Assets\\ItemCategory.cs",
-              "RelativeDocumentMoniker": "Objects\\Order Assets\\ItemCategory.cs",
-              "ToolTip": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\OliveBranchBakes\\Objects\\Order Assets\\ItemCategory.cs",
-              "RelativeToolTip": "Objects\\Order Assets\\ItemCategory.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAIwBUAAAAFAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "CreateAccountForm.cs",
+              "DocumentMoniker": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\OliveBranchBakes\\Forms\\Login\\CreateAccountForm.cs",
+              "RelativeDocumentMoniker": "Forms\\Login\\CreateAccountForm.cs",
+              "ToolTip": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\OliveBranchBakes\\Forms\\Login\\CreateAccountForm.cs",
+              "RelativeToolTip": "Forms\\Login\\CreateAccountForm.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAD4vzAAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-09T01:23:54.288Z",
+              "WhenOpened": "2026-11-09T02:49:13.994Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PaymentEntryForm.cs",
+              "DocumentMoniker": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\OliveBranchBakes\\Forms\\Ordering\\PaymentEntryForm.cs",
+              "RelativeDocumentMoniker": "Forms\\Ordering\\PaymentEntryForm.cs",
+              "ToolTip": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\OliveBranchBakes\\Forms\\Ordering\\PaymentEntryForm.cs",
+              "RelativeToolTip": "Forms\\Ordering\\PaymentEntryForm.cs",
+              "ViewState": "AgIAAFIAAAAAAAAAAIAwwFYAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-09T01:41:08.19Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Account.cs",
+              "DocumentMoniker": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\OliveBranchBakes\\Objects\\Customers\\Account.cs",
+              "RelativeDocumentMoniker": "Objects\\Customers\\Account.cs",
+              "ToolTip": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\OliveBranchBakes\\Objects\\Customers\\Account.cs",
+              "RelativeToolTip": "Objects\\Customers\\Account.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAA5wEcAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-09T01:37:02.79Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DataManagement.cs",
+              "DocumentMoniker": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\OliveBranchBakes\\DataManagement.cs",
+              "RelativeDocumentMoniker": "DataManagement.cs",
+              "ToolTip": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\OliveBranchBakes\\DataManagement.cs",
+              "RelativeToolTip": "DataManagement.cs",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAgwJ0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-09T01:36:28.987Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AccountManagement.cs",
+              "DocumentMoniker": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\OliveBranchBakes\\AccountManagement.cs",
+              "RelativeDocumentMoniker": "AccountManagement.cs",
+              "ToolTip": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\OliveBranchBakes\\AccountManagement.cs",
+              "RelativeToolTip": "AccountManagement.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAAADIAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-09T01:58:19.82Z",
               "EditorCaption": ""
             }
           ]

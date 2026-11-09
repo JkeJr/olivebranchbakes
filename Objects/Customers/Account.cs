@@ -36,6 +36,7 @@ namespace OliveBranchBakes.Objects.Customers
             AccountID = accountID;
         }
 
+        public string GetName() => Firstname + " " + LastName;
         private static string GetPath(int accountID) => $@"{pathStart}{accountID}.txt";
         public void Save()
         {
