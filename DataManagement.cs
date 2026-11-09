@@ -165,7 +165,7 @@ namespace OliveBranchBakes
                     textOut.Write(order.GuestName + Delimiter);
                 else 
                     textOut.Write(order.CustomerAccount.GetName() + Delimiter);
-                textOut.WriteLine("Recieved");
+                textOut.WriteLine(order.Status.ToString());
             }
         }
 

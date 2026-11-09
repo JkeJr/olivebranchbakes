@@ -9,6 +9,13 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace OliveBranchBakes.Objects
 {
+    public enum StatusEnum
+    {
+        Recieved,
+        InProgress,
+        Ready,
+        Completed
+    }
     public class Order
     {
         private static string pathStart => $@"..\..\..\Documents\Orders\";
@@ -21,6 +28,7 @@ namespace OliveBranchBakes.Objects
         public string Comments { get; set; } = "";
         public DateTime DateOrdered { get; set; }
         public DateTime DateScheduled { get; set; }
+        public StatusEnum Status { get; set; } 
 
         public decimal Subtotal
         {
@@ -72,14 +80,14 @@ namespace OliveBranchBakes.Objects
             this.Comments = comments;
         }
 
-        private static string GetPath(int orderID) => $@"{pathStart}{orderID}.txt";
+        private static string GetPath(int orderID) => $@"{pathStart}{orderID.ToString("D8")}.txt";
         public void Save()
         {
             using StreamWriter textOut =
                 new StreamWriter(
                 new FileStream(GetPath(Number), FileMode.Create, FileAccess.Write));
 
-            // accountID|date created|date scheduled
+            // accountID|date created|date scheduled|status
 
             // if account is null, set accoundID to the guestname
             if (this.CustomerAccount == null)
@@ -88,7 +96,8 @@ namespace OliveBranchBakes.Objects
                 textOut.Write(CustomerAccount.AccountID + "|");
 
             textOut.Write(DateOrdered.ToShortDateString() + "|");
-            textOut.WriteLine(DateScheduled.ToShortDateString());
+            textOut.Write(DateScheduled.ToShortDateString());
+            textOut.WriteLine(Status.ToString());
 
             // itemtypename|allergy|count
             for (int i = 0; i < Count; i++)
@@ -112,7 +121,7 @@ namespace OliveBranchBakes.Objects
                 lines.Add(row);
             }
 
-            // num|mm/dd/yyyy|mm/dd/yyyy
+            // num|mm/dd/yyyy|mm/dd/yyyy|status
             string[] info = lines[0].Split("|");
             string[] dateOrdered = info[1].Split("/");
             string[] dateScheduled = info[2].Split("/");
@@ -130,13 +139,15 @@ namespace OliveBranchBakes.Objects
                     Allergy = new(groupInfo[1]),
                     Count = Convert.ToInt32(groupInfo[2]),
                 };
+                groups.Add(group);
             }
 
             Order order = new(orderID)
             {
                 itemGroups = groups,
                 DateOrdered = new DateTime(Convert.ToInt16(dateOrdered[2]), Convert.ToInt16(dateOrdered[0]), Convert.ToInt16(dateOrdered[1])),
-                DateScheduled = new DateTime(Convert.ToInt16(dateScheduled[2]), Convert.ToInt16(dateScheduled[0]), Convert.ToInt16(dateScheduled[1]))
+                DateScheduled = new DateTime(Convert.ToInt16(dateScheduled[2]), Convert.ToInt16(dateScheduled[0]), Convert.ToInt16(dateScheduled[1])),
+                Status = (StatusEnum)Enum.Parse(typeof(StatusEnum), info[3])
             };
             if (int.TryParse(info[0], out int result))
                 order.CustomerAccount = Account.Load(Convert.ToInt32(info[0]));
@@ -216,6 +227,29 @@ namespace OliveBranchBakes.Objects
             itemGroups.Clear();
             if (OrderChanged != null)
                 OrderChanged(this);
+        }
+
+        public string GetDisplayText()
+        {
+            // basic info
+            string text = "Name: ";
+            if (CustomerAccount == null)
+                text += GuestName;
+            else
+                text += CustomerAccount.GetName();
+
+            text += $"\nOrder #: {Number.ToString("D8")}\n" + 
+                $"Date Ordered: {DateOrdered.ToShortDateString()}\n" +
+                $"Date Scheduled: {DateScheduled.ToShortDateString()}\n\n";
+            
+            // list of item groups
+            for (int i = 0; i < itemGroups.Count; i++)
+                text += $"Item {i + 1}: {itemGroups[i].GetDisplayText()}\n";
+
+            // total
+            text += $"Total: {Total.ToString("C")}";
+
+            return text;
         }
 
         // Method for indexer

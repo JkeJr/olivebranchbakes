@@ -44,7 +44,8 @@ namespace OliveBranchBakes.Forms.Login
                         Email = $"{txtEmail.Text}@{cmbbEmail.Text}",
                         Firstname = txtFirstName.Text,
                         LastName = txtLastName.Text,
-                        AccountType = "Customer"
+                        AccountType = "Customer",
+                        DateJoined = DateTime.Today
                     };
                     account.Save();
                     List<Account> accounts = AccountManagement.GetAccounts();

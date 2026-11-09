@@ -17,7 +17,7 @@ namespace OliveBranchBakes.Objects.Customers
         public string Email { get; set; }
         public int AccountID { get; init; }
         public string AccountType { get; set; }
-
+        public DateTime DateJoined { get; set; }
 
         public Account()
         {
@@ -37,15 +37,16 @@ namespace OliveBranchBakes.Objects.Customers
         }
 
         public string GetName() => Firstname + " " + LastName;
-        private static string GetPath(int accountID) => $@"{pathStart}{accountID}.txt";
+        private static string GetPath(int accountID) => $@"{pathStart}{accountID.ToString("D8")}.txt";
         public void Save()
         {
             using StreamWriter textOut =
                 new StreamWriter(
                 new FileStream(GetPath(AccountID), FileMode.Create, FileAccess.Write));
 
-            textOut.WriteLine(Firstname);
-            textOut.WriteLine(LastName);
+            textOut.Write(Firstname + "|");
+            textOut.WriteLine(LastName + "|");
+            textOut.WriteLine(DateJoined.ToShortDateString());
             textOut.WriteLine(AccountType);
             textOut.WriteLine(Email);
             textOut.WriteLine(UserName);
@@ -66,10 +67,13 @@ namespace OliveBranchBakes.Objects.Customers
                 lines.Add(row);
             }
 
+            string[] name = lines[0].Split("|");
+            string[] dateJoined = lines[1].Split("/");
             Account account = new(accountID)
             {
-                Firstname = lines[0],
-                LastName = lines[1],
+                Firstname = name[0],
+                LastName = name[1],
+                DateJoined = new DateTime(Convert.ToInt16(dateJoined[2]), Convert.ToInt16(dateJoined[0]), Convert.ToInt16(dateJoined[1])),
                 AccountType = lines[2],
                 Email = lines[3],
                 UserName = lines[4],

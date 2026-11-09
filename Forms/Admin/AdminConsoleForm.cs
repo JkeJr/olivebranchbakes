@@ -1,5 +1,6 @@
 ﻿using OliveBranchBakes.Forms.Admin;
 using OliveBranchBakes.Objects;
+using OliveBranchBakes.Objects.Customers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +25,8 @@ namespace OliveBranchBakes.Forms
             items.ItemListChanged += new ItemList.ChangeHandler(HandleChange);
             items.Fill();
             FillItemListBox();
+            FillOrderListBox();
+            FillAccountListBox();
 
             lblDate.Text = DateRange.FormatDate(DateTime.Today);
         }
@@ -70,7 +73,7 @@ namespace OliveBranchBakes.Forms
 
                     // Will add more options for type of item. For now, generic message
                     string message = "";
-                    
+
                     message = $"{item.GetType().Name} type, {item.Name}, has been edited.";
 
                     MessageBox.Show(message, "Success!");
@@ -116,12 +119,44 @@ namespace OliveBranchBakes.Forms
                 viewItem.SubItems.Add(item.Name);
                 viewItem.SubItems.Add(item.Price.ToString());
                 viewItem.SubItems.Add(item.AllergenList.ToString(", "));
-                
+
                 // Shows which items are in season; Green if true, OrangeRed if false
                 if (item.Seasonal)
-                    viewItem.BackColor = (item.InSeason())? Color.Green : Color.OrangeRed;
+                    viewItem.BackColor = (item.InSeason()) ? Color.Green : Color.OrangeRed;
 
                 listviewItems.Items.Add(viewItem);
+            }
+        }
+        private void FillOrderListBox()
+        {
+            List<Order> orders = DataManagement.GetOrders();
+            listviewOrders.Items.Clear();
+            foreach (Order order in orders)
+            {
+                ListViewItem viewItem = new(order.Number.ToString("D8"));
+                if (order.CustomerAccount == null)
+                    viewItem.SubItems.Add(order.GuestName);
+                else
+                    viewItem.SubItems.Add(order.CustomerAccount.GetName());
+                viewItem.SubItems.Add(order.Status.ToString());
+                viewItem.SubItems.Add(order.DateScheduled.ToShortDateString());
+                viewItem.SubItems.Add(order.Total.ToString("C"));
+
+                listviewOrders.Items.Add(viewItem);
+            }
+        }
+        private void FillAccountListBox()
+        {
+            List<Account> accounts = AccountManagement.GetAccounts();
+            listviewAccounts.Items.Clear();
+            foreach (Account account in accounts)
+            {
+                ListViewItem viewItem = new(account.AccountID.ToString("D8"));
+                viewItem.SubItems.Add(account.GetName());
+                viewItem.SubItems.Add(account.DateJoined.ToShortDateString());
+                viewItem.SubItems.Add(account.AccountType);
+
+                listviewAccounts.Items.Add(viewItem);
             }
         }
 
@@ -135,6 +170,22 @@ namespace OliveBranchBakes.Forms
         {
             this.Close();
             WelcomeForm.Current.Show();
+        }
+
+        private void btnDetails_Click(object sender, EventArgs e)
+        {
+            if (listviewOrders.Items.Count == 0)
+                MessageBox.Show("Order list is empty.", "No Orders");
+            else if (listviewOrders.SelectedItems.Count == 0)
+                MessageBox.Show("Please select an order to delete.", "No order selected");
+            else
+            {
+                List<Order> orders = DataManagement.GetOrders();
+                int i = listviewOrders.Items.IndexOf(listviewOrders.SelectedItems[0]);
+
+                Order order = orders[i];
+                MessageBox.Show(order.GetDisplayText(),"Order Summary");
+            }
         }
     }
 }

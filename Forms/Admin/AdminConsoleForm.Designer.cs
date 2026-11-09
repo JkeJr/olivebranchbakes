@@ -41,18 +41,20 @@
             btnBack = new Button();
             label3 = new Label();
             label1 = new Label();
-            listView2 = new ListView();
-            colOrderNum = new ColumnHeader();
-            colCustomer = new ColumnHeader();
-            colStatus = new ColumnHeader();
-            colCount = new ColumnHeader();
             btnDetails = new Button();
-            label2 = new Label();
-            label4 = new Label();
-            listView1 = new ListView();
+            listviewAccounts = new ListView();
             colCustomerID = new ColumnHeader();
             colCustomerName = new ColumnHeader();
             colDateJoined = new ColumnHeader();
+            colAccountType = new ColumnHeader();
+            listviewOrders = new ListView();
+            colOrderNum = new ColumnHeader();
+            colCustomer = new ColumnHeader();
+            colStatus = new ColumnHeader();
+            colScheduled = new ColumnHeader();
+            colCost = new ColumnHeader();
+            label4 = new Label();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -78,13 +80,13 @@
             // 
             // splitContainer1.Panel2
             // 
-            splitContainer1.Panel2.Controls.Add(listView1);
-            splitContainer1.Panel2.Controls.Add(listView2);
             splitContainer1.Panel2.Controls.Add(btnDetails);
+            splitContainer1.Panel2.Controls.Add(listviewAccounts);
+            splitContainer1.Panel2.Controls.Add(listviewOrders);
             splitContainer1.Panel2.Controls.Add(label4);
             splitContainer1.Panel2.Controls.Add(label2);
-            splitContainer1.Size = new Size(951, 450);
-            splitContainer1.SplitterDistance = 567;
+            splitContainer1.Size = new Size(1039, 497);
+            splitContainer1.SplitterDistance = 573;
             splitContainer1.TabIndex = 0;
             // 
             // lblDate
@@ -101,7 +103,7 @@
             // btnEdit
             // 
             btnEdit.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnEdit.Location = new Point(123, 395);
+            btnEdit.Location = new Point(123, 433);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(85, 52);
             btnEdit.TabIndex = 2;
@@ -112,7 +114,7 @@
             // btnAdd
             // 
             btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnAdd.Location = new Point(3, 395);
+            btnAdd.Location = new Point(3, 433);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(114, 52);
             btnAdd.TabIndex = 1;
@@ -123,7 +125,7 @@
             // btnDelete
             // 
             btnDelete.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnDelete.Location = new Point(470, 395);
+            btnDelete.Location = new Point(470, 433);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(94, 52);
             btnDelete.TabIndex = 3;
@@ -141,7 +143,7 @@
             listviewItems.Location = new Point(3, 84);
             listviewItems.MultiSelect = false;
             listviewItems.Name = "listviewItems";
-            listviewItems.Size = new Size(561, 305);
+            listviewItems.Size = new Size(561, 343);
             listviewItems.TabIndex = 2;
             listviewItems.TabStop = false;
             listviewItems.UseCompatibleStateImageBehavior = false;
@@ -199,87 +201,29 @@
             label1.TabIndex = 0;
             label1.Text = "Welcome, Admin!";
             // 
-            // listView2
-            // 
-            listView2.BackColor = Color.AntiqueWhite;
-            listView2.Columns.AddRange(new ColumnHeader[] { colOrderNum, colCustomer, colCount, colStatus });
-            listView2.FullRowSelect = true;
-            listView2.GridLines = true;
-            listView2.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            listView2.Location = new Point(3, 40);
-            listView2.MultiSelect = false;
-            listView2.Name = "listView2";
-            listView2.Size = new Size(374, 173);
-            listView2.TabIndex = 2;
-            listView2.TabStop = false;
-            listView2.UseCompatibleStateImageBehavior = false;
-            listView2.View = View.Details;
-            // 
-            // colOrderNum
-            // 
-            colOrderNum.Text = "Order #";
-            colOrderNum.Width = 80;
-            // 
-            // colCustomer
-            // 
-            colCustomer.Text = "Customer";
-            colCustomer.Width = 150;
-            // 
-            // colStatus
-            // 
-            colStatus.Text = "Status";
-            colStatus.Width = 75;
-            // 
-            // colCount
-            // 
-            colCount.Text = "#";
-            colCount.Width = 30;
-            // 
             // btnDetails
             // 
-            btnDetails.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnDetails.Location = new Point(215, 395);
+            btnDetails.Location = new Point(365, 8);
             btnDetails.Name = "btnDetails";
-            btnDetails.Size = new Size(162, 52);
-            btnDetails.TabIndex = 4;
-            btnDetails.Text = "View Details";
+            btnDetails.Size = new Size(94, 29);
+            btnDetails.TabIndex = 6;
+            btnDetails.Text = "Details";
             btnDetails.UseVisualStyleBackColor = true;
+            btnDetails.Click += btnDetails_Click;
             // 
-            // label2
+            // listviewAccounts
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.Maroon;
-            label2.Location = new Point(3, 11);
-            label2.Name = "label2";
-            label2.Size = new Size(150, 26);
-            label2.TabIndex = 0;
-            label2.Text = "Active Orders:";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.Maroon;
-            label4.Location = new Point(3, 216);
-            label4.Name = "label4";
-            label4.Size = new Size(118, 26);
-            label4.TabIndex = 0;
-            label4.Text = "Customers:";
-            // 
-            // listView1
-            // 
-            listView1.BackColor = Color.AntiqueWhite;
-            listView1.Columns.AddRange(new ColumnHeader[] { colCustomerID, colCustomerName, colDateJoined });
-            listView1.FullRowSelect = true;
-            listView1.GridLines = true;
-            listView1.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            listView1.Location = new Point(3, 245);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(374, 144);
-            listView1.TabIndex = 5;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
+            listviewAccounts.BackColor = Color.AntiqueWhite;
+            listviewAccounts.Columns.AddRange(new ColumnHeader[] { colCustomerID, colCustomerName, colDateJoined, colAccountType });
+            listviewAccounts.FullRowSelect = true;
+            listviewAccounts.GridLines = true;
+            listviewAccounts.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            listviewAccounts.Location = new Point(3, 277);
+            listviewAccounts.Name = "listviewAccounts";
+            listviewAccounts.Size = new Size(456, 208);
+            listviewAccounts.TabIndex = 5;
+            listviewAccounts.UseCompatibleStateImageBehavior = false;
+            listviewAccounts.View = View.Details;
             // 
             // colCustomerID
             // 
@@ -296,12 +240,79 @@
             colDateJoined.Text = "Date Joined";
             colDateJoined.Width = 105;
             // 
+            // colAccountType
+            // 
+            colAccountType.Text = "Type";
+            colAccountType.Width = 85;
+            // 
+            // listviewOrders
+            // 
+            listviewOrders.BackColor = Color.AntiqueWhite;
+            listviewOrders.Columns.AddRange(new ColumnHeader[] { colOrderNum, colCustomer, colStatus, colScheduled, colCost });
+            listviewOrders.FullRowSelect = true;
+            listviewOrders.GridLines = true;
+            listviewOrders.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            listviewOrders.Location = new Point(3, 40);
+            listviewOrders.MultiSelect = false;
+            listviewOrders.Name = "listviewOrders";
+            listviewOrders.Size = new Size(456, 194);
+            listviewOrders.TabIndex = 2;
+            listviewOrders.TabStop = false;
+            listviewOrders.UseCompatibleStateImageBehavior = false;
+            listviewOrders.View = View.Details;
+            // 
+            // colOrderNum
+            // 
+            colOrderNum.Text = "Order #";
+            colOrderNum.Width = 80;
+            // 
+            // colCustomer
+            // 
+            colCustomer.Text = "Customer";
+            colCustomer.Width = 115;
+            // 
+            // colStatus
+            // 
+            colStatus.Text = "Status";
+            colStatus.Width = 75;
+            // 
+            // colScheduled
+            // 
+            colScheduled.Text = "Due Date";
+            colScheduled.Width = 90;
+            // 
+            // colCost
+            // 
+            colCost.Text = "$__.__";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Maroon;
+            label4.Location = new Point(3, 248);
+            label4.Name = "label4";
+            label4.Size = new Size(118, 26);
+            label4.TabIndex = 0;
+            label4.Text = "Customers:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.Maroon;
+            label2.Location = new Point(3, 11);
+            label2.Name = "label2";
+            label2.Size = new Size(150, 26);
+            label2.TabIndex = 0;
+            label2.Text = "Active Orders:";
+            // 
             // AdminConsoleForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Bisque;
-            ClientSize = new Size(951, 450);
+            ClientSize = new Size(1039, 497);
             ControlBox = false;
             Controls.Add(splitContainer1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -324,26 +335,28 @@
         private ListView listviewItems;
         private Button btnBack;
         private Label label3;
-        private ListView listView2;
+        private ListView listviewOrders;
         private Label label2;
         private ColumnHeader colName;
         private ColumnHeader colPrice;
         private ColumnHeader colAllergens;
         private ColumnHeader colCustomer;
-        private ColumnHeader colCount;
+        private ColumnHeader colScheduled;
         private ColumnHeader colStatus;
         private ColumnHeader colOrderNum;
         private Button button3;
         private Button btnAdd;
         private Button btnDelete;
-        private Button btnDetails;
         private Button btnEdit;
         private Label lblDate;
         private ColumnHeader colCategory;
-        private ListView listView1;
+        private ListView listviewAccounts;
         private Label label4;
         private ColumnHeader colCustomerID;
         private ColumnHeader colCustomerName;
         private ColumnHeader colDateJoined;
+        private ColumnHeader colCost;
+        private ColumnHeader colAccountType;
+        private Button btnDetails;
     }
 }
