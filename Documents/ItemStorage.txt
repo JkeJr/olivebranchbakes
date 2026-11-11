@@ -17,3 +17,4 @@ DrinkItem|10|Coffee|Americano|2.50|Caffiene|ns|null|null
 FoodItem|3000|Pie,Pastry|Pumpkin Pie|12.00|Milk,Egg,Wheat|ns|null|null
 FoodItem|300|Cookie|Red Velvet Cookie|3.00|Milk,Egg,Wheat|ns|null|null
 DrinkItem|12|Tea|Lipton Tea|2.50|Caffiene|ns|null|null
+FoodItem|1000|Misc|TestItem|49.99|None|ns|null|null

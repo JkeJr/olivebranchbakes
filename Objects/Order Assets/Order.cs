@@ -96,7 +96,7 @@ namespace OliveBranchBakes.Objects
                 textOut.Write(CustomerAccount.AccountID + "|");
 
             textOut.Write(DateOrdered.ToShortDateString() + "|");
-            textOut.Write(DateScheduled.ToShortDateString());
+            textOut.Write(DateScheduled.ToShortDateString() + "|");
             textOut.WriteLine(Status.ToString());
 
             // comment

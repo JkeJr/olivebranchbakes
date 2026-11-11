@@ -1,4 +1,5 @@
 ﻿using OliveBranchBakes.Forms;
+using OliveBranchBakes.Forms.Login;
 using OliveBranchBakes.Objects.Customers;
 using System;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ namespace OliveBranchBakes
                 }
                 else if (account.AccountType == "Customer")
                 {
-                    new OrderForm().Show();
+                    new CustomerHomeForm(account).Show();
                     this.Hide();
                 }
             }
