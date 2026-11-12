@@ -41,6 +41,8 @@
             btnBack = new Button();
             label3 = new Label();
             label1 = new Label();
+            cmbbOrderStatus = new ComboBox();
+            btnDeleteOrder = new Button();
             btnDetails = new Button();
             listviewAccounts = new ListView();
             colCustomerID = new ColumnHeader();
@@ -80,6 +82,8 @@
             // 
             // splitContainer1.Panel2
             // 
+            splitContainer1.Panel2.Controls.Add(cmbbOrderStatus);
+            splitContainer1.Panel2.Controls.Add(btnDeleteOrder);
             splitContainer1.Panel2.Controls.Add(btnDetails);
             splitContainer1.Panel2.Controls.Add(listviewAccounts);
             splitContainer1.Panel2.Controls.Add(listviewOrders);
@@ -201,6 +205,26 @@
             label1.TabIndex = 0;
             label1.Text = "Welcome, Admin!";
             // 
+            // cmbbOrderStatus
+            // 
+            cmbbOrderStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbbOrderStatus.FormattingEnabled = true;
+            cmbbOrderStatus.Location = new Point(159, 9);
+            cmbbOrderStatus.Name = "cmbbOrderStatus";
+            cmbbOrderStatus.Size = new Size(100, 28);
+            cmbbOrderStatus.TabIndex = 8;
+            cmbbOrderStatus.SelectedIndexChanged += cmbbOrderStatus_SelectedIndexChanged;
+            // 
+            // btnDeleteOrder
+            // 
+            btnDeleteOrder.Location = new Point(265, 8);
+            btnDeleteOrder.Name = "btnDeleteOrder";
+            btnDeleteOrder.Size = new Size(94, 29);
+            btnDeleteOrder.TabIndex = 7;
+            btnDeleteOrder.Text = "Delete";
+            btnDeleteOrder.UseVisualStyleBackColor = true;
+            btnDeleteOrder.Click += btnDeleteOrder_Click;
+            // 
             // btnDetails
             // 
             btnDetails.Location = new Point(365, 8);
@@ -260,6 +284,7 @@
             listviewOrders.TabStop = false;
             listviewOrders.UseCompatibleStateImageBehavior = false;
             listviewOrders.View = View.Details;
+            listviewOrders.SelectedIndexChanged += listviewOrders_SelectedIndexChanged;
             // 
             // colOrderNum
             // 
@@ -358,5 +383,7 @@
         private ColumnHeader colCost;
         private ColumnHeader colAccountType;
         private Button btnDetails;
+        private ComboBox cmbbOrderStatus;
+        private Button btnDeleteOrder;
     }
 }

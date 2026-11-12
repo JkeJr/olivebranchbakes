@@ -28,6 +28,13 @@ namespace OliveBranchBakes.Forms
             FillOrderListBox();
             FillAccountListBox();
 
+            cmbbOrderStatus.Enabled = false;
+            cmbbOrderStatus.Items.Add(StatusEnum.Recieved);
+            cmbbOrderStatus.Items.Add(StatusEnum.InProgress);
+            cmbbOrderStatus.Items.Add(StatusEnum.Ready);
+            cmbbOrderStatus.Items.Add(StatusEnum.Completed);
+            cmbbOrderStatus.Items.Add(StatusEnum.Cancelled);
+            cmbbOrderStatus.ResetText();
             lblDate.Text = DateRange.FormatDate(DateTime.Today);
         }
 
@@ -129,13 +136,15 @@ namespace OliveBranchBakes.Forms
         }
         private void FillOrderListBox()
         {
+            cmbbOrderStatus.Enabled = false;
+
             List<Order> orders = DataManagement.GetOrders();
             listviewOrders.Items.Clear();
             foreach (Order order in orders)
             {
                 ListViewItem viewItem = new(order.Number.ToString("D8"));
                 if (order.CustomerAccount == null)
-                    viewItem.SubItems.Add(order.GuestName);
+                    viewItem.SubItems.Add($"G({order.GuestName})");
                 else
                     viewItem.SubItems.Add(order.CustomerAccount.GetName());
                 viewItem.SubItems.Add(order.Status.ToString());
@@ -177,14 +186,63 @@ namespace OliveBranchBakes.Forms
             if (listviewOrders.Items.Count == 0)
                 MessageBox.Show("Order list is empty.", "No Orders");
             else if (listviewOrders.SelectedItems.Count == 0)
-                MessageBox.Show("Please select an order to delete.", "No order selected");
+                MessageBox.Show("Please select an order to view.", "No order selected");
             else
             {
                 List<Order> orders = DataManagement.GetOrders();
                 int i = listviewOrders.Items.IndexOf(listviewOrders.SelectedItems[0]);
 
                 Order order = orders[i];
-                MessageBox.Show(order.GetDisplayText(),"Order Summary");
+                MessageBox.Show(order.GetDisplayText(), "Order Summary");
+            }
+        }
+
+        private void listviewOrders_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listviewOrders.SelectedItems.Count == 0)
+            {
+                cmbbOrderStatus.Text = "";
+                cmbbOrderStatus.Enabled = false;
+            }
+            else
+            {
+                List<Order> globalOrders = DataManagement.GetOrders();
+                int i = listviewOrders.Items.IndexOf(listviewOrders.SelectedItems[0]);
+
+                cmbbOrderStatus.Enabled = true;
+                cmbbOrderStatus.Text = globalOrders[i].Status.ToString();
+            }
+        }
+
+        private void cmbbOrderStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<Order> globalOrders = DataManagement.GetOrders();
+            int i = listviewOrders.Items.IndexOf(listviewOrders.SelectedItems[0]);
+
+            globalOrders[i].Status = (StatusEnum)Enum.Parse(typeof(StatusEnum), cmbbOrderStatus.Text);
+            globalOrders[i].Save();
+
+            DataManagement.SaveOrders(globalOrders);
+
+            listviewOrders.Items[i].SubItems[2].Text = cmbbOrderStatus.Text;
+        }
+
+        private void btnDeleteOrder_Click(object sender, EventArgs e)
+        {
+            if (listviewOrders.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select valid order to delete","Deletion Error");
+            }
+            else
+            {
+                List<Order> globalOrders = DataManagement.GetOrders();
+                int i = listviewOrders.Items.IndexOf(listviewOrders.SelectedItems[0]);
+
+                globalOrders.RemoveAt(i);
+                DataManagement.SaveOrders(globalOrders);
+
+                cmbbOrderStatus.Enabled = false;
+                FillOrderListBox();
             }
         }
     }

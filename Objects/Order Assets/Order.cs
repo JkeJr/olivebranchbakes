@@ -253,9 +253,10 @@ namespace OliveBranchBakes.Objects
             else
                 text += CustomerAccount.GetName();
 
-            text += $"\nOrder #: {Number.ToString("D8")}\n" + 
+            text += $"\nOrder #: {Number.ToString("D8")}\n" +
                 $"Date Ordered: {DateOrdered.ToShortDateString()}\n" +
-                $"Date Scheduled: {DateScheduled.ToShortDateString()}\n\n";
+                $"Date Scheduled: {DateScheduled.ToShortDateString()}\n" +
+                $"Status: {Status}\n\n";
             
             // list of item groups
             for (int i = 0; i < itemGroups.Count; i++)
