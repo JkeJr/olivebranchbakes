@@ -89,7 +89,8 @@ namespace OliveBranchBakes.Forms.Payment
             if (IsValidData())
             {
                 order.Status = StatusEnum.Recieved;
-                order.GuestName = txtNameFirst.Text.Trim() + " " + txtNameLast.Text.Trim();
+                if (order.CustomerAccount == null)
+                    order.GuestName = txtNameFirst.Text.Trim() + " " + txtNameLast.Text.Trim();
                 order.DateOrdered = DateTime.Today;
                 order.DateScheduled = dtpPickup.Value;
 

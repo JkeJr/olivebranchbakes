@@ -1,6 +1,8 @@
 ﻿using OliveBranchBakes.Forms.Admin;
+using OliveBranchBakes.Forms.Login;
 using OliveBranchBakes.Forms.Payment;
 using OliveBranchBakes.Objects;
+using OliveBranchBakes.Objects.Customers;
 using OliveBranchBakes.Objects.Order_Assets;
 using System;
 using System.Collections.Generic;
@@ -18,7 +20,6 @@ namespace OliveBranchBakes.Forms
         private ItemList items = new();
         private Order order = new();
         private bool Guest { get; init; }
-        private int AccountNumber;
 
 
         private void OrderForm_Load(object sender, EventArgs e)
@@ -51,9 +52,11 @@ namespace OliveBranchBakes.Forms
             Guest = true;
             InitializeComponent();
         }
-        public OrderForm(int accountNum)
+        public OrderForm(Account user)
         {
             Guest = false;
+            //AccountNumber = accountNum;
+            order.CustomerAccount = user;
             InitializeComponent();
         }
 
@@ -198,7 +201,15 @@ namespace OliveBranchBakes.Forms
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
-            WelcomeForm.Current!.Show();
+            if (Guest)
+            {
+                WelcomeForm.Current!.Show();
+            }
+            else
+            {
+                new CustomerHomeForm(order.CustomerAccount).Show();
+            }
+            
         }
 
         /// <summary>

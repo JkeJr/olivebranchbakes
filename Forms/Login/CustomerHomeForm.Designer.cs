@@ -29,8 +29,11 @@
         private void InitializeComponent()
         {
             splitContainer1 = new SplitContainer();
-            label4 = new Label();
-            label3 = new Label();
+            btnDeleteAccount = new Button();
+            btnEditAccount = new Button();
+            lblCreationDate = new Label();
+            lblEmail = new Label();
+            lblName = new Label();
             btnReorder = new Button();
             btnDetails = new Button();
             lstviewPrevOrders = new ListView();
@@ -43,19 +46,17 @@
             label1 = new Label();
             btnBack = new Button();
             lblWelcome = new Label();
-            label5 = new Label();
-            btnEditAccount = new Button();
-            btnDeleteAccount = new Button();
-            label6 = new Label();
-            lblOrderStatus = new Label();
+            btnCancel = new Button();
+            btnOrder = new Button();
+            txtTotal = new TextBox();
+            label7 = new Label();
             lstviewCurOrder = new ListView();
             colCountItem = new ColumnHeader();
             colNameItem = new ColumnHeader();
-            colPrice = new ColumnHeader();
             colAllergy = new ColumnHeader();
-            label7 = new Label();
-            txtTotal = new TextBox();
-            button1 = new Button();
+            colPrice = new ColumnHeader();
+            lblOrderStatus = new Label();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -72,9 +73,9 @@
             // 
             splitContainer1.Panel1.Controls.Add(btnDeleteAccount);
             splitContainer1.Panel1.Controls.Add(btnEditAccount);
-            splitContainer1.Panel1.Controls.Add(label5);
-            splitContainer1.Panel1.Controls.Add(label4);
-            splitContainer1.Panel1.Controls.Add(label3);
+            splitContainer1.Panel1.Controls.Add(lblCreationDate);
+            splitContainer1.Panel1.Controls.Add(lblEmail);
+            splitContainer1.Panel1.Controls.Add(lblName);
             splitContainer1.Panel1.Controls.Add(btnReorder);
             splitContainer1.Panel1.Controls.Add(btnDetails);
             splitContainer1.Panel1.Controls.Add(lstviewPrevOrders);
@@ -85,7 +86,8 @@
             // 
             // splitContainer1.Panel2
             // 
-            splitContainer1.Panel2.Controls.Add(button1);
+            splitContainer1.Panel2.Controls.Add(btnCancel);
+            splitContainer1.Panel2.Controls.Add(btnOrder);
             splitContainer1.Panel2.Controls.Add(txtTotal);
             splitContainer1.Panel2.Controls.Add(label7);
             splitContainer1.Panel2.Controls.Add(lstviewCurOrder);
@@ -95,23 +97,52 @@
             splitContainer1.SplitterDistance = 445;
             splitContainer1.TabIndex = 0;
             // 
-            // label4
+            // btnDeleteAccount
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(146, 126);
-            label4.Name = "label4";
-            label4.Size = new Size(55, 20);
-            label4.TabIndex = 8;
-            label4.Text = "E-Mail:";
+            btnDeleteAccount.Font = new Font("Trebuchet MS", 9F, FontStyle.Bold);
+            btnDeleteAccount.Location = new Point(12, 163);
+            btnDeleteAccount.Name = "btnDeleteAccount";
+            btnDeleteAccount.Size = new Size(128, 29);
+            btnDeleteAccount.TabIndex = 10;
+            btnDeleteAccount.Text = "Delete Account";
+            btnDeleteAccount.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // btnEditAccount
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(146, 85);
-            label3.Name = "label3";
-            label3.Size = new Size(52, 20);
-            label3.TabIndex = 8;
-            label3.Text = "Name:";
+            btnEditAccount.Font = new Font("Trebuchet MS", 9F, FontStyle.Bold);
+            btnEditAccount.Location = new Point(12, 85);
+            btnEditAccount.Name = "btnEditAccount";
+            btnEditAccount.Size = new Size(128, 61);
+            btnEditAccount.TabIndex = 9;
+            btnEditAccount.Text = "Edit Info";
+            btnEditAccount.UseVisualStyleBackColor = true;
+            // 
+            // lblCreationDate
+            // 
+            lblCreationDate.AutoSize = true;
+            lblCreationDate.Location = new Point(146, 167);
+            lblCreationDate.Name = "lblCreationDate";
+            lblCreationDate.Size = new Size(114, 20);
+            lblCreationDate.TabIndex = 8;
+            lblCreationDate.Text = "Customer Since:";
+            // 
+            // lblEmail
+            // 
+            lblEmail.AutoSize = true;
+            lblEmail.Location = new Point(146, 126);
+            lblEmail.Name = "lblEmail";
+            lblEmail.Size = new Size(55, 20);
+            lblEmail.TabIndex = 8;
+            lblEmail.Text = "E-Mail:";
+            // 
+            // lblName
+            // 
+            lblName.AutoSize = true;
+            lblName.Location = new Point(146, 85);
+            lblName.Name = "lblName";
+            lblName.Size = new Size(52, 20);
+            lblName.TabIndex = 8;
+            lblName.Text = "Name:";
             // 
             // btnReorder
             // 
@@ -204,6 +235,7 @@
             btnBack.TabIndex = 3;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
             // 
             // lblWelcome
             // 
@@ -215,55 +247,44 @@
             lblWelcome.TabIndex = 2;
             lblWelcome.Text = "Welcome, User!";
             // 
-            // label5
+            // btnCancel
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(146, 167);
-            label5.Name = "label5";
-            label5.Size = new Size(114, 20);
-            label5.TabIndex = 8;
-            label5.Text = "Customer Since:";
+            btnCancel.Font = new Font("Trebuchet MS", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCancel.Location = new Point(3, 331);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(337, 55);
+            btnCancel.TabIndex = 10;
+            btnCancel.Text = "Cancel Order";
+            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
-            // btnEditAccount
+            // btnOrder
             // 
-            btnEditAccount.Font = new Font("Trebuchet MS", 9F, FontStyle.Bold);
-            btnEditAccount.Location = new Point(12, 85);
-            btnEditAccount.Name = "btnEditAccount";
-            btnEditAccount.Size = new Size(128, 61);
-            btnEditAccount.TabIndex = 9;
-            btnEditAccount.Text = "Edit Info";
-            btnEditAccount.UseVisualStyleBackColor = true;
+            btnOrder.Font = new Font("Trebuchet MS", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnOrder.Location = new Point(3, 392);
+            btnOrder.Name = "btnOrder";
+            btnOrder.Size = new Size(337, 55);
+            btnOrder.TabIndex = 9;
+            btnOrder.Text = "Start New Order";
+            btnOrder.UseVisualStyleBackColor = true;
+            btnOrder.Click += btnOrder_Click;
             // 
-            // btnDeleteAccount
+            // txtTotal
             // 
-            btnDeleteAccount.Font = new Font("Trebuchet MS", 9F, FontStyle.Bold);
-            btnDeleteAccount.Location = new Point(12, 163);
-            btnDeleteAccount.Name = "btnDeleteAccount";
-            btnDeleteAccount.Size = new Size(128, 29);
-            btnDeleteAccount.TabIndex = 10;
-            btnDeleteAccount.Text = "Delete Account";
-            btnDeleteAccount.UseVisualStyleBackColor = true;
+            txtTotal.Location = new Point(234, 284);
+            txtTotal.Name = "txtTotal";
+            txtTotal.ReadOnly = true;
+            txtTotal.Size = new Size(97, 27);
+            txtTotal.TabIndex = 8;
             // 
-            // label6
+            // label7
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.Maroon;
-            label6.Location = new Point(3, 9);
-            label6.Name = "label6";
-            label6.Size = new Size(155, 26);
-            label6.TabIndex = 4;
-            label6.Text = "Current Order:";
-            // 
-            // lblOrderStatus
-            // 
-            lblOrderStatus.AutoSize = true;
-            lblOrderStatus.Font = new Font("Trebuchet MS", 7.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblOrderStatus.Location = new Point(183, 15);
-            lblOrderStatus.Name = "lblOrderStatus";
-            lblOrderStatus.Size = new Size(69, 18);
-            lblOrderStatus.TabIndex = 5;
-            lblOrderStatus.Text = "InProgress";
+            label7.AutoSize = true;
+            label7.Location = new Point(183, 287);
+            label7.Name = "label7";
+            label7.Size = new Size(45, 20);
+            label7.TabIndex = 7;
+            label7.Text = "Total:";
             // 
             // lstviewCurOrder
             // 
@@ -275,7 +296,7 @@
             lstviewCurOrder.Location = new Point(3, 37);
             lstviewCurOrder.MultiSelect = false;
             lstviewCurOrder.Name = "lstviewCurOrder";
-            lstviewCurOrder.Size = new Size(337, 155);
+            lstviewCurOrder.Size = new Size(337, 241);
             lstviewCurOrder.TabIndex = 6;
             lstviewCurOrder.TabStop = false;
             lstviewCurOrder.UseCompatibleStateImageBehavior = false;
@@ -291,48 +312,43 @@
             colNameItem.Text = "Item Name";
             colNameItem.Width = 140;
             // 
-            // colPrice
-            // 
-            colPrice.Text = "$__.__";
-            colPrice.Width = 55;
-            // 
             // colAllergy
             // 
             colAllergy.Text = "Allergy";
             colAllergy.Width = 70;
             // 
-            // label7
+            // colPrice
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(183, 200);
-            label7.Name = "label7";
-            label7.Size = new Size(45, 20);
-            label7.TabIndex = 7;
-            label7.Text = "Total:";
+            colPrice.Text = "$__.__";
+            colPrice.Width = 55;
             // 
-            // txtTotal
+            // lblOrderStatus
             // 
-            txtTotal.Location = new Point(234, 197);
-            txtTotal.Name = "txtTotal";
-            txtTotal.ReadOnly = true;
-            txtTotal.Size = new Size(97, 27);
-            txtTotal.TabIndex = 8;
+            lblOrderStatus.Font = new Font("Trebuchet MS", 7.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblOrderStatus.Location = new Point(183, 15);
+            lblOrderStatus.Name = "lblOrderStatus";
+            lblOrderStatus.Size = new Size(157, 18);
+            lblOrderStatus.TabIndex = 5;
+            lblOrderStatus.Text = "InProgress";
+            lblOrderStatus.TextAlign = ContentAlignment.TopRight;
             // 
-            // button1
+            // label6
             // 
-            button1.Font = new Font("Trebuchet MS", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(3, 229);
-            button1.Name = "button1";
-            button1.Size = new Size(337, 218);
-            button1.TabIndex = 9;
-            button1.Text = "Start New Order";
-            button1.UseVisualStyleBackColor = true;
+            label6.AutoSize = true;
+            label6.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.Maroon;
+            label6.Location = new Point(3, 9);
+            label6.Name = "label6";
+            label6.Size = new Size(155, 26);
+            label6.TabIndex = 4;
+            label6.Text = "Current Order:";
             // 
             // CustomerHomeForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Bisque;
+            CancelButton = btnBack;
             ClientSize = new Size(792, 450);
             ControlBox = false;
             Controls.Add(splitContainer1);
@@ -363,10 +379,10 @@
         private ColumnHeader colCount;
         private ColumnHeader colCost;
         private ColumnHeader colDateCreated;
-        private Label label4;
-        private Label label3;
+        private Label lblName;
+        private Label lblEmail;
         private Label label2;
-        private Label label5;
+        private Label lblCreationDate;
         private Button btnDeleteAccount;
         private Button btnEditAccount;
         private ListView lstviewCurOrder;
@@ -378,6 +394,7 @@
         private ColumnHeader colPrice;
         private TextBox txtTotal;
         private Label label7;
-        private Button button1;
+        private Button btnOrder;
+        private Button btnCancel;
     }
 }

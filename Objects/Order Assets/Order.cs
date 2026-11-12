@@ -14,7 +14,8 @@ namespace OliveBranchBakes.Objects
         Recieved,
         InProgress,
         Ready,
-        Completed
+        Completed,
+        Cancelled
     }
     public class Order
     {
@@ -22,6 +23,16 @@ namespace OliveBranchBakes.Objects
 
         private List<OrderItemGroup> itemGroups;
         public int Count => itemGroups.Count;
+        public int ItemCount
+        {
+            get
+            {
+                int num = 0;
+                foreach (OrderItemGroup group in itemGroups)
+                    num += group.Count;
+                return num;
+            }
+        }
         public int Number { get; init; }
         public Account CustomerAccount { get; set; }
         public string GuestName { get; set; } = "";

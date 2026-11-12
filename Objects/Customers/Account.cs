@@ -36,6 +36,30 @@ namespace OliveBranchBakes.Objects.Customers
             AccountID = accountID;
         }
 
+        // Look through all orders and return a list of orders attatched to the user
+        public List<Order> GetOwnedOrders()
+        {
+            List<Order> result = new();
+            List<Order> ordersAll = DataManagement.GetOrders();
+            foreach (Order o in ordersAll)
+            {
+                if (o.CustomerAccount != null && o.CustomerAccount.AccountID == this.AccountID)
+                {
+                    result.Add(o);
+                }
+            }
+
+            return result;
+        }
+        public Order? GetActiveOrder()
+        {
+            foreach (Order o in GetOwnedOrders())
+                if (o.Status != StatusEnum.Completed && o.Status != StatusEnum.Cancelled)
+                    return o;
+
+            return null;
+        }
+
         public string GetName() => Firstname + " " + LastName;
         private static string GetPath(int accountID) => $@"{pathStart}{accountID.ToString("D8")}.txt";
         public void Save()
