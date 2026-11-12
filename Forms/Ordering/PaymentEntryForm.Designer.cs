@@ -58,7 +58,7 @@
             // 
             // btnConfirm
             // 
-            btnConfirm.Location = new Point(529, 265);
+            btnConfirm.Location = new Point(590, 264);
             btnConfirm.Name = "btnConfirm";
             btnConfirm.Size = new Size(94, 29);
             btnConfirm.TabIndex = 5;
@@ -78,7 +78,7 @@
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(346, 263);
+            btnBack.Location = new Point(346, 265);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(94, 29);
             btnBack.TabIndex = 4;
@@ -139,10 +139,10 @@
             dtpPickup.Checked = false;
             dtpPickup.CustomFormat = "MMM d',' yyyy',' h':00' tt";
             dtpPickup.Format = DateTimePickerFormat.Custom;
-            dtpPickup.Location = new Point(407, 231);
+            dtpPickup.Location = new Point(495, 231);
             dtpPickup.MinDate = new DateTime(2026, 10, 26, 0, 0, 0, 0);
             dtpPickup.Name = "dtpPickup";
-            dtpPickup.Size = new Size(214, 27);
+            dtpPickup.Size = new Size(189, 27);
             dtpPickup.TabIndex = 3;
             dtpPickup.Value = new DateTime(2026, 11, 8, 0, 0, 0, 0);
             dtpPickup.ValueChanged += dtpPickup_ValueChanged;
@@ -150,7 +150,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(346, 231);
+            label4.Location = new Point(434, 231);
             label4.Name = "label4";
             label4.Size = new Size(55, 20);
             label4.TabIndex = 6;
@@ -169,13 +169,13 @@
             // 
             txtNameFirst.Location = new Point(407, 37);
             txtNameFirst.Name = "txtNameFirst";
-            txtNameFirst.Size = new Size(82, 27);
+            txtNameFirst.Size = new Size(113, 27);
             txtNameFirst.TabIndex = 0;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(497, 40);
+            label6.Location = new Point(527, 40);
             label6.Name = "label6";
             label6.Size = new Size(38, 20);
             label6.TabIndex = 6;
@@ -183,9 +183,9 @@
             // 
             // txtNameLast
             // 
-            txtNameLast.Location = new Point(541, 37);
+            txtNameLast.Location = new Point(571, 37);
             txtNameLast.Name = "txtNameLast";
-            txtNameLast.Size = new Size(82, 27);
+            txtNameLast.Size = new Size(113, 27);
             txtNameLast.TabIndex = 1;
             // 
             // label2
@@ -201,7 +201,7 @@
             // 
             txtEmail.Location = new Point(407, 80);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(82, 27);
+            txtEmail.Size = new Size(145, 27);
             txtEmail.TabIndex = 2;
             // 
             // listviewOrder
@@ -252,7 +252,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(497, 83);
+            label8.Location = new Point(552, 83);
             label8.Name = "label8";
             label8.Size = new Size(23, 20);
             label8.TabIndex = 12;
@@ -263,9 +263,9 @@
             cmmbEmail.DropDownStyle = ComboBoxStyle.DropDownList;
             cmmbEmail.FormattingEnabled = true;
             cmmbEmail.Items.AddRange(new object[] { "gmail.com", "hotmail.com", "icloud.com", "outlook.com", "yahoo.com" });
-            cmmbEmail.Location = new Point(518, 80);
+            cmmbEmail.Location = new Point(571, 80);
             cmmbEmail.Name = "cmmbEmail";
-            cmmbEmail.Size = new Size(105, 28);
+            cmmbEmail.Size = new Size(113, 28);
             cmmbEmail.TabIndex = 13;
             // 
             // rtbComments
@@ -273,7 +273,7 @@
             rtbComments.Location = new Point(346, 113);
             rtbComments.Name = "rtbComments";
             rtbComments.ReadOnly = true;
-            rtbComments.Size = new Size(277, 112);
+            rtbComments.Size = new Size(338, 112);
             rtbComments.TabIndex = 14;
             rtbComments.TabStop = false;
             rtbComments.Text = "";
@@ -284,7 +284,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnBack;
-            ClientSize = new Size(633, 305);
+            ClientSize = new Size(686, 305);
             ControlBox = false;
             Controls.Add(rtbComments);
             Controls.Add(cmmbEmail);

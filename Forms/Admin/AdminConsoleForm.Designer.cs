@@ -369,7 +369,6 @@
         private ColumnHeader colScheduled;
         private ColumnHeader colStatus;
         private ColumnHeader colOrderNum;
-        private Button button3;
         private Button btnAdd;
         private Button btnDelete;
         private Button btnEdit;

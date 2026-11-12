@@ -93,24 +93,26 @@
             splitContainer1.Panel2.Controls.Add(lstviewCurOrder);
             splitContainer1.Panel2.Controls.Add(lblOrderStatus);
             splitContainer1.Panel2.Controls.Add(label6);
-            splitContainer1.Size = new Size(792, 450);
-            splitContainer1.SplitterDistance = 445;
+            splitContainer1.Size = new Size(792, 451);
+            splitContainer1.SplitterDistance = 444;
+            splitContainer1.SplitterWidth = 5;
             splitContainer1.TabIndex = 0;
             // 
             // btnDeleteAccount
             // 
             btnDeleteAccount.Font = new Font("Trebuchet MS", 9F, FontStyle.Bold);
-            btnDeleteAccount.Location = new Point(12, 163);
+            btnDeleteAccount.Location = new Point(11, 163);
             btnDeleteAccount.Name = "btnDeleteAccount";
             btnDeleteAccount.Size = new Size(128, 29);
             btnDeleteAccount.TabIndex = 10;
             btnDeleteAccount.Text = "Delete Account";
             btnDeleteAccount.UseVisualStyleBackColor = true;
+            btnDeleteAccount.Click += btnDeleteAccount_Click;
             // 
             // btnEditAccount
             // 
             btnEditAccount.Font = new Font("Trebuchet MS", 9F, FontStyle.Bold);
-            btnEditAccount.Location = new Point(12, 85);
+            btnEditAccount.Location = new Point(11, 85);
             btnEditAccount.Name = "btnEditAccount";
             btnEditAccount.Size = new Size(128, 61);
             btnEditAccount.TabIndex = 9;
@@ -129,7 +131,7 @@
             // lblEmail
             // 
             lblEmail.AutoSize = true;
-            lblEmail.Location = new Point(146, 126);
+            lblEmail.Location = new Point(146, 125);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(55, 20);
             lblEmail.TabIndex = 8;
@@ -153,16 +155,18 @@
             btnReorder.TabIndex = 7;
             btnReorder.Text = "Re-Order";
             btnReorder.UseVisualStyleBackColor = true;
+            btnReorder.Click += btnReorder_Click;
             // 
             // btnDetails
             // 
             btnDetails.Font = new Font("Trebuchet MS", 9F, FontStyle.Bold);
-            btnDetails.Location = new Point(348, 392);
+            btnDetails.Location = new Point(347, 392);
             btnDetails.Name = "btnDetails";
             btnDetails.Size = new Size(94, 55);
             btnDetails.TabIndex = 6;
             btnDetails.Text = "Details";
             btnDetails.UseVisualStyleBackColor = true;
+            btnDetails.Click += btnDetails_Click;
             // 
             // lstviewPrevOrders
             // 
@@ -209,7 +213,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Maroon;
-            label2.Location = new Point(3, 46);
+            label2.Location = new Point(3, 45);
             label2.Name = "label2";
             label2.Size = new Size(137, 26);
             label2.TabIndex = 4;
@@ -243,7 +247,7 @@
             lblWelcome.ForeColor = Color.Maroon;
             lblWelcome.Location = new Point(3, 8);
             lblWelcome.Name = "lblWelcome";
-            lblWelcome.Size = new Size(339, 38);
+            lblWelcome.Size = new Size(339, 37);
             lblWelcome.TabIndex = 2;
             lblWelcome.Text = "Welcome, User!";
             // 
@@ -327,7 +331,7 @@
             lblOrderStatus.Font = new Font("Trebuchet MS", 7.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
             lblOrderStatus.Location = new Point(183, 15);
             lblOrderStatus.Name = "lblOrderStatus";
-            lblOrderStatus.Size = new Size(157, 18);
+            lblOrderStatus.Size = new Size(157, 19);
             lblOrderStatus.TabIndex = 5;
             lblOrderStatus.Text = "InProgress";
             lblOrderStatus.TextAlign = ContentAlignment.TopRight;
@@ -347,9 +351,10 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
             BackColor = Color.Bisque;
             CancelButton = btnBack;
-            ClientSize = new Size(792, 450);
+            ClientSize = new Size(792, 451);
             ControlBox = false;
             Controls.Add(splitContainer1);
             FormBorderStyle = FormBorderStyle.FixedSingle;

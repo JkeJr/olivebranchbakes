@@ -107,7 +107,7 @@ namespace OliveBranchBakes.Forms.Login
         {
             if (ActiveOrder != null)
             {
-                DialogResult dialogResult = MessageBox.Show("Are you sure you want to cancel this order?","Confirm Cancelation", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to cancel this order?", "Confirm Cancelation", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                     ActiveOrder.Status = StatusEnum.Cancelled;
@@ -128,7 +128,65 @@ namespace OliveBranchBakes.Forms.Login
             }
             else
             {
-                MessageBox.Show("There is no active order to cancel.","No Active Order");
+                MessageBox.Show("There is no active order to cancel.", "No Active Order");
+            }
+        }
+
+        private void btnDetails_Click(object sender, EventArgs e)
+        {
+            if (lstviewPrevOrders.Items.Count == 0)
+                MessageBox.Show("Order list is empty.", "No Orders");
+            else if (lstviewPrevOrders.SelectedItems.Count == 0)
+                MessageBox.Show("Please select an order to view.", "No order selected");
+            else
+            {
+                List<Order> orders = DataManagement.GetOrders();
+                int orderID = Convert.ToInt32(lstviewPrevOrders.SelectedItems[0].SubItems[0].Text);
+
+                foreach (Order o in orders)
+                    if (o.Number == orderID)
+                        MessageBox.Show(o.GetDisplayText(), "Order Summary");
+            }
+        }
+
+        private void btnReorder_Click(object sender, EventArgs e)
+        {
+            if (ActiveOrder == null)
+            {
+                if (lstviewPrevOrders.Items.Count == 0)
+                    MessageBox.Show("Order list is empty.", "No Orders");
+                else if (lstviewPrevOrders.SelectedItems.Count == 0)
+                    MessageBox.Show("Please select an order.", "No order selected");
+                else
+                {
+                    List<Order> orders = DataManagement.GetOrders();
+                    int orderID = Convert.ToInt32(lstviewPrevOrders.SelectedItems[0].SubItems[0].Text);
+
+                    foreach (Order o in orders)
+                        if (o.Number == orderID)
+                        {
+                            this.Close();
+                            new OrderForm(User, o).Show();
+                        }
+                }
+            }
+            else
+                MessageBox.Show("Users with a currently active order cannot make a new order.\n\n" +
+                    $"Either cancel current order or allow active order ({ActiveOrder.Number.ToString("D8")}) to be completed.",
+                    "Cannot Make Order");
+        }
+
+        private void btnDeleteAccount_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show($"Are you sure you want to delete your account, {User.Firstname}?",
+                                                    "Confirm Deletion",MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                User.Delete();
+                AccountManagement.SaveAccounts(AccountManagement.GetAccounts());
+
+                this.Close();
+                WelcomeForm.Current!.Show();
             }
         }
     }

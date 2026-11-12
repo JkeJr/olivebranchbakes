@@ -40,41 +40,44 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(11, 19);
+            label1.Location = new Point(10, 14);
             label1.Name = "label1";
-            label1.Size = new Size(76, 20);
+            label1.Size = new Size(62, 15);
             label1.TabIndex = 0;
             label1.Text = "username:";
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(94, 15);
+            txtUsername.Location = new Point(82, 11);
+            txtUsername.Margin = new Padding(3, 2, 3, 2);
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(163, 27);
+            txtUsername.Size = new Size(143, 23);
             txtUsername.TabIndex = 0;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(11, 59);
+            label2.Location = new Point(10, 44);
             label2.Name = "label2";
-            label2.Size = new Size(75, 20);
+            label2.Size = new Size(60, 15);
             label2.TabIndex = 0;
             label2.Text = "password:";
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(94, 56);
+            txtPassword.Location = new Point(82, 42);
+            txtPassword.Margin = new Padding(3, 2, 3, 2);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(163, 27);
+            txtPassword.Size = new Size(143, 23);
             txtPassword.TabIndex = 1;
             txtPassword.UseSystemPasswordChar = true;
             // 
             // btnEnter
             // 
-            btnEnter.Location = new Point(163, 92);
+            btnEnter.Location = new Point(143, 69);
+            btnEnter.Margin = new Padding(3, 2, 3, 2);
             btnEnter.Name = "btnEnter";
-            btnEnter.Size = new Size(94, 29);
+            btnEnter.Size = new Size(82, 22);
             btnEnter.TabIndex = 2;
             btnEnter.Text = "Login";
             btnEnter.UseVisualStyleBackColor = true;
@@ -82,10 +85,9 @@
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(14, 152);
-            btnBack.Margin = new Padding(3, 4, 3, 4);
+            btnBack.Location = new Point(12, 114);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(86, 31);
+            btnBack.Size = new Size(75, 23);
             btnBack.TabIndex = 3;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = true;
@@ -93,10 +95,9 @@
             // 
             // btnCreateAccount
             // 
-            btnCreateAccount.Location = new Point(163, 152);
-            btnCreateAccount.Margin = new Padding(3, 4, 3, 4);
+            btnCreateAccount.Location = new Point(143, 114);
             btnCreateAccount.Name = "btnCreateAccount";
-            btnCreateAccount.Size = new Size(94, 31);
+            btnCreateAccount.Size = new Size(82, 23);
             btnCreateAccount.TabIndex = 4;
             btnCreateAccount.Text = "Sign Up";
             btnCreateAccount.UseVisualStyleBackColor = true;
@@ -105,10 +106,11 @@
             // LoginForm
             // 
             AcceptButton = btnEnter;
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
             CancelButton = btnBack;
-            ClientSize = new Size(271, 199);
+            ClientSize = new Size(237, 149);
             ControlBox = false;
             Controls.Add(btnCreateAccount);
             Controls.Add(btnBack);
@@ -118,6 +120,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "LoginForm";
             Text = "LoginForm";
             ResumeLayout(false);

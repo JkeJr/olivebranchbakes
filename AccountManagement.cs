@@ -53,7 +53,7 @@ namespace OliveBranchBakes
             foreach (Account account in accounts)
             {
                 textOut.Write(account.AccountID.ToString("D8") + Delimiter);
-                textOut.Write(account.AccountType + Delimiter);
+                textOut.Write(account.Type.ToString() + Delimiter);
                 textOut.WriteLine(account.UserName);
             }
         }

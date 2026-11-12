@@ -44,7 +44,10 @@ namespace OliveBranchBakes.Forms
             cmbboxFilter.SelectedIndex = 0;
 
             items.Fill();
+            rtxtComments.Text = order.Comments;
+
             FillItemListBox();
+            FillOrderBox();
         }
 
         public OrderForm()
@@ -57,6 +60,12 @@ namespace OliveBranchBakes.Forms
             Guest = false;
             //AccountNumber = accountNum;
             order.CustomerAccount = user;
+            InitializeComponent();
+        }
+        public OrderForm(Account user, Order order)
+        {
+            Guest = false;
+            this.order = order;
             InitializeComponent();
         }
 

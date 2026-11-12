@@ -24,6 +24,24 @@ namespace OliveBranchBakes.Forms.Payment
 
             rtbComments.Text = order.Comments;
 
+            // If customer is an account holder, autofill contact info
+            if (order.CustomerAccount != null)
+            {
+                txtNameFirst.Text = order.CustomerAccount.Firstname;
+                txtNameLast.Text = order.CustomerAccount.LastName;
+                txtNameFirst.ReadOnly = true;
+                txtNameLast.ReadOnly = true;
+
+                // email@domain.com
+                string email = order.CustomerAccount.Email;
+                string emailName = email.Substring(0, email.LastIndexOf('@'));
+                string emailDomain = email.Substring(email.LastIndexOf('@') + 1);
+                txtEmail.Text = emailName;
+                cmmbEmail.Text = emailDomain;
+                txtEmail.ReadOnly = true;
+                cmmbEmail.Enabled = false;
+            }
+
             FillOrderBox();
             FillTotalBox();
         }

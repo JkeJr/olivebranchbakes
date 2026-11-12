@@ -396,7 +396,6 @@
         private Label label5;
         private ListBox lbAllergens;
         private Button btnAddAllergy;
-        private Button button1;
         private Button btnRemoveAllergy;
         private ListBox lbCategories;
         private Button btnClearCategories;

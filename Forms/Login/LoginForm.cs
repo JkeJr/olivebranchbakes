@@ -12,7 +12,7 @@ namespace OliveBranchBakes.Forms
 {
     public partial class LoginForm : Form
     {
-        private string? AccountType { get; set; }
+        //private string? AccountType { get; set; }
         private int AccountID { get; set; }
 
         private Account account;
@@ -25,7 +25,6 @@ namespace OliveBranchBakes.Forms
         public Account Login()
         {
             this.ShowDialog();
-
             return account;
         }
 
@@ -44,15 +43,32 @@ namespace OliveBranchBakes.Forms
                 }
 
             if (found)
-                this.Close();
+            {
+                if (account.Type == AccountType.Inactive)
+                {
+                    MessageBox.Show("Account has been deleted.\n\n" +
+                                    "If this is a mistake, contact admin.", "Login Error");
+                    txtUsername.Text = "";
+                    txtPassword.Text = "";
+                }
+                else
+                    this.Close();
+            }
             else
-                MessageBox.Show("Incorrect Username or Password","Login Error");
+            {
+                MessageBox.Show("Incorrect Username or Password", "Login Error");
+                txtUsername.Text = "";
+                txtPassword.Text = "";
+            }
         }
         // Sign Up
         private void btnCreateAccount_Click(object sender, EventArgs e)
         {
             CreateAccountForm createAccountForm = new();
             createAccountForm.CreateAccount();
+
+            txtUsername.Text = "";
+            txtPassword.Text = "";
         }
 
         private void btnBack_Click(object sender, EventArgs e)

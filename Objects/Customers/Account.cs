@@ -1,11 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.DirectoryServices;
 using System.Text;
 using System.Web;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace OliveBranchBakes.Objects.Customers
 {
+    public enum AccountType
+    {
+        Customer,
+        Admin,
+        Inactive
+    }
     public class Account
     {
         private static string pathStart => $@"..\..\..\Documents\Accounts\";
@@ -16,7 +23,7 @@ namespace OliveBranchBakes.Objects.Customers
         public string Password { get; set; }
         public string Email { get; set; }
         public int AccountID { get; init; }
-        public string AccountType { get; set; }
+        public AccountType Type { get; set; }
         public DateTime DateJoined { get; set; }
 
         public Account()
@@ -71,7 +78,7 @@ namespace OliveBranchBakes.Objects.Customers
             textOut.Write(Firstname + "|");
             textOut.WriteLine(LastName + "|");
             textOut.WriteLine(DateJoined.ToShortDateString());
-            textOut.WriteLine(AccountType);
+            textOut.WriteLine(Type.ToString());
             textOut.WriteLine(Email);
             textOut.WriteLine(UserName);
             textOut.WriteLine(Password);
@@ -98,13 +105,29 @@ namespace OliveBranchBakes.Objects.Customers
                 Firstname = name[0],
                 LastName = name[1],
                 DateJoined = new DateTime(Convert.ToInt16(dateJoined[2]), Convert.ToInt16(dateJoined[0]), Convert.ToInt16(dateJoined[1])),
-                AccountType = lines[2],
+                Type = (AccountType)Enum.Parse(typeof(AccountType), lines[2]),
                 Email = lines[3],
                 UserName = lines[4],
                 Password = lines[5],
             };
 
             return account;
+        }
+
+        // Doesn't actually delete the account, but it sets it to a deactivated state
+        public void Delete()
+        {
+            this.Type = AccountType.Inactive;
+
+            Order activeOrder = GetActiveOrder();
+            if (activeOrder != null)
+            {
+                activeOrder.Status = StatusEnum.Cancelled;
+                activeOrder.Save();
+                DataManagement.SaveOrders(DataManagement.GetOrders());
+            }
+
+            Save();
         }
 
         public bool Equals(Account account)

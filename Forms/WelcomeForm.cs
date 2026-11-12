@@ -34,12 +34,12 @@ namespace OliveBranchBakes
 
             if (account != null)
             {
-                if (account.AccountType == "Admin")
+                if (account.Type == AccountType.Admin)
                 {
                     new AdminConsoleForm().Show();
                     this.Hide();
                 }
-                else if (account.AccountType == "Customer")
+                else if (account.Type == AccountType.Customer)
                 {
                     new CustomerHomeForm(account).Show();
                     this.Hide();

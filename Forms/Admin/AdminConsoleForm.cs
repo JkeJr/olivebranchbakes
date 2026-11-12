@@ -163,7 +163,7 @@ namespace OliveBranchBakes.Forms
                 ListViewItem viewItem = new(account.AccountID.ToString("D8"));
                 viewItem.SubItems.Add(account.GetName());
                 viewItem.SubItems.Add(account.DateJoined.ToShortDateString());
-                viewItem.SubItems.Add(account.AccountType);
+                viewItem.SubItems.Add(account.Type.ToString());
 
                 listviewAccounts.Items.Add(viewItem);
             }
@@ -178,7 +178,7 @@ namespace OliveBranchBakes.Forms
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
-            WelcomeForm.Current.Show();
+            WelcomeForm.Current!.Show();
         }
 
         private void btnDetails_Click(object sender, EventArgs e)
@@ -206,11 +206,8 @@ namespace OliveBranchBakes.Forms
             }
             else
             {
-                List<Order> globalOrders = DataManagement.GetOrders();
-                int i = listviewOrders.Items.IndexOf(listviewOrders.SelectedItems[0]);
-
                 cmbbOrderStatus.Enabled = true;
-                cmbbOrderStatus.Text = globalOrders[i].Status.ToString();
+                cmbbOrderStatus.Text = listviewOrders.SelectedItems[0].SubItems[2].Text;
             }
         }
 
