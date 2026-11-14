@@ -118,6 +118,7 @@
             btnEditAccount.TabIndex = 9;
             btnEditAccount.Text = "Edit Info";
             btnEditAccount.UseVisualStyleBackColor = true;
+            btnEditAccount.Click += btnEditAccount_Click;
             // 
             // lblCreationDate
             // 

@@ -25,15 +25,18 @@ namespace OliveBranchBakes.Forms.Login
 
         private void CustomerHomeForm_Load(object sender, EventArgs e)
         {
-            lblWelcome.Text = $"Welcome, {User.UserName}";
-            lblName.Text = $"Name: {User.GetName()}";
-            lblEmail.Text = $"E-Mail: {User.Email}";
-            lblCreationDate.Text = $"Customer Since: {User.DateJoined.ToShortDateString()}";
-
+            FillUserInfo();
             FillOrderListBox();
             FillCurOrderBox();
         }
 
+        private void FillUserInfo()
+        {
+            lblWelcome.Text = $"Welcome, {User.UserName}";
+            lblName.Text = $"Name: {User.GetName()}";
+            lblEmail.Text = $"E-Mail: {User.Email}";
+            lblCreationDate.Text = $"Customer Since: {User.DateJoined.ToShortDateString()}";
+        }
         private void FillOrderListBox()
         {
             List<Order> orders = User.GetOwnedOrders();
@@ -179,7 +182,7 @@ namespace OliveBranchBakes.Forms.Login
         private void btnDeleteAccount_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show($"Are you sure you want to delete your account, {User.Firstname}?",
-                                                    "Confirm Deletion",MessageBoxButtons.YesNo);
+                                                    "Confirm Deletion", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 User.Delete();
@@ -188,6 +191,12 @@ namespace OliveBranchBakes.Forms.Login
                 this.Close();
                 WelcomeForm.Current!.Show();
             }
+        }
+
+        private void btnEditAccount_Click(object sender, EventArgs e)
+        {
+            new CreateAccountForm().EditAccount(User);
+            FillUserInfo();
         }
     }
 }

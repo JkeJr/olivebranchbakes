@@ -172,6 +172,15 @@ namespace OliveBranchBakes.Objects
             return order;
         }
 
+        /// <summary>
+        /// Deletes the file associated with this order, if it exists
+        /// </summary>
+        public void Delete()
+        {
+            if (File.Exists(GetPath(Number)))
+                File.Delete(GetPath(Number));
+        }
+
         // Finds the index of an OrderItem in items that matches the name and allergy
         // Returns -1 if not found
         public int IndexOf(OrderItem item, Allergen allergen)

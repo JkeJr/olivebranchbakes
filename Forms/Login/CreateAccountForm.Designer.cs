@@ -43,6 +43,7 @@
             label7 = new Label();
             txtUsername = new TextBox();
             txtPassword = new TextBox();
+            btnEye = new Button();
             SuspendLayout();
             // 
             // label1
@@ -178,6 +179,16 @@
             txtPassword.TabIndex = 1;
             txtPassword.UseSystemPasswordChar = true;
             // 
+            // btnEye
+            // 
+            btnEye.Location = new Point(289, 32);
+            btnEye.Name = "btnEye";
+            btnEye.Size = new Size(30, 29);
+            btnEye.TabIndex = 8;
+            btnEye.Text = "👁";
+            btnEye.UseVisualStyleBackColor = true;
+            btnEye.Click += btnEye_Click;
+            // 
             // CreateAccountForm
             // 
             AcceptButton = btnEnter;
@@ -186,6 +197,7 @@
             CancelButton = btnCancel;
             ClientSize = new Size(387, 223);
             ControlBox = false;
+            Controls.Add(btnEye);
             Controls.Add(txtPassword);
             Controls.Add(txtUsername);
             Controls.Add(btnEnter);
@@ -225,5 +237,6 @@
         private Label label7;
         private TextBox txtUsername;
         private TextBox txtPassword;
+        private Button btnEye;
     }
 }

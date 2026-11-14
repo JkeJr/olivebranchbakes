@@ -1,10 +1,12 @@
-﻿using OliveBranchBakes.Objects.Customers;
+﻿using OliveBranchBakes.Objects;
+using OliveBranchBakes.Objects.Customers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Security.Cryptography;
+using System.Security.Principal;
 using System.Text;
 using System.Windows.Forms;
 
@@ -12,6 +14,8 @@ namespace OliveBranchBakes.Forms.Login
 {
     public partial class CreateAccountForm : Form
     {
+        Account User;
+
         public CreateAccountForm()
         {
             InitializeComponent();
@@ -19,6 +23,26 @@ namespace OliveBranchBakes.Forms.Login
 
         public void CreateAccount()
         {
+            this.ShowDialog();
+        }
+
+        public void EditAccount(Account userAccount)
+        {
+            User = userAccount;
+            txtUsername.Text = User.UserName;
+            txtPassword.Text = User.Password;
+            txtPassword.ReadOnly = true;
+
+            txtFirstName.Text = User.Firstname;
+            txtLastName.Text = User.LastName;
+
+            // email@domain.com
+            string email = User.Email;
+            string emailName = email.Substring(0, email.LastIndexOf('@'));
+            string emailDomain = email.Substring(email.LastIndexOf('@') + 1);
+            txtEmail.Text = emailName;
+            cmbbEmail.Text = emailDomain;
+
             this.ShowDialog();
         }
 
@@ -37,23 +61,42 @@ namespace OliveBranchBakes.Forms.Login
                 }
                 else
                 {
-                    Account account = new()
+                    // If creating account
+                    if (User == null)
                     {
-                        UserName = txtUsername.Text,
-                        Password = txtPassword.Text,
-                        Email = $"{txtEmail.Text}@{cmbbEmail.Text}",
-                        Firstname = txtFirstName.Text,
-                        LastName = txtLastName.Text,
-                        Type = AccountType.Customer,
-                        DateJoined = DateTime.Today
-                    };
-                    account.Save();
-                    List<Account> accounts = AccountManagement.GetAccounts();
-                    accounts.Add(account);
-                    AccountManagement.SaveAccounts(accounts);
+                        User = new()
+                        {
+                            UserName = txtUsername.Text,
+                            Password = txtPassword.Text,
+                            Email = $"{txtEmail.Text}@{cmbbEmail.Text}",
+                            Firstname = txtFirstName.Text,
+                            LastName = txtLastName.Text,
+                            Type = AccountType.Customer,
+                            DateJoined = DateTime.Today
+                        };
 
-                    MessageBox.Show($"Your account has been created, {account.Firstname}.\n" +
-                        "Please login with your new credentials.", "Account Created");
+                        User.Save();
+                        List<Account> accounts = AccountManagement.GetAccounts();
+                        accounts.Add(User);
+                        AccountManagement.SaveAccounts(accounts);
+
+                        MessageBox.Show($"Your account has been created, {User.Firstname}.\n" +
+                                        "Please login with your new credentials.", "Account Created");
+                        
+                    }
+                    // If editing account
+                    else
+                    {
+                        User.UserName = txtUsername.Text;
+                        User.Firstname = txtFirstName.Text;
+                        User.LastName = txtLastName.Text;
+                        User.Email = $"{txtEmail.Text}@{cmbbEmail.Text}";
+                        User.Save();
+
+                        AccountManagement.SaveAccounts(AccountManagement.GetAccounts());
+
+                        MessageBox.Show($"Your new info has been saved, {User.Firstname}.", "Info Edited");
+                    }
                     this.Close();
                 }
             }
@@ -82,6 +125,11 @@ namespace OliveBranchBakes.Forms.Login
                 MessageBox.Show(errorMessage, "Entry Error");
             }
             return success;
+        }
+
+        private void btnEye_Click(object sender, EventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar = !txtPassword.UseSystemPasswordChar;
         }
     }
 }

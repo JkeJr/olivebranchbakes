@@ -271,6 +271,7 @@ namespace OliveBranchBakes.Forms
         private void cmbboxFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             chkboxAllergy.Checked = false;
+            chkboxAllergy.Enabled = false;
             cmbboxAllergy.Enabled = false;
             FillItemListBox();
         }

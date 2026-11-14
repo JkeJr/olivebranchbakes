@@ -236,6 +236,8 @@ namespace OliveBranchBakes.Forms
                 int i = listviewOrders.Items.IndexOf(listviewOrders.SelectedItems[0]);
 
                 globalOrders.RemoveAt(i);
+                globalOrders[i].Delete();
+
                 DataManagement.SaveOrders(globalOrders);
 
                 cmbbOrderStatus.Enabled = false;
