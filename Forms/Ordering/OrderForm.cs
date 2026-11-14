@@ -203,7 +203,10 @@ namespace OliveBranchBakes.Forms
             else if (paymentEntry.ConfirmOrder(order))
             {
                 this.Close();
-                WelcomeForm.Current!.Show();
+                if (Guest)
+                    WelcomeForm.Current!.Show();
+                else
+                    new CustomerHomeForm(order.CustomerAccount).Show();
             }
         }
 

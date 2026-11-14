@@ -173,7 +173,10 @@ namespace OliveBranchBakes.Objects
                 if (File.Exists(Account.GetPath(Convert.ToInt32(info[0]))))
                     order.CustomerAccount = Account.Load(Convert.ToInt32(info[0]));
                 else
+                {
                     order.GuestName = "Deleted User";
+                    order.Status = StatusEnum.Cancelled;
+                }
             else
                 order.GuestName = info[0];
 

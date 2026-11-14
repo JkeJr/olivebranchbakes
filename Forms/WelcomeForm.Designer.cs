@@ -39,6 +39,7 @@
             lblWelcome.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblWelcome.AutoSize = true;
             lblWelcome.Font = new Font("Britannic Bold", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblWelcome.ForeColor = Color.Maroon;
             lblWelcome.Location = new Point(57, 30);
             lblWelcome.Name = "lblWelcome";
             lblWelcome.Size = new Size(677, 52);
@@ -52,7 +53,7 @@
             btnLoginGo.Location = new Point(57, 246);
             btnLoginGo.Name = "btnLoginGo";
             btnLoginGo.Size = new Size(231, 98);
-            btnLoginGo.TabIndex = 1;
+            btnLoginGo.TabIndex = 0;
             btnLoginGo.Text = "Login";
             btnLoginGo.UseVisualStyleBackColor = true;
             btnLoginGo.Click += btnLoginGo_Click;
@@ -72,6 +73,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Trebuchet MS", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.DarkRed;
             label1.Location = new Point(143, 82);
             label1.Name = "label1";
             label1.Size = new Size(500, 36);
@@ -82,11 +84,13 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Bisque;
             ClientSize = new Size(800, 375);
             Controls.Add(label1);
             Controls.Add(btnGuest);
             Controls.Add(btnLoginGo);
             Controls.Add(lblWelcome);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "WelcomeForm";
             Text = "Welcome | Olive Branch Bakes";
             ResumeLayout(false);
