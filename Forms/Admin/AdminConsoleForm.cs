@@ -235,13 +235,19 @@ namespace OliveBranchBakes.Forms
                 List<Order> globalOrders = DataManagement.GetOrders();
                 int i = listviewOrders.Items.IndexOf(listviewOrders.SelectedItems[0]);
 
-                globalOrders.RemoveAt(i);
-                globalOrders[i].Delete();
+                DialogResult dialogResult = MessageBox.Show($"Are you sure you want to delete Order#:{globalOrders[i].Number}?",
+                                                            "Confirm Deletion", MessageBoxButtons.YesNo);
 
-                DataManagement.SaveOrders(globalOrders);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    globalOrders[i].Delete();
+                    globalOrders.RemoveAt(i);
 
-                cmbbOrderStatus.Enabled = false;
-                FillOrderListBox();
+                    DataManagement.SaveOrders(globalOrders);
+
+                    cmbbOrderStatus.Enabled = false;
+                    FillOrderListBox();
+                }
             }
         }
     }
