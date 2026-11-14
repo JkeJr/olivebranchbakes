@@ -68,7 +68,7 @@ namespace OliveBranchBakes.Objects.Customers
         }
 
         public string GetName() => Firstname + " " + LastName;
-        private static string GetPath(int accountID) => $@"{pathStart}{accountID.ToString("D8")}.txt";
+        public static string GetPath(int accountID) => $@"{pathStart}{accountID.ToString("D8")}.txt";
         public void Save()
         {
             using StreamWriter textOut =
@@ -113,9 +113,17 @@ namespace OliveBranchBakes.Objects.Customers
 
             return account;
         }
+        /// <summary>
+        /// Deletes the Account file if it exists
+        /// </summary>
+        public void Delete()
+        {
+            if (File.Exists(GetPath(this.AccountID)))
+                File.Delete(GetPath(this.AccountID));
+        }
 
         // Doesn't actually delete the account, but it sets it to a deactivated state
-        public void Delete()
+        public void Deactivate()
         {
             this.Type = AccountType.Inactive;
 
@@ -135,6 +143,30 @@ namespace OliveBranchBakes.Objects.Customers
             bool result = false;
             if (UserName == account.UserName && Password == account.Password)
                 result = true;
+            return result;
+        }
+
+        public string GetDisplayText()
+        {
+            // general
+            string result = $"Account Type: {Type}\n\n" +
+                            $"Name: {GetName()}\n" +
+                            $"Email: {Email}" +
+                            $"Account ID#: {AccountID.ToString("D8")}\n" +
+                            $"Date Joined: {DateJoined.ToShortDateString()}\n\n";
+            
+            // order count and cost
+            List<Order> ownedOrders = GetOwnedOrders();
+            int count = 0;
+            decimal cost = 0;
+            foreach (Order order in ownedOrders)
+            {
+                count++;
+                cost += order.Total;
+            }
+            result +=   $"Orders Made: {count}\n" +
+                        $"Total Money Spent: {cost.ToString("C")}";
+
             return result;
         }
     }

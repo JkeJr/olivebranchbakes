@@ -185,7 +185,7 @@ namespace OliveBranchBakes.Forms.Login
                                                     "Confirm Deletion", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                User.Delete();
+                User.Deactivate();
                 AccountManagement.SaveAccounts(AccountManagement.GetAccounts());
 
                 this.Close();

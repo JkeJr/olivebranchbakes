@@ -2,6 +2,7 @@
 using OliveBranchBakes.Objects;
 using OliveBranchBakes.Objects.Customers;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -34,7 +35,12 @@ namespace OliveBranchBakes.Forms
             cmbbOrderStatus.Items.Add(StatusEnum.Ready);
             cmbbOrderStatus.Items.Add(StatusEnum.Completed);
             cmbbOrderStatus.Items.Add(StatusEnum.Cancelled);
-            cmbbOrderStatus.ResetText();
+
+            cmbbAccountType.Enabled = false;
+            cmbbAccountType.Items.Add(AccountType.Customer);
+            cmbbAccountType.Items.Add(AccountType.Admin);
+            cmbbAccountType.Items.Add(AccountType.Inactive);
+
             lblDate.Text = DateRange.FormatDate(DateTime.Today);
         }
 
@@ -144,7 +150,8 @@ namespace OliveBranchBakes.Forms
             {
                 ListViewItem viewItem = new(order.Number.ToString("D8"));
                 if (order.CustomerAccount == null)
-                    viewItem.SubItems.Add($"G({order.GuestName})");
+
+                    viewItem.SubItems.Add($"*({order.GuestName})");
                 else
                     viewItem.SubItems.Add(order.CustomerAccount.GetName());
                 viewItem.SubItems.Add(order.Status.ToString());
@@ -226,10 +233,10 @@ namespace OliveBranchBakes.Forms
 
         private void btnDeleteOrder_Click(object sender, EventArgs e)
         {
-            if (listviewOrders.SelectedItems.Count == 0)
-            {
-                MessageBox.Show("Please select valid order to delete","Deletion Error");
-            }
+            if (listviewOrders.Items.Count == 0)
+                MessageBox.Show("Order list is empty.", "No Order");
+            else if (listviewOrders.SelectedItems.Count == 0)
+                MessageBox.Show("Please select an order to delete.", "No Order Selected");
             else
             {
                 List<Order> globalOrders = DataManagement.GetOrders();
@@ -248,6 +255,78 @@ namespace OliveBranchBakes.Forms
                     cmbbOrderStatus.Enabled = false;
                     FillOrderListBox();
                 }
+            }
+        }
+
+        private void btnDetailsAccount_Click(object sender, EventArgs e)
+        {
+            if (listviewAccounts.Items.Count == 0)
+                MessageBox.Show("Account list is empty.", "No Account");
+            else if (listviewAccounts.SelectedItems.Count == 0)
+                MessageBox.Show("Please select an account to view.", "No Account Selected");
+            else
+            {
+                List<Account> accounts = AccountManagement.GetAccounts();
+                int i = listviewAccounts.Items.IndexOf(listviewAccounts.SelectedItems[0]);
+
+                MessageBox.Show(accounts[i].GetDisplayText(), "Account Details");
+            }
+        }
+
+        private void btnDeleteAccount_Click(object sender, EventArgs e)
+        {
+            if (listviewAccounts.Items.Count == 0)
+                MessageBox.Show("Account list is empty.", "No Account");
+            else if (listviewAccounts.SelectedItems.Count == 0)
+                MessageBox.Show("Please select an account to delete.", "No Account Selected");
+            else
+            {
+                List<Account> globalAccounts = AccountManagement.GetAccounts();
+                int i = listviewAccounts.Items.IndexOf(listviewAccounts.SelectedItems[0]);
+
+                Account account = globalAccounts[i];
+                DialogResult dialogResult = MessageBox.Show(
+                            $"Are you sure you want to delete {account.Type} account ID#{account.AccountID}?",
+                            "Confirm Deletion", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    account.Delete();
+                    globalAccounts.RemoveAt(i);
+
+                    AccountManagement.SaveAccounts(globalAccounts);
+
+                    cmbbAccountType.Enabled = false;
+                    FillOrderListBox();
+                    FillAccountListBox();
+                }
+            }
+        }
+
+        private void cmbbAccountType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<Account> globalAccounts = AccountManagement.GetAccounts();
+            int i = listviewAccounts.Items.IndexOf(listviewAccounts.SelectedItems[0]);
+
+            globalAccounts[i].Type = (AccountType)Enum.Parse(typeof(AccountType), cmbbAccountType.Text);
+            globalAccounts[i].Save();
+
+            AccountManagement.SaveAccounts(globalAccounts);
+
+            listviewAccounts.Items[i].SubItems[2].Text = cmbbAccountType.Text;
+        }
+
+        private void listviewAccounts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listviewAccounts.SelectedItems.Count == 0)
+            {
+                cmbbAccountType.Text = "";
+                cmbbAccountType.Enabled = false;
+            }
+            else
+            {
+                cmbbAccountType.Enabled = true;
+                cmbbAccountType.Text = listviewAccounts.SelectedItems[0].SubItems[3].Text;
             }
         }
     }

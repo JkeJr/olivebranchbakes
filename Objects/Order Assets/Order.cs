@@ -91,7 +91,7 @@ namespace OliveBranchBakes.Objects
             this.Comments = comments;
         }
 
-        private static string GetPath(int orderID) => $@"{pathStart}{orderID.ToString("D8")}.txt";
+        public static string GetPath(int orderID) => $@"{pathStart}{orderID.ToString("D8")}.txt";
         public void Save()
         {
             using StreamWriter textOut =
@@ -164,8 +164,16 @@ namespace OliveBranchBakes.Objects
                 DateScheduled = new DateTime(Convert.ToInt16(dateScheduled[2]), Convert.ToInt16(dateScheduled[0]), Convert.ToInt16(dateScheduled[1])),
                 Status = (StatusEnum)Enum.Parse(typeof(StatusEnum), info[3])
             };
+
+            // check if information is an ID number
             if (int.TryParse(info[0], out int result))
-                order.CustomerAccount = Account.Load(Convert.ToInt32(info[0]));
+
+                // check if file exists. If it does not exist, that means the account attatched to the order DNE.
+                // In that case, keep order.CustomerAccount = null and make the guest name be "Deleted User"
+                if (File.Exists(Account.GetPath(Convert.ToInt32(info[0]))))
+                    order.CustomerAccount = Account.Load(Convert.ToInt32(info[0]));
+                else
+                    order.GuestName = "Deleted User";
             else
                 order.GuestName = info[0];
 

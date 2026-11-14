@@ -41,9 +41,12 @@
             btnBack = new Button();
             label3 = new Label();
             label1 = new Label();
+            cmbbAccountType = new ComboBox();
+            btnDeleteAccount = new Button();
+            btnDetailsAccount = new Button();
             cmbbOrderStatus = new ComboBox();
             btnDeleteOrder = new Button();
-            btnDetails = new Button();
+            btnDetailsOrder = new Button();
             listviewAccounts = new ListView();
             colCustomerID = new ColumnHeader();
             colCustomerName = new ColumnHeader();
@@ -82,9 +85,12 @@
             // 
             // splitContainer1.Panel2
             // 
+            splitContainer1.Panel2.Controls.Add(cmbbAccountType);
+            splitContainer1.Panel2.Controls.Add(btnDeleteAccount);
+            splitContainer1.Panel2.Controls.Add(btnDetailsAccount);
             splitContainer1.Panel2.Controls.Add(cmbbOrderStatus);
             splitContainer1.Panel2.Controls.Add(btnDeleteOrder);
-            splitContainer1.Panel2.Controls.Add(btnDetails);
+            splitContainer1.Panel2.Controls.Add(btnDetailsOrder);
             splitContainer1.Panel2.Controls.Add(listviewAccounts);
             splitContainer1.Panel2.Controls.Add(listviewOrders);
             splitContainer1.Panel2.Controls.Add(label4);
@@ -205,6 +211,36 @@
             label1.TabIndex = 0;
             label1.Text = "Welcome, Admin!";
             // 
+            // cmbbAccountType
+            // 
+            cmbbAccountType.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbbAccountType.FormattingEnabled = true;
+            cmbbAccountType.Location = new Point(135, 246);
+            cmbbAccountType.Name = "cmbbAccountType";
+            cmbbAccountType.Size = new Size(124, 28);
+            cmbbAccountType.TabIndex = 11;
+            cmbbAccountType.SelectedIndexChanged += cmbbAccountType_SelectedIndexChanged;
+            // 
+            // btnDeleteAccount
+            // 
+            btnDeleteAccount.Location = new Point(265, 245);
+            btnDeleteAccount.Name = "btnDeleteAccount";
+            btnDeleteAccount.Size = new Size(94, 29);
+            btnDeleteAccount.TabIndex = 10;
+            btnDeleteAccount.Text = "Delete";
+            btnDeleteAccount.UseVisualStyleBackColor = true;
+            btnDeleteAccount.Click += btnDeleteAccount_Click;
+            // 
+            // btnDetailsAccount
+            // 
+            btnDetailsAccount.Location = new Point(365, 245);
+            btnDetailsAccount.Name = "btnDetailsAccount";
+            btnDetailsAccount.Size = new Size(94, 29);
+            btnDetailsAccount.TabIndex = 9;
+            btnDetailsAccount.Text = "Details";
+            btnDetailsAccount.UseVisualStyleBackColor = true;
+            btnDetailsAccount.Click += btnDetailsAccount_Click;
+            // 
             // cmbbOrderStatus
             // 
             cmbbOrderStatus.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -225,15 +261,15 @@
             btnDeleteOrder.UseVisualStyleBackColor = true;
             btnDeleteOrder.Click += btnDeleteOrder_Click;
             // 
-            // btnDetails
+            // btnDetailsOrder
             // 
-            btnDetails.Location = new Point(365, 8);
-            btnDetails.Name = "btnDetails";
-            btnDetails.Size = new Size(94, 29);
-            btnDetails.TabIndex = 6;
-            btnDetails.Text = "Details";
-            btnDetails.UseVisualStyleBackColor = true;
-            btnDetails.Click += btnDetails_Click;
+            btnDetailsOrder.Location = new Point(365, 8);
+            btnDetailsOrder.Name = "btnDetailsOrder";
+            btnDetailsOrder.Size = new Size(94, 29);
+            btnDetailsOrder.TabIndex = 6;
+            btnDetailsOrder.Text = "Details";
+            btnDetailsOrder.UseVisualStyleBackColor = true;
+            btnDetailsOrder.Click += btnDetails_Click;
             // 
             // listviewAccounts
             // 
@@ -248,6 +284,7 @@
             listviewAccounts.TabIndex = 5;
             listviewAccounts.UseCompatibleStateImageBehavior = false;
             listviewAccounts.View = View.Details;
+            listviewAccounts.SelectedIndexChanged += listviewAccounts_SelectedIndexChanged;
             // 
             // colCustomerID
             // 
@@ -317,9 +354,9 @@
             label4.ForeColor = Color.Maroon;
             label4.Location = new Point(3, 248);
             label4.Name = "label4";
-            label4.Size = new Size(118, 26);
+            label4.Size = new Size(104, 26);
             label4.TabIndex = 0;
-            label4.Text = "Customers:";
+            label4.Text = "Accounts:";
             // 
             // label2
             // 
@@ -381,8 +418,11 @@
         private ColumnHeader colDateJoined;
         private ColumnHeader colCost;
         private ColumnHeader colAccountType;
-        private Button btnDetails;
+        private Button btnDetailsOrder;
         private ComboBox cmbbOrderStatus;
         private Button btnDeleteOrder;
+        private Button btnDetailsAccount;
+        private Button btnDeleteAccount;
+        private ComboBox cmbbAccountType;
     }
 }
