@@ -18,42 +18,44 @@ namespace OliveBranchBakes.Objects
         public AllergenList AllergenList;
 
         public int Count { get; set; }
- 
         public bool Seasonal { get; init; } = false;
-
+        public bool Active { get; set; } = true;
         public DateRange? Season;
 
-        public OrderItem(ItemCategories categories, string name, decimal price, AllergenList allergens)
+        public OrderItem(ItemCategories categories, string name, decimal price, AllergenList allergens, bool active)
         {
             Categories = categories;
             Name = name;
             Price = price;
             AllergenList = allergens;
             Count = 1;
+            Active = active;
         }
-        public OrderItem(ItemCategories categories, string name, decimal price, AllergenList allergens, DateRange range)
+        public OrderItem(ItemCategories categories, string name, decimal price, AllergenList allergens, DateRange range, bool active)
         {
             Categories = categories;
             Name = name;
             Price = price;
             AllergenList = allergens;
             Count = 1;
+            Active = active;
 
             Seasonal = true;
             Season = range;
         }
-        public OrderItem(ItemCategories categories, string name, decimal price, AllergenList allergens, string start, string end)
+        public OrderItem(ItemCategories categories, string name, decimal price, AllergenList allergens, string start, string end, bool active)
         {
             Categories = categories;
             Name = name;
             Price = price;
             AllergenList = allergens;
             Count = 1;
+            Active = active;
 
             Seasonal = true;
             Season = new(start, end);
         }
-
+        public void ToggleActive() => Active = !Active;
         public bool InSeason()
         {
             if (this.Seasonal)

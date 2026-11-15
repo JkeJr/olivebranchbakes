@@ -94,6 +94,26 @@ namespace OliveBranchBakes.Forms
             }
         }
 
+        // Toggles the "active" property in an item
+        private void btnHide_Click(object sender, EventArgs e)
+        {
+            // checks if selected item exists and is valid
+            if (listviewItems.Items.Count == 0)
+                MessageBox.Show("Item list is empty.", "No Items");
+            else if (listviewItems.SelectedItems.Count == 0)
+                MessageBox.Show("Please select an item to edit.", "No item selected");
+            else
+            {
+                // gets the index of the selected item
+                int i = listviewItems.Items.IndexOf(listviewItems.SelectedItems[0]);
+
+                OrderItem item = items[i];
+                item.ToggleActive();
+
+                items[i] = item;
+            }
+        }
+
         // Delete an Item from the list of available OrderItems
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -133,9 +153,14 @@ namespace OliveBranchBakes.Forms
                 viewItem.SubItems.Add(item.Price.ToString());
                 viewItem.SubItems.Add(item.AllergenList.ToString(", "));
 
-                // Shows which items are in season; Green if true, OrangeRed if false
-                if (item.Seasonal)
-                    viewItem.BackColor = (item.InSeason()) ? Color.Green : Color.OrangeRed;
+                if (item.Active)
+                {
+                    // Shows which items are in season; Green if true, OrangeRed if false
+                    if (item.Seasonal)
+                        viewItem.BackColor = (item.InSeason()) ? Color.Green : Color.OrangeRed;
+                }
+                else
+                    viewItem.BackColor = Color.DimGray;
 
                 listviewItems.Items.Add(viewItem);
             }

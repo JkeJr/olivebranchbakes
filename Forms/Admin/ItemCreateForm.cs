@@ -114,7 +114,12 @@ namespace OliveBranchBakes.Forms.Admin
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (IsValidData())
+            DialogResult dialogResult = MessageBox.Show(
+                        $"Item, {txtName.Text}, has been marked INACTIVE. " +
+                        "It will not appear in menu until reactivated.\n\n" +
+                        "Are you sure this is correct?","Confirm Status",
+                        MessageBoxButtons.YesNo);
+            if (IsValidData() && dialogResult == DialogResult.Yes)
             {
                 // Check if seasonal
                 if (chkSeasonal.Checked)
@@ -129,7 +134,8 @@ namespace OliveBranchBakes.Forms.Admin
                             txtName.Text,
                             Convert.ToDecimal(txtPrice.Text),
                             allergenList,
-                            new DateRange(dtpStart.Value, dtpEnd.Value));
+                            new DateRange(dtpStart.Value, dtpEnd.Value),
+                            chkActive.Checked);
                     // DrinkItem
                     else
                         item = new DrinkItem(
@@ -138,7 +144,8 @@ namespace OliveBranchBakes.Forms.Admin
                             txtName.Text,
                             Convert.ToDecimal(txtPrice.Text),
                             allergenList,
-                            new DateRange(dtpStart.Value, dtpEnd.Value));
+                            new DateRange(dtpStart.Value, dtpEnd.Value),
+                            chkActive.Checked);
                 }
                 else
                 {
@@ -151,7 +158,8 @@ namespace OliveBranchBakes.Forms.Admin
                             categoryList,
                             txtName.Text,
                             Convert.ToDecimal(txtPrice.Text),
-                            allergenList);
+                            allergenList,
+                            chkActive.Checked);
                     // DrinkItem
                     else
                         item = new DrinkItem(
@@ -159,8 +167,9 @@ namespace OliveBranchBakes.Forms.Admin
                             categoryList,
                             txtName.Text,
                             Convert.ToDecimal(txtPrice.Text),
-                            allergenList);
-                } 
+                            allergenList,
+                            chkActive.Checked);
+                }
             }
             this.Close();
         }
@@ -374,6 +383,11 @@ namespace OliveBranchBakes.Forms.Admin
             // Loop through CategoryEnums
             foreach (string category in Enum.GetNames(typeof(CategoryEnums)))
                 lbCategories.Items.Add(category);
+        }
+
+        private void chkActive_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

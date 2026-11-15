@@ -35,14 +35,10 @@ namespace OliveBranchBakes
                 string[] columns = row.Split(Delimiter); //split the row into an array using Delimiter
 
                 // Check if each row has been split correctly. Update whenever I add new pieces of info
-                // Type|measurement|categories|Name|Price|Allergens|Seasonal?|Start|End
-                if (columns.Length == 9)
+                // Type|measurement|categories|Name|Price|Allergens|Seasonal?|Start|End|active?
+                if (columns.Length == 10)
                 {
                     OrderItem item = null!;
-                    /*      TODO: Add type specific checks in the first column of each row
-                    if (columns[0] == nameof(Donut))
-                    if (columns[0] == nameof(Cake))
-                    */
 
                     string[] categories = columns[2].Split(",");
                     string[] allergens = columns[5].Split(",");
@@ -59,7 +55,8 @@ namespace OliveBranchBakes
                                         Convert.ToDecimal(columns[4]),
                                         new AllergenList(allergens),
                                         columns[7],
-                                        columns[8]);
+                                        columns[8],
+                                        Convert.ToBoolean(columns[9]));
                         // if item is FoodItem
                         else if (columns[0] == nameof(FoodItem))
                             item = new FoodItem(
@@ -69,7 +66,8 @@ namespace OliveBranchBakes
                                         Convert.ToDecimal(columns[4]),
                                         new AllergenList(allergens),
                                         columns[7],
-                                        columns[8]);
+                                        columns[8],
+                                        Convert.ToBoolean(columns[9]));
                     }
                     else
                     {
@@ -80,7 +78,8 @@ namespace OliveBranchBakes
                                     new ItemCategories(categories),
                                     columns[3],
                                     Convert.ToDecimal(columns[4]),
-                                    new AllergenList(allergens));
+                                    new AllergenList(allergens),
+                                    Convert.ToBoolean(columns[9]));
                         // if item is FoodItem
                         else if (columns[0] == nameof(FoodItem))
                             item = new FoodItem(
@@ -88,7 +87,8 @@ namespace OliveBranchBakes
                                     new ItemCategories(categories),
                                     columns[3],
                                     Convert.ToDecimal(columns[4]),
-                                    new AllergenList(allergens));
+                                    new AllergenList(allergens),
+                                    Convert.ToBoolean(columns[9]));
                     }
 
                     // add item to items list
@@ -176,7 +176,8 @@ namespace OliveBranchBakes
             textOut.Write(item.Name + Delimiter);
             textOut.Write(item.Price.ToString() + Delimiter);
             textOut.Write(item.AllergenList.ToString(",") + Delimiter);
-            textOut.WriteLine(item.SeasonalInfo());
+            textOut.Write(item.SeasonalInfo() + Delimiter);
+            textOut.WriteLine(item.Active);
         }
 
         public static string DisplayListText(string[] List, string separator)

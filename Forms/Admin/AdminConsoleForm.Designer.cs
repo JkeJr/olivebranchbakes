@@ -60,6 +60,7 @@
             colCost = new ColumnHeader();
             label4 = new Label();
             label2 = new Label();
+            btnHide = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -74,6 +75,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.Controls.Add(btnHide);
             splitContainer1.Panel1.Controls.Add(lblDate);
             splitContainer1.Panel1.Controls.Add(btnEdit);
             splitContainer1.Panel1.Controls.Add(btnAdd);
@@ -135,9 +137,9 @@
             // btnDelete
             // 
             btnDelete.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnDelete.Location = new Point(470, 433);
+            btnDelete.Location = new Point(450, 433);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(94, 52);
+            btnDelete.Size = new Size(114, 52);
             btnDelete.TabIndex = 3;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
@@ -369,6 +371,17 @@
             label2.TabIndex = 0;
             label2.Text = "Active Orders:";
             // 
+            // btnHide
+            // 
+            btnHide.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnHide.Location = new Point(359, 433);
+            btnHide.Name = "btnHide";
+            btnHide.Size = new Size(85, 52);
+            btnHide.TabIndex = 5;
+            btnHide.Text = "Hide";
+            btnHide.UseVisualStyleBackColor = true;
+            btnHide.Click += btnHide_Click;
+            // 
             // AdminConsoleForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -424,5 +437,6 @@
         private Button btnDetailsAccount;
         private Button btnDeleteAccount;
         private ComboBox cmbbAccountType;
+        private Button btnHide;
     }
 }

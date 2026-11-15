@@ -105,7 +105,7 @@ namespace OliveBranchBakes.Forms
                 }
                 else
                 {
-                    if (item.InSeason())
+                    if (item.InSeason() && item.Active)
                     {
                         ListViewItem viewItem = new(item.Name);
                         viewItem.SubItems.Add(item.Price.ToString());

@@ -56,6 +56,7 @@
             lblAmount = new Label();
             panel1 = new Panel();
             txtAmount = new TextBox();
+            chkActive = new CheckBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -133,9 +134,10 @@
             // chkSeasonal
             // 
             chkSeasonal.AutoSize = true;
-            chkSeasonal.Location = new Point(301, 14);
+            chkSeasonal.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            chkSeasonal.Location = new Point(357, 14);
             chkSeasonal.Name = "chkSeasonal";
-            chkSeasonal.Size = new Size(97, 24);
+            chkSeasonal.Size = new Size(93, 24);
             chkSeasonal.TabIndex = 5;
             chkSeasonal.Text = "Seasonal?";
             chkSeasonal.UseVisualStyleBackColor = true;
@@ -335,6 +337,20 @@
             txtAmount.Size = new Size(70, 27);
             txtAmount.TabIndex = 4;
             // 
+            // chkActive
+            // 
+            chkActive.AutoSize = true;
+            chkActive.Checked = true;
+            chkActive.CheckState = CheckState.Checked;
+            chkActive.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            chkActive.Location = new Point(256, 14);
+            chkActive.Name = "chkActive";
+            chkActive.Size = new Size(76, 24);
+            chkActive.TabIndex = 21;
+            chkActive.Text = "Active?";
+            chkActive.UseVisualStyleBackColor = true;
+            chkActive.CheckedChanged += chkActive_CheckedChanged;
+            // 
             // ItemCreateForm
             // 
             AcceptButton = btnAdd;
@@ -343,6 +359,7 @@
             CancelButton = btnBack;
             ClientSize = new Size(462, 418);
             ControlBox = false;
+            Controls.Add(chkActive);
             Controls.Add(txtAmount);
             Controls.Add(panel1);
             Controls.Add(btnClearAllergies);
@@ -409,5 +426,6 @@
         private Label lblAmount;
         private Panel panel1;
         private TextBox txtAmount;
+        private CheckBox chkActive;
     }
 }
