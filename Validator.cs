@@ -32,5 +32,13 @@ namespace OliveBranchBakes
                 msg = $"{name} must be a valid integer value.{LineEnd}";
             return msg;
         }
+
+        public static string IsAvailableDate(DateTime date, string name)
+        {
+            string msg = "";
+            if (date.Month == 12 && date.Day == 25)
+                msg = $"{name} cannot be on {date.ToLongDateString()}.";
+            return msg;
+        }
     }
 }

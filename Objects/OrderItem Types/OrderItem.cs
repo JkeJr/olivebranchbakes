@@ -55,6 +55,21 @@ namespace OliveBranchBakes.Objects
             Seasonal = true;
             Season = new(start, end);
         }
+
+        public bool InCategory(string category)
+        {
+            bool result = false;
+
+            if (category == "None")
+                result = true;
+            else
+            {
+                CategoryEnums categoryEnum = (CategoryEnums)Enum.Parse(typeof(CategoryEnums), category);
+                if (Categories.IndexOf(categoryEnum) != -1)
+                    result = true;
+            }
+            return result;
+        }
         public void ToggleActive() => Active = !Active;
         public bool InSeason()
         {

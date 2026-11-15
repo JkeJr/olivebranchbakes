@@ -4,6 +4,7 @@ using OliveBranchBakes.Forms.Payment;
 using OliveBranchBakes.Objects;
 using OliveBranchBakes.Objects.Customers;
 using OliveBranchBakes.Objects.Order_Assets;
+using OliveBranchBakes.Objects.OrderItem_Types;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -89,30 +90,20 @@ namespace OliveBranchBakes.Forms
                 item = items[i];
                 CategoryEnums category = CategoryEnums.Misc;
 
-                // More complicated than it has to be
-                if (cmbboxFilter.SelectedItem.ToString() != "None")
+                if (item.InCategory(cmbboxFilter.SelectedItem.ToString()) && item.InSeason() && item.Active)
                 {
-                    category = (CategoryEnums)Enum.Parse(typeof(CategoryEnums), cmbboxFilter.SelectedItem.ToString()!);
+                    string size = "";
+                    if (item is DrinkItem drink)
+                        size = $"{drink.Ounces}oz";
+                    else if (item is FoodItem food)
+                        size = $"{food.Calories}cal";
 
-                    if (item.Categories.IndexOf(category) != -1 && item.InSeason())
-                    {
-                        ListViewItem viewItem = new(item.Name);
-                        viewItem.SubItems.Add(item.Price.ToString());
-                        viewItem.SubItems.Add(item.AllergenList.ToString(", "));
+                    ListViewItem viewItem = new(size);
+                    viewItem.SubItems.Add(item.Name);
+                    viewItem.SubItems.Add(item.AllergenList.ToString(", "));
+                    viewItem.SubItems.Add(item.Price.ToString("C"));
 
-                        listviewItems.Items.Add(viewItem);
-                    }
-                }
-                else
-                {
-                    if (item.InSeason() && item.Active)
-                    {
-                        ListViewItem viewItem = new(item.Name);
-                        viewItem.SubItems.Add(item.Price.ToString());
-                        viewItem.SubItems.Add(item.AllergenList.ToString(", "));
-
-                        listviewItems.Items.Add(viewItem);
-                    }
+                    listviewItems.Items.Add(viewItem);
                 }
             }
         }
@@ -128,15 +119,15 @@ namespace OliveBranchBakes.Forms
             {
                 // Gets itemGroup at i index of order.itemGroups
                 itemGroup = order[i];
-                ListViewItem viewItem = new(itemGroup.ItemType.Name);
-                viewItem.SubItems.Add(itemGroup.Count.ToString());
+                ListViewItem viewItem = new(itemGroup.Count.ToString());
+                viewItem.SubItems.Add(itemGroup.ItemType.Name);
                 viewItem.SubItems.Add(itemGroup.Allergy.ToString());
-                viewItem.SubItems.Add(itemGroup.Price.ToString());
+                viewItem.SubItems.Add(itemGroup.Price.ToString("C"));
 
                 listviewOrder.Items.Add(viewItem);
             }
 
-            txtSubtotal.Text = $"${order.Subtotal}";
+            txtSubtotal.Text = order.Subtotal.ToString("C");
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -158,7 +149,7 @@ namespace OliveBranchBakes.Forms
             {
                 // gets the index of the selected item, and then copies the item
                 int inventoryIndex = listviewItems.Items.IndexOf(listviewItems.SelectedItems[0]);
-                inventoryIndex = items.IndexOf(listviewItems.Items[inventoryIndex].SubItems[0].Text);
+                inventoryIndex = items.IndexOf(listviewItems.Items[inventoryIndex].SubItems[1].Text);
 
                 if (items[inventoryIndex] != null)
                 {

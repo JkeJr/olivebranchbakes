@@ -137,12 +137,12 @@
             // dtpPickup
             // 
             dtpPickup.Checked = false;
-            dtpPickup.CustomFormat = "MMM d',' yyyy',' h':00' tt";
+            dtpPickup.CustomFormat = "MMMM d',' yyyy'";
             dtpPickup.Format = DateTimePickerFormat.Custom;
-            dtpPickup.Location = new Point(495, 231);
+            dtpPickup.Location = new Point(491, 231);
             dtpPickup.MinDate = new DateTime(2026, 10, 26, 0, 0, 0, 0);
             dtpPickup.Name = "dtpPickup";
-            dtpPickup.Size = new Size(189, 27);
+            dtpPickup.Size = new Size(193, 27);
             dtpPickup.TabIndex = 3;
             dtpPickup.Value = new DateTime(2026, 11, 8, 0, 0, 0, 0);
             dtpPickup.ValueChanged += dtpPickup_ValueChanged;
@@ -150,7 +150,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(434, 231);
+            label4.Location = new Point(430, 231);
             label4.Name = "label4";
             label4.Size = new Size(55, 20);
             label4.TabIndex = 6;
@@ -307,7 +307,7 @@
             Controls.Add(btnConfirm);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "PaymentEntryForm";
-            Text = "PaymentEntryForm";
+            Text = "Payment Entry";
             Load += PaymentEntryForm_Load;
             ResumeLayout(false);
             PerformLayout();

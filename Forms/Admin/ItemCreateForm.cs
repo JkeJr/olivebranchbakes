@@ -114,10 +114,12 @@ namespace OliveBranchBakes.Forms.Admin
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show(
+            DialogResult dialogResult = DialogResult.Yes;
+            if (!chkActive.Enabled)
+                dialogResult = MessageBox.Show(
                         $"Item, {txtName.Text}, has been marked INACTIVE. " +
                         "It will not appear in menu until reactivated.\n\n" +
-                        "Are you sure this is correct?","Confirm Status",
+                        "Are you sure this is correct?", "Confirm Status",
                         MessageBoxButtons.YesNo);
             if (IsValidData() && dialogResult == DialogResult.Yes)
             {
@@ -247,40 +249,42 @@ namespace OliveBranchBakes.Forms.Admin
         private void btnAddAllergy_Click(object sender, EventArgs e)
         {
             int index = lbAllergens.SelectedIndex;
-            Allergen allergen = new(lbAllergens.Items[index].ToString()!);
-
+            
             if (index == -1)
-            {
                 MessageBox.Show("Please select an Allergy", "Selection Error");
-            }
             // Check if Allergy already exists in allergyList
-            else if (allergenList.IndexOf(allergen) != -1)
-            {
-                MessageBox.Show("Allergy already in list", "Selection Error");
-            }
             else
             {
-                allergenList.Add(allergen);
-                UpdateAllergenText();
-            }
+                Allergen allergen = new(lbAllergens.Items[index].ToString()!);
+                if (allergenList.IndexOf(allergen) != -1)
+                {
+                    MessageBox.Show("Allergy already in list", "Selection Error");
+                }
+                else
+                {
+                    allergenList.Add(allergen);
+                    UpdateAllergenText();
+                }
+            }   
         }
         private void btnRemoveAllergy_Click(object sender, EventArgs e)
         {
             int index = lbAllergens.SelectedIndex;
-            Allergen allergen = new(lbAllergens.Items[index].ToString()!);
 
             if (index == -1)
-            {
                 MessageBox.Show("Please select an Allergy", "Selection Error");
-            }
-            else if (allergenList.IndexOf(allergen) == -1)
-            {
-                MessageBox.Show("Allergy is not in list", "Selection Error");
-            }
             else
             {
-                allergenList.Remove(allergen);
-                UpdateAllergenText();
+                Allergen allergen = new(lbAllergens.Items[index].ToString()!);
+                if (allergenList.IndexOf(allergen) == -1)
+                {
+                    MessageBox.Show("Allergy is not in list", "Selection Error");
+                }
+                else
+                {
+                    allergenList.Remove(allergen);
+                    UpdateAllergenText();
+                }
             }
         }
         private void btnClearAllergies_Click(object sender, EventArgs e)
@@ -294,40 +298,42 @@ namespace OliveBranchBakes.Forms.Admin
         {
             // fetches the category from the selection
             int index = lbCategories.SelectedIndex;
-            CategoryEnums category = (CategoryEnums)Enum.Parse(typeof(CategoryEnums), lbCategories.Items[index].ToString()!);
-
+            
             if (index == -1)
-            {
                 MessageBox.Show("Please select a Category", "Selection Error");
-            }
-            // Check if Allergy already exists in allergyList
-            else if (categoryList.IndexOf(category) != -1)
-            {
-                MessageBox.Show("Category already in list", "Selection Error");
-            }
             else
             {
-                categoryList.Add(category);
-                UpdateCategoryText();
+                CategoryEnums category = (CategoryEnums)Enum.Parse(typeof(CategoryEnums), lbCategories.Items[index].ToString()!);
+                // Check if Allergy already exists in allergyList
+                if (categoryList.IndexOf(category) != -1)
+                {
+                    MessageBox.Show("Category already in list", "Selection Error");
+                }
+                else
+                {
+                    categoryList.Add(category);
+                    UpdateCategoryText();
+                }
             }
         }
         private void btnRemoveCategory_Click(object sender, EventArgs e)
         {
             int index = lbCategories.SelectedIndex;
-            CategoryEnums category = (CategoryEnums)Enum.Parse(typeof(CategoryEnums), lbCategories.Items[index].ToString()!);
-
+            
             if (index == -1)
-            {
                 MessageBox.Show("Please select a Category", "Selection Error");
-            }
-            else if (categoryList.IndexOf(category) == -1)
-            {
-                MessageBox.Show("Category is not in list", "Selection Error");
-            }
             else
             {
-                categoryList.Remove(category);
-                UpdateCategoryText();
+                CategoryEnums category = (CategoryEnums)Enum.Parse(typeof(CategoryEnums), lbCategories.Items[index].ToString()!);
+                if (categoryList.IndexOf(category) == -1)
+                {
+                    MessageBox.Show("Category is not in list", "Selection Error");
+                }
+                else
+                {
+                    categoryList.Remove(category);
+                    UpdateCategoryText();
+                }
             }
         }
         private void btnClearCategories_Click(object sender, EventArgs e)

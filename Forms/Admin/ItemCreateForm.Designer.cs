@@ -116,7 +116,7 @@
             btnAdd.Location = new Point(371, 377);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(79, 29);
-            btnAdd.TabIndex = 15;
+            btnAdd.TabIndex = 17;
             btnAdd.Text = "Enter";
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
@@ -126,7 +126,7 @@
             btnBack.Location = new Point(9, 377);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(74, 29);
-            btnBack.TabIndex = 14;
+            btnBack.TabIndex = 16;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
@@ -138,7 +138,7 @@
             chkSeasonal.Location = new Point(357, 14);
             chkSeasonal.Name = "chkSeasonal";
             chkSeasonal.Size = new Size(93, 24);
-            chkSeasonal.TabIndex = 5;
+            chkSeasonal.TabIndex = 7;
             chkSeasonal.Text = "Seasonal?";
             chkSeasonal.UseVisualStyleBackColor = true;
             chkSeasonal.CheckedChanged += chkSeasonal_CheckedChanged;
@@ -152,7 +152,7 @@
             dtpStart.MinDate = new DateTime(2026, 1, 1, 0, 0, 0, 0);
             dtpStart.Name = "dtpStart";
             dtpStart.Size = new Size(150, 27);
-            dtpStart.TabIndex = 6;
+            dtpStart.TabIndex = 8;
             dtpStart.Value = new DateTime(2026, 10, 26, 0, 0, 0, 0);
             dtpStart.ValueChanged += dtpStart_ValueChanged;
             // 
@@ -175,7 +175,7 @@
             dtpEnd.MinDate = new DateTime(2026, 10, 25, 0, 0, 0, 0);
             dtpEnd.Name = "dtpEnd";
             dtpEnd.Size = new Size(150, 27);
-            dtpEnd.TabIndex = 7;
+            dtpEnd.TabIndex = 9;
             dtpEnd.Value = new DateTime(2026, 10, 26, 0, 0, 0, 0);
             dtpEnd.ValueChanged += dtpEnd_ValueChanged;
             // 
@@ -204,7 +204,7 @@
             btnAddAllergy.Location = new Point(148, 281);
             btnAddAllergy.Name = "btnAddAllergy";
             btnAddAllergy.Size = new Size(75, 57);
-            btnAddAllergy.TabIndex = 10;
+            btnAddAllergy.TabIndex = 12;
             btnAddAllergy.Text = "Add";
             btnAddAllergy.UseVisualStyleBackColor = true;
             btnAddAllergy.Click += btnAddAllergy_Click;
@@ -214,7 +214,7 @@
             btnRemoveAllergy.Location = new Point(148, 191);
             btnRemoveAllergy.Name = "btnRemoveAllergy";
             btnRemoveAllergy.Size = new Size(75, 29);
-            btnRemoveAllergy.TabIndex = 9;
+            btnRemoveAllergy.TabIndex = 11;
             btnRemoveAllergy.Text = "Remove";
             btnRemoveAllergy.UseVisualStyleBackColor = true;
             btnRemoveAllergy.Click += btnRemoveAllergy_Click;
@@ -234,7 +234,7 @@
             btnClearCategories.Location = new Point(375, 156);
             btnClearCategories.Name = "btnClearCategories";
             btnClearCategories.Size = new Size(75, 29);
-            btnClearCategories.TabIndex = 11;
+            btnClearCategories.TabIndex = 13;
             btnClearCategories.Text = "Clear";
             btnClearCategories.UseVisualStyleBackColor = true;
             btnClearCategories.Click += btnClearCategories_Click;
@@ -254,7 +254,7 @@
             btnRemoveCategory.Location = new Point(375, 191);
             btnRemoveCategory.Name = "btnRemoveCategory";
             btnRemoveCategory.Size = new Size(75, 29);
-            btnRemoveCategory.TabIndex = 12;
+            btnRemoveCategory.TabIndex = 14;
             btnRemoveCategory.Text = "Remove";
             btnRemoveCategory.UseVisualStyleBackColor = true;
             btnRemoveCategory.Click += btnRemoveCategory_Click;
@@ -264,7 +264,7 @@
             btnAddCategory.Location = new Point(375, 281);
             btnAddCategory.Name = "btnAddCategory";
             btnAddCategory.Size = new Size(75, 57);
-            btnAddCategory.TabIndex = 13;
+            btnAddCategory.TabIndex = 15;
             btnAddCategory.Text = "Add";
             btnAddCategory.UseVisualStyleBackColor = true;
             btnAddCategory.Click += btnAddCategory_Click;
@@ -283,7 +283,7 @@
             btnClearAllergies.Location = new Point(148, 156);
             btnClearAllergies.Name = "btnClearAllergies";
             btnClearAllergies.Size = new Size(75, 29);
-            btnClearAllergies.TabIndex = 8;
+            btnClearAllergies.TabIndex = 10;
             btnClearAllergies.Text = "Clear";
             btnClearAllergies.UseVisualStyleBackColor = true;
             btnClearAllergies.Click += btnClearAllergies_Click;
@@ -294,7 +294,8 @@
             rdbDrink.Location = new Point(10, 53);
             rdbDrink.Name = "rdbDrink";
             rdbDrink.Size = new Size(65, 24);
-            rdbDrink.TabIndex = 3;
+            rdbDrink.TabIndex = 5;
+            rdbDrink.TabStop = true;
             rdbDrink.Text = "Drink";
             rdbDrink.UseVisualStyleBackColor = true;
             // 
@@ -305,7 +306,7 @@
             rdbFood.Location = new Point(10, 13);
             rdbFood.Name = "rdbFood";
             rdbFood.Size = new Size(64, 24);
-            rdbFood.TabIndex = 2;
+            rdbFood.TabIndex = 4;
             rdbFood.TabStop = true;
             rdbFood.Text = "Food";
             rdbFood.UseVisualStyleBackColor = true;
@@ -335,7 +336,7 @@
             txtAmount.Location = new Point(70, 96);
             txtAmount.Name = "txtAmount";
             txtAmount.Size = new Size(70, 27);
-            txtAmount.TabIndex = 4;
+            txtAmount.TabIndex = 3;
             // 
             // chkActive
             // 
@@ -346,7 +347,7 @@
             chkActive.Location = new Point(256, 14);
             chkActive.Name = "chkActive";
             chkActive.Size = new Size(76, 24);
-            chkActive.TabIndex = 21;
+            chkActive.TabIndex = 6;
             chkActive.Text = "Active?";
             chkActive.UseVisualStyleBackColor = true;
             chkActive.CheckedChanged += chkActive_CheckedChanged;
@@ -388,7 +389,7 @@
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "ItemCreateForm";
-            Text = "ItemCreateForm";
+            Text = "Create Item";
             Load += ItemCreateForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

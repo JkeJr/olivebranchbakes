@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             splitContainer1 = new SplitContainer();
+            btnHide = new Button();
             lblDate = new Label();
             btnEdit = new Button();
             btnAdd = new Button();
@@ -60,7 +61,6 @@
             colCost = new ColumnHeader();
             label4 = new Label();
             label2 = new Label();
-            btnHide = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -101,6 +101,17 @@
             splitContainer1.SplitterDistance = 573;
             splitContainer1.TabIndex = 0;
             // 
+            // btnHide
+            // 
+            btnHide.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnHide.Location = new Point(359, 433);
+            btnHide.Name = "btnHide";
+            btnHide.Size = new Size(85, 52);
+            btnHide.TabIndex = 3;
+            btnHide.Text = "Hide";
+            btnHide.UseVisualStyleBackColor = true;
+            btnHide.Click += btnHide_Click;
+            // 
             // lblDate
             // 
             lblDate.AutoSize = true;
@@ -114,7 +125,7 @@
             // 
             // btnEdit
             // 
-            btnEdit.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnEdit.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold);
             btnEdit.Location = new Point(123, 433);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(85, 52);
@@ -125,7 +136,7 @@
             // 
             // btnAdd
             // 
-            btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnAdd.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold);
             btnAdd.Location = new Point(3, 433);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(114, 52);
@@ -136,11 +147,11 @@
             // 
             // btnDelete
             // 
-            btnDelete.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnDelete.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDelete.Location = new Point(450, 433);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(114, 52);
-            btnDelete.TabIndex = 3;
+            btnDelete.TabIndex = 4;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
@@ -220,25 +231,27 @@
             cmbbAccountType.Location = new Point(135, 246);
             cmbbAccountType.Name = "cmbbAccountType";
             cmbbAccountType.Size = new Size(124, 28);
-            cmbbAccountType.TabIndex = 11;
+            cmbbAccountType.TabIndex = 8;
             cmbbAccountType.SelectedIndexChanged += cmbbAccountType_SelectedIndexChanged;
             // 
             // btnDeleteAccount
             // 
+            btnDeleteAccount.Font = new Font("Trebuchet MS", 9F, FontStyle.Bold);
             btnDeleteAccount.Location = new Point(265, 245);
             btnDeleteAccount.Name = "btnDeleteAccount";
             btnDeleteAccount.Size = new Size(94, 29);
-            btnDeleteAccount.TabIndex = 10;
+            btnDeleteAccount.TabIndex = 9;
             btnDeleteAccount.Text = "Delete";
             btnDeleteAccount.UseVisualStyleBackColor = true;
             btnDeleteAccount.Click += btnDeleteAccount_Click;
             // 
             // btnDetailsAccount
             // 
+            btnDetailsAccount.Font = new Font("Trebuchet MS", 9F, FontStyle.Bold);
             btnDetailsAccount.Location = new Point(365, 245);
             btnDetailsAccount.Name = "btnDetailsAccount";
             btnDetailsAccount.Size = new Size(94, 29);
-            btnDetailsAccount.TabIndex = 9;
+            btnDetailsAccount.TabIndex = 10;
             btnDetailsAccount.Text = "Details";
             btnDetailsAccount.UseVisualStyleBackColor = true;
             btnDetailsAccount.Click += btnDetailsAccount_Click;
@@ -250,25 +263,27 @@
             cmbbOrderStatus.Location = new Point(159, 9);
             cmbbOrderStatus.Name = "cmbbOrderStatus";
             cmbbOrderStatus.Size = new Size(100, 28);
-            cmbbOrderStatus.TabIndex = 8;
+            cmbbOrderStatus.TabIndex = 5;
             cmbbOrderStatus.SelectedIndexChanged += cmbbOrderStatus_SelectedIndexChanged;
             // 
             // btnDeleteOrder
             // 
+            btnDeleteOrder.Font = new Font("Trebuchet MS", 9F, FontStyle.Bold);
             btnDeleteOrder.Location = new Point(265, 8);
             btnDeleteOrder.Name = "btnDeleteOrder";
             btnDeleteOrder.Size = new Size(94, 29);
-            btnDeleteOrder.TabIndex = 7;
+            btnDeleteOrder.TabIndex = 6;
             btnDeleteOrder.Text = "Delete";
             btnDeleteOrder.UseVisualStyleBackColor = true;
             btnDeleteOrder.Click += btnDeleteOrder_Click;
             // 
             // btnDetailsOrder
             // 
+            btnDetailsOrder.Font = new Font("Trebuchet MS", 9F, FontStyle.Bold);
             btnDetailsOrder.Location = new Point(365, 8);
             btnDetailsOrder.Name = "btnDetailsOrder";
             btnDetailsOrder.Size = new Size(94, 29);
-            btnDetailsOrder.TabIndex = 6;
+            btnDetailsOrder.TabIndex = 7;
             btnDetailsOrder.Text = "Details";
             btnDetailsOrder.UseVisualStyleBackColor = true;
             btnDetailsOrder.Click += btnDetails_Click;
@@ -284,6 +299,7 @@
             listviewAccounts.Name = "listviewAccounts";
             listviewAccounts.Size = new Size(456, 208);
             listviewAccounts.TabIndex = 5;
+            listviewAccounts.TabStop = false;
             listviewAccounts.UseCompatibleStateImageBehavior = false;
             listviewAccounts.View = View.Details;
             listviewAccounts.SelectedIndexChanged += listviewAccounts_SelectedIndexChanged;
@@ -371,17 +387,6 @@
             label2.TabIndex = 0;
             label2.Text = "Active Orders:";
             // 
-            // btnHide
-            // 
-            btnHide.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnHide.Location = new Point(359, 433);
-            btnHide.Name = "btnHide";
-            btnHide.Size = new Size(85, 52);
-            btnHide.TabIndex = 5;
-            btnHide.Text = "Hide";
-            btnHide.UseVisualStyleBackColor = true;
-            btnHide.Click += btnHide_Click;
-            // 
             // AdminConsoleForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -392,7 +397,7 @@
             Controls.Add(splitContainer1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "AdminConsoleForm";
-            Text = "AdminConsoleForm";
+            Text = "Olive Branch Bakes | Admin Console";
             Load += AdminConsoleForm_Load;
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel1.PerformLayout();

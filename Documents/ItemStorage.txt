@@ -1,20 +1,31 @@
-FoodItem|500|Bread|Sourdough loaf|7.50|Wheat|ns|null|null|True
-FoodItem|500|Cookie|Chocolate chip cookie|2.25|Wheat,Egg|ns|null|null|True
-FoodItem|500|Bread,Muffin|Blueberry muffin|3.00|Wheat,Egg,Milk|ns|null|null|True
-FoodItem|500|Pastry|Cinnamon roll|3.75|Wheat,Egg,Milk|ns|null|null|True
-FoodItem|500|Pastry,Pie|Apple pie (9 inch)|22.00|Wheat|ns|null|null|True
-FoodItem|500|Cake|Custom decorated cake|45.00|Wheat,Milk,Egg|ns|null|null|True
-FoodItem|500|Misc|Honey butter (jar)|5.00|None|ns|null|null|True
-FoodItem|500|Bread,Cake|Cranberry Orange Scone|3.25|Wheat,Egg|s|11/1|1/15+|True
-FoodItem|500|Pastry,Pie|Key Lime Pie|12.00|Wheat,Egg,Milk|s|9/1|10/31|True
-FoodItem|500|Pastry|Donut|2.00|Wheat,Milk|ns|null|null|True
-FoodItem|500|Cake|Chocolate cake|10.99|Milk,Egg,Wheat|ns|null|null|True
-FoodItem|500|Muffin|Crumble Muffin|3.99|Wheat|ns|null|null|True
+FoodItem|130|Bread|Sourdough loaf|7.50|Wheat|ns|null|null|True
+FoodItem|200|Cookie|Chocolate chip cookie|2.25|Wheat,Egg|ns|null|null|True
+FoodItem|250|Muffin|Blueberry muffin|3.00|Wheat,Egg,Milk|ns|null|null|True
+FoodItem|230|Pastry|Cinnamon roll|3.75|Wheat,Egg,Milk|ns|null|null|True
+FoodItem|3552|Pastry,Pie|Apple pie (9 inch)|22.00|Wheat|ns|null|null|True
+FoodItem|6200|Cake|Custom decorated cake|45.00|Wheat,Milk,Egg|ns|null|null|True
+FoodItem|1086|Misc|Honey butter (jar)|5.00|None|ns|null|null|True
+FoodItem|106|Bread,Cake|Cranberry Orange Scone|3.25|Wheat,Egg|s|11/1|1/15+|True
+FoodItem|5152|Pastry,Pie|Key Lime Pie|12.00|Wheat,Egg,Milk|s|9/1|10/31|True
+FoodItem|90|Pastry|Donut|2.00|Wheat,Milk|ns|null|null|True
+FoodItem|2000|Cake|Chocolate cake|10.99|Milk,Egg,Wheat|ns|null|null|True
+FoodItem|340|Muffin|Crumble Muffin|3.99|Wheat|ns|null|null|True
 DrinkItem|16|Coffee|Pumkin Spice Latte|6.50|Milk,Caffiene|s|10/1|11/30|True
 DrinkItem|12|Tea|Black Tea|3.40|Caffiene|ns|null|null|True
-FoodItem|600|Pastry|Apple Fritter|7.50|Milk,Egg,Wheat|ns|null|null|True
+FoodItem|293|Pastry|Apple Fritter|7.50|Milk,Egg,Wheat|ns|null|null|True
 DrinkItem|10|Coffee|Americano|2.50|Caffiene|ns|null|null|True
-FoodItem|3000|Pie,Pastry|Pumpkin Pie|12.00|Milk,Egg,Wheat|ns|null|null|True
-FoodItem|300|Cookie|Red Velvet Cookie|3.00|Milk,Egg,Wheat|ns|null|null|True
+FoodItem|274|Pie,Pastry|Pumpkin Pie|12.00|Milk,Egg,Wheat|ns|null|null|True
+FoodItem|110|Cookie|Red Velvet Cookie|3.00|Milk,Egg,Wheat|ns|null|null|True
 DrinkItem|12|Tea|Lipton Tea|2.50|Caffiene|ns|null|null|True
-FoodItem|1000|Misc|TestItem|49.99|None|ns|null|null|True
+FoodItem|1000|Misc|TestItem|49.99|None|ns|null|null|False
+FoodItem|135|Cookie|Oatmeal Raisin Cookie|2.29|Milk,Egg|ns|null|null|True
+FoodItem|231|Pastry|Butter Croissant|4.00|Milk,Egg,Wheat|ns|null|null|True
+FoodItem|237|Pastry|Apple Turnover|3.49|Milk,Egg,Wheat|ns|null|null|True
+FoodItem|142|Cookie|Peanut Butter Cookie|2.99|Milk,Egg,Peanut,Wheat|ns|null|null|True
+FoodItem|351|Pastry|Peach Strudel|4.50|Milk,Egg,Wheat|ns|null|null|True
+FoodItem|140|Bread|Banana Nut Bread|6.00|Wheat,Treenut|ns|null|null|True
+FoodItem|448|Pastry|Cheese Strudel|6.99|Milk,Egg,Wheat|ns|null|null|True
+FoodItem|206|Cake|Coffee Cake (Slice)|5.99|Caffiene,Egg,Wheat,Milk|ns|null|null|True
+FoodItem|408|Muffin|Carrot Muffin|3.00|Milk,Egg,Treenut,Wheat|ns|null|null|True
+FoodItem|481|Muffin|Oatmeal Muffin|3.00|Milk,Egg,Wheat|ns|null|null|True
+FoodItem|880|Cake|Carrot Cake|20.00|Milk,Egg,Peanut,Wheat|s|3/1|5/31|True

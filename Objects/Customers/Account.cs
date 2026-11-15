@@ -151,7 +151,7 @@ namespace OliveBranchBakes.Objects.Customers
             // general
             string result = $"Account Type: {Type}\n\n" +
                             $"Name: {GetName()}\n" +
-                            $"Email: {Email}" +
+                            $"Email: {Email}\n" +
                             $"Account ID#: {AccountID.ToString("D8")}\n" +
                             $"Date Joined: {DateJoined.ToShortDateString()}\n\n";
             

@@ -104,7 +104,7 @@
             btnDeleteAccount.Location = new Point(11, 163);
             btnDeleteAccount.Name = "btnDeleteAccount";
             btnDeleteAccount.Size = new Size(128, 29);
-            btnDeleteAccount.TabIndex = 10;
+            btnDeleteAccount.TabIndex = 2;
             btnDeleteAccount.Text = "Delete Account";
             btnDeleteAccount.UseVisualStyleBackColor = true;
             btnDeleteAccount.Click += btnDeleteAccount_Click;
@@ -115,7 +115,7 @@
             btnEditAccount.Location = new Point(11, 85);
             btnEditAccount.Name = "btnEditAccount";
             btnEditAccount.Size = new Size(128, 61);
-            btnEditAccount.TabIndex = 9;
+            btnEditAccount.TabIndex = 1;
             btnEditAccount.Text = "Edit Info";
             btnEditAccount.UseVisualStyleBackColor = true;
             btnEditAccount.Click += btnEditAccount_Click;
@@ -153,7 +153,7 @@
             btnReorder.Location = new Point(217, 392);
             btnReorder.Name = "btnReorder";
             btnReorder.Size = new Size(125, 55);
-            btnReorder.TabIndex = 7;
+            btnReorder.TabIndex = 3;
             btnReorder.Text = "Re-Order";
             btnReorder.UseVisualStyleBackColor = true;
             btnReorder.Click += btnReorder_Click;
@@ -164,7 +164,7 @@
             btnDetails.Location = new Point(347, 392);
             btnDetails.Name = "btnDetails";
             btnDetails.Size = new Size(94, 55);
-            btnDetails.TabIndex = 6;
+            btnDetails.TabIndex = 4;
             btnDetails.Text = "Details";
             btnDetails.UseVisualStyleBackColor = true;
             btnDetails.Click += btnDetails_Click;
@@ -237,7 +237,7 @@
             btnBack.Location = new Point(354, 17);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(88, 29);
-            btnBack.TabIndex = 3;
+            btnBack.TabIndex = 0;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
@@ -258,7 +258,7 @@
             btnCancel.Location = new Point(3, 331);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(337, 55);
-            btnCancel.TabIndex = 10;
+            btnCancel.TabIndex = 5;
             btnCancel.Text = "Cancel Order";
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
@@ -269,7 +269,7 @@
             btnOrder.Location = new Point(3, 392);
             btnOrder.Name = "btnOrder";
             btnOrder.Size = new Size(337, 55);
-            btnOrder.TabIndex = 9;
+            btnOrder.TabIndex = 6;
             btnOrder.Text = "Start New Order";
             btnOrder.UseVisualStyleBackColor = true;
             btnOrder.Click += btnOrder_Click;
@@ -281,6 +281,7 @@
             txtTotal.ReadOnly = true;
             txtTotal.Size = new Size(97, 27);
             txtTotal.TabIndex = 8;
+            txtTotal.TabStop = false;
             // 
             // label7
             // 
@@ -350,6 +351,7 @@
             // 
             // CustomerHomeForm
             // 
+            AcceptButton = btnOrder;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
@@ -360,7 +362,7 @@
             Controls.Add(splitContainer1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "CustomerHomeForm";
-            Text = "CustomerHomeForm";
+            Text = "Olive Branch Bakes | Home";
             Load += CustomerHomeForm_Load;
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel1.PerformLayout();

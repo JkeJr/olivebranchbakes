@@ -92,7 +92,7 @@
             Controls.Add(lblWelcome);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "WelcomeForm";
-            Text = "Welcome | Olive Branch Bakes";
+            Text = "Olive Branch Bakes | Welcome";
             ResumeLayout(false);
             PerformLayout();
         }

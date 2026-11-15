@@ -60,7 +60,7 @@
             txtFirstName.Location = new Point(57, 107);
             txtFirstName.Name = "txtFirstName";
             txtFirstName.Size = new Size(78, 27);
-            txtFirstName.TabIndex = 2;
+            txtFirstName.TabIndex = 3;
             // 
             // label2
             // 
@@ -86,7 +86,7 @@
             txtLastName.Location = new Point(57, 143);
             txtLastName.Name = "txtLastName";
             txtLastName.Size = new Size(78, 27);
-            txtLastName.TabIndex = 3;
+            txtLastName.TabIndex = 4;
             // 
             // label4
             // 
@@ -103,7 +103,7 @@
             txtEmail.Location = new Point(160, 107);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(107, 27);
-            txtEmail.TabIndex = 4;
+            txtEmail.TabIndex = 5;
             // 
             // label5
             // 
@@ -122,14 +122,14 @@
             cmbbEmail.Location = new Point(283, 107);
             cmbbEmail.Name = "cmbbEmail";
             cmbbEmail.Size = new Size(92, 28);
-            cmbbEmail.TabIndex = 5;
+            cmbbEmail.TabIndex = 6;
             // 
             // btnCancel
             // 
             btnCancel.Location = new Point(12, 182);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(77, 29);
-            btnCancel.TabIndex = 6;
+            btnCancel.TabIndex = 7;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
@@ -139,7 +139,7 @@
             btnEnter.Location = new Point(298, 182);
             btnEnter.Name = "btnEnter";
             btnEnter.Size = new Size(77, 29);
-            btnEnter.TabIndex = 7;
+            btnEnter.TabIndex = 8;
             btnEnter.Text = "Enter";
             btnEnter.UseVisualStyleBackColor = true;
             btnEnter.Click += btnEnter_Click;
@@ -184,7 +184,7 @@
             btnEye.Location = new Point(289, 32);
             btnEye.Name = "btnEye";
             btnEye.Size = new Size(30, 29);
-            btnEye.TabIndex = 8;
+            btnEye.TabIndex = 2;
             btnEye.Text = "👁";
             btnEye.UseVisualStyleBackColor = true;
             btnEye.Click += btnEye_Click;
@@ -215,7 +215,7 @@
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "CreateAccountForm";
-            Text = "CreateAccountForm";
+            Text = "Create Account";
             ResumeLayout(false);
             PerformLayout();
         }

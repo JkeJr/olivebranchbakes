@@ -19,8 +19,8 @@ namespace OliveBranchBakes.Forms.Payment
 
         private void PaymentEntryForm_Load(object sender, EventArgs e)
         {
-            dtpPickup.MinDate = DateTime.Today.AddDays(1);
-            dtpPickup.MaxDate = DateTime.Today.AddMonths(3);
+            dtpPickup.MinDate = DateTime.Today.AddDays(7);
+            dtpPickup.MaxDate = DateTime.Today.AddMonths(6);
 
             rtbComments.Text = order.Comments;
 
@@ -134,6 +134,8 @@ namespace OliveBranchBakes.Forms.Payment
             errorMessage += Validator.IsPresent(txtNameLast.Text, "Last Name");
             errorMessage += Validator.IsPresent(txtEmail.Text, "Email Username");
             errorMessage += Validator.IsPresent(cmmbEmail.Text, "Email Domain");
+            errorMessage += Validator.IsAvailableDate(dtpPickup.Value, "Pick-Up Date");
+            
 
             if (errorMessage != "")
             {

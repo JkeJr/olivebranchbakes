@@ -150,7 +150,7 @@ namespace OliveBranchBakes.Forms
                 item = items[i];
                 ListViewItem viewItem = new(item.Categories.ToString(", "));
                 viewItem.SubItems.Add(item.Name);
-                viewItem.SubItems.Add(item.Price.ToString());
+                viewItem.SubItems.Add(item.Price.ToString("C"));
                 viewItem.SubItems.Add(item.AllergenList.ToString(", "));
 
                 if (item.Active)

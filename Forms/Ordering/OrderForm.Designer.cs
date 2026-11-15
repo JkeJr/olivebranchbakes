@@ -46,17 +46,17 @@
             chkboxAllergy = new CheckBox();
             label4 = new Label();
             listviewItems = new ListView();
+            colAmount = new ColumnHeader();
             colName = new ColumnHeader();
-            colPrice = new ColumnHeader();
             colAllergens = new ColumnHeader();
-            colCount = new ColumnHeader();
+            colPrice = new ColumnHeader();
             txtSubtotal = new TextBox();
             rtxtComments = new RichTextBox();
             label7 = new Label();
             label3 = new Label();
             listviewOrder = new ListView();
-            colOrderedName = new ColumnHeader();
             colOrderedCount = new ColumnHeader();
+            colOrderedName = new ColumnHeader();
             colOrderedAllergen = new ColumnHeader();
             colOrderedPrice = new ColumnHeader();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
@@ -98,7 +98,7 @@
             btnContinue.Location = new Point(3, 375);
             btnContinue.Name = "btnContinue";
             btnContinue.Size = new Size(150, 48);
-            btnContinue.TabIndex = 6;
+            btnContinue.TabIndex = 7;
             btnContinue.Text = "Continue";
             btnContinue.UseVisualStyleBackColor = true;
             btnContinue.Click += btnContinue_Click;
@@ -109,7 +109,7 @@
             btnClear.Location = new Point(253, 375);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(88, 48);
-            btnClear.TabIndex = 8;
+            btnClear.TabIndex = 9;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = true;
             btnClear.Click += btnClear_Click;
@@ -120,7 +120,7 @@
             btnDelete.Location = new Point(159, 375);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(88, 48);
-            btnDelete.TabIndex = 7;
+            btnDelete.TabIndex = 8;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
@@ -183,7 +183,7 @@
             btnBack.Location = new Point(309, 3);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(114, 29);
-            btnBack.TabIndex = 2;
+            btnBack.TabIndex = 0;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
@@ -194,7 +194,7 @@
             btnAdd.Location = new Point(239, 307);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(183, 49);
-            btnAdd.TabIndex = 4;
+            btnAdd.TabIndex = 5;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
@@ -205,7 +205,7 @@
             numAmount.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numAmount.Name = "numAmount";
             numAmount.Size = new Size(106, 27);
-            numAmount.TabIndex = 3;
+            numAmount.TabIndex = 4;
             numAmount.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // label6
@@ -230,22 +230,24 @@
             // 
             // cmbboxFilter
             // 
+            cmbboxFilter.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbboxFilter.FormattingEnabled = true;
             cmbboxFilter.Items.AddRange(new object[] { "All", "Donuts", "Cakes", "Cookies" });
             cmbboxFilter.Location = new Point(309, 8);
             cmbboxFilter.Name = "cmbboxFilter";
             cmbboxFilter.Size = new Size(114, 28);
-            cmbboxFilter.TabIndex = 0;
+            cmbboxFilter.TabIndex = 1;
             cmbboxFilter.SelectedIndexChanged += cmbboxFilter_SelectedIndexChanged;
             // 
             // cmbboxAllergy
             // 
+            cmbboxAllergy.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbboxAllergy.FormattingEnabled = true;
             cmbboxAllergy.Items.AddRange(new object[] { "Tree Nut", "Pine Nut", "Peanut", "Almond", "Dairy", "Strawberry", "Blueberry" });
             cmbboxAllergy.Location = new Point(3, 328);
             cmbboxAllergy.Name = "cmbboxAllergy";
             cmbboxAllergy.Size = new Size(114, 28);
-            cmbboxAllergy.TabIndex = 2;
+            cmbboxAllergy.TabIndex = 3;
             // 
             // chkboxAllergy
             // 
@@ -254,7 +256,7 @@
             chkboxAllergy.Location = new Point(3, 307);
             chkboxAllergy.Name = "chkboxAllergy";
             chkboxAllergy.Size = new Size(76, 22);
-            chkboxAllergy.TabIndex = 1;
+            chkboxAllergy.TabIndex = 2;
             chkboxAllergy.Text = "Allergy?";
             chkboxAllergy.UseVisualStyleBackColor = true;
             chkboxAllergy.CheckedChanged += chkboxAllergy_CheckedChanged;
@@ -273,11 +275,12 @@
             // listviewItems
             // 
             listviewItems.BackColor = Color.AntiqueWhite;
-            listviewItems.Columns.AddRange(new ColumnHeader[] { colName, colPrice, colAllergens, colCount });
+            listviewItems.Columns.AddRange(new ColumnHeader[] { colAmount, colName, colAllergens, colPrice });
             listviewItems.FullRowSelect = true;
             listviewItems.GridLines = true;
             listviewItems.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             listviewItems.Location = new Point(3, 39);
+            listviewItems.MultiSelect = false;
             listviewItems.Name = "listviewItems";
             listviewItems.Size = new Size(419, 263);
             listviewItems.TabIndex = 1;
@@ -286,23 +289,23 @@
             listviewItems.View = View.Details;
             listviewItems.SelectedIndexChanged += listviewItems_SelectedIndexChanged;
             // 
+            // colAmount
+            // 
+            colAmount.Text = "Size";
+            // 
             // colName
             // 
             colName.Text = "Name";
             colName.Width = 150;
             // 
-            // colPrice
-            // 
-            colPrice.Text = "$__.__";
-            // 
             // colAllergens
             // 
             colAllergens.Text = "Allergens";
-            colAllergens.Width = 170;
+            colAllergens.Width = 110;
             // 
-            // colCount
+            // colPrice
             // 
-            colCount.Text = "#";
+            colPrice.Text = "$__.__";
             // 
             // txtSubtotal
             // 
@@ -319,7 +322,7 @@
             rtxtComments.Location = new Point(3, 295);
             rtxtComments.Name = "rtxtComments";
             rtxtComments.Size = new Size(338, 73);
-            rtxtComments.TabIndex = 5;
+            rtxtComments.TabIndex = 6;
             rtxtComments.Text = "";
             rtxtComments.TextChanged += rtxtComments_TextChanged;
             // 
@@ -346,7 +349,7 @@
             // listviewOrder
             // 
             listviewOrder.BackColor = Color.AntiqueWhite;
-            listviewOrder.Columns.AddRange(new ColumnHeader[] { colOrderedName, colOrderedCount, colOrderedAllergen, colOrderedPrice });
+            listviewOrder.Columns.AddRange(new ColumnHeader[] { colOrderedCount, colOrderedName, colOrderedAllergen, colOrderedPrice });
             listviewOrder.FullRowSelect = true;
             listviewOrder.GridLines = true;
             listviewOrder.HeaderStyle = ColumnHeaderStyle.Nonclickable;
@@ -359,15 +362,15 @@
             listviewOrder.UseCompatibleStateImageBehavior = false;
             listviewOrder.View = View.Details;
             // 
-            // colOrderedName
-            // 
-            colOrderedName.Text = "Name";
-            colOrderedName.Width = 150;
-            // 
             // colOrderedCount
             // 
             colOrderedCount.Text = "#";
             colOrderedCount.Width = 30;
+            // 
+            // colOrderedName
+            // 
+            colOrderedName.Text = "Name";
+            colOrderedName.Width = 130;
             // 
             // colOrderedAllergen
             // 
@@ -380,15 +383,17 @@
             // 
             // OrderForm
             // 
+            AcceptButton = btnContinue;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Bisque;
+            CancelButton = btnBack;
             ClientSize = new Size(800, 451);
             ControlBox = false;
             Controls.Add(splitContainer1);
             Name = "OrderForm";
             SizeGripStyle = SizeGripStyle.Hide;
-            Text = "OrderForm";
+            Text = "Olive Branch Bakes | Order Menu";
             Load += OrderForm_Load;
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
@@ -428,7 +433,7 @@
         private ColumnHeader colName;
         private ColumnHeader colPrice;
         private ColumnHeader colAllergens;
-        private ColumnHeader colCount;
+        private ColumnHeader colAmount;
         private ColumnHeader colOrderedName;
         private ColumnHeader colOrderedPrice;
         private ColumnHeader colOrderedCount;
