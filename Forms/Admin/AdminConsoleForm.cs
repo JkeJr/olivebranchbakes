@@ -338,7 +338,7 @@ namespace OliveBranchBakes.Forms
 
             AccountManagement.SaveAccounts(globalAccounts);
 
-            listviewAccounts.Items[i].SubItems[2].Text = cmbbAccountType.Text;
+            listviewAccounts.Items[i].SubItems[3].Text = cmbbAccountType.Text;
         }
 
         private void listviewAccounts_SelectedIndexChanged(object sender, EventArgs e)
