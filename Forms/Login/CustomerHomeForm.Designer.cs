@@ -111,7 +111,7 @@
             // 
             // btnEditAccount
             // 
-            btnEditAccount.Font = new Font("Trebuchet MS", 9F, FontStyle.Bold);
+            btnEditAccount.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold);
             btnEditAccount.Location = new Point(11, 85);
             btnEditAccount.Name = "btnEditAccount";
             btnEditAccount.Size = new Size(128, 61);
@@ -149,7 +149,7 @@
             // 
             // btnReorder
             // 
-            btnReorder.Font = new Font("Trebuchet MS", 9F, FontStyle.Bold);
+            btnReorder.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold);
             btnReorder.Location = new Point(217, 392);
             btnReorder.Name = "btnReorder";
             btnReorder.Size = new Size(125, 55);
@@ -160,7 +160,7 @@
             // 
             // btnDetails
             // 
-            btnDetails.Font = new Font("Trebuchet MS", 9F, FontStyle.Bold);
+            btnDetails.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold);
             btnDetails.Location = new Point(347, 392);
             btnDetails.Name = "btnDetails";
             btnDetails.Size = new Size(94, 55);

@@ -28,6 +28,8 @@ namespace OliveBranchBakes.Forms.Login
 
         public void EditAccount(Account userAccount)
         {
+            this.Name = "Edit Account";
+
             User = userAccount;
             txtUsername.Text = User.UserName;
             txtPassword.Text = User.Password;
@@ -50,19 +52,19 @@ namespace OliveBranchBakes.Forms.Login
         {
             if (IsValidData())
             {
-                bool exists = false;
-                foreach (Account a in AccountManagement.GetAccounts())
-                    if (txtUsername.Text == a.UserName)
-                        exists = true;
+                // If creating account
+                if (User == null)
+                {
+                    bool exists = false;
+                    foreach (Account a in AccountManagement.GetAccounts())
+                        if (txtUsername.Text == a.UserName)
+                            exists = true;
 
-                if (exists)
-                {
-                    MessageBox.Show($"Account, {txtUsername.Text}, already exists.", "Creation Error");
-                }
-                else
-                {
-                    // If creating account
-                    if (User == null)
+                    if (exists)
+                    {
+                        MessageBox.Show($"Account, {txtUsername.Text}, already exists.", "Creation Error");
+                    }
+                    else
                     {
                         User = new()
                         {
@@ -82,23 +84,22 @@ namespace OliveBranchBakes.Forms.Login
 
                         MessageBox.Show($"Your account has been created, {User.Firstname}.\n" +
                                         "Please login with your new credentials.", "Account Created");
-                        
                     }
-                    // If editing account
-                    else
-                    {
-                        User.UserName = txtUsername.Text;
-                        User.Firstname = txtFirstName.Text;
-                        User.LastName = txtLastName.Text;
-                        User.Email = $"{txtEmail.Text}@{cmbbEmail.Text}";
-                        User.Save();
-
-                        AccountManagement.SaveAccounts(AccountManagement.GetAccounts());
-
-                        MessageBox.Show($"Your new info has been saved, {User.Firstname}.", "Info Edited");
-                    }
-                    this.Close();
                 }
+                // If editing account
+                else
+                {
+                    User.UserName = txtUsername.Text;
+                    User.Firstname = txtFirstName.Text;
+                    User.LastName = txtLastName.Text;
+                    User.Email = $"{txtEmail.Text}@{cmbbEmail.Text}";
+                    User.Save();
+
+                    AccountManagement.SaveAccounts(AccountManagement.GetAccounts());
+
+                    MessageBox.Show($"Your new info has been saved, {User.Firstname}.", "Info Edited");
+                }
+                this.Close();
             }
         }
 
